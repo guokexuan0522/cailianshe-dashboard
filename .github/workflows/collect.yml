@@ -35,6 +35,8 @@ jobs:
           git config user.name "cailianshe-bot"
           git config user.email "bot@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          # 先 rebase 远端（本地人工升版推送后，此处必须同步后再推，否则 non-fast-forward 被拒）
+          git pull --rebase origin main || true
           git add index.html
           git commit -m "update $(date +%F) $(date +%T) (auto)" || echo "no change"
-          git push
+          git push origin HEAD:main
