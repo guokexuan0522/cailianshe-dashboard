@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-财联社投研看板 · 第二层云端自动入池引擎（v6.0 二期，2026-10-20 上线）
+财联社投研看板 · 第二层云端自动入池引擎（v6.1，2026-10-20 正式上线）
 ====================================================================
 定位：三层流水线的第二层——在云端（GitHub Actions）对 pending/ 工单做
       **确定性**预核验，零模型推断，产出结果文件供本地唤醒（第三层）消费。
@@ -388,7 +388,6 @@ def main():
         stocks_payload = {}
         entries = []
         if new_names:
-            codes = [i['code'] for _, i, _ in new_names]
             qs = [i['q'] for _, i, _ in new_names]
             try:
                 quotes = fetch_quotes(qs)
