@@ -430,6 +430,11 @@ def main():
                     st['kline'] = fetch_kline(q)
                 except Exception as e:
                     log('  kline 失败 %s: %s' % (q, e))
+                # priceIn 口径对齐母版：文章发布日（含）之后首个交易日收盘价
+                for bar in (st.get('kline') or []):
+                    if str(bar[0])[:10] >= period:
+                        entry['priceIn'] = round(bar[2], 2)
+                        break
                 try:
                     mn = fetch_minute(q)
                     if mn:
