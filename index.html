@@ -112,6 +112,41 @@ th.h-price{background:#26334a;color:#c6d2e4}
 th.h-fc{background:#3d2f0a;color:var(--yellow)}
 th.h-conf{background:#33161a;color:#f4737f}
 th.h-verify{background:#123324;color:#4ade80}
+/* ===== v6.0 栏目分类 / 比对候选池 / 折叠工具栏 ===== */
+.stock-card[data-col="公告全知道"]{border-top-color:#4fc3f7}
+.stock-card[data-col="财联社早知道"]{border-top-color:#f0b43c}
+.stock-card[data-col="狙击龙虎榜"]{border-top-color:#f4505e}
+.stock-card[data-col="风口研报·洞察"]{border-top-color:#a78bfa}
+.stock-card[data-col="金牌纪要库"]{border-top-color:#ffd700;box-shadow:0 0 16px rgba(255,215,0,.14)}
+.stock-card[data-col="掘金行业龙头"]{border-top-color:#f472b6}
+tr[data-col="公告全知道"] td{background:#10202e}
+tr[data-col="财联社早知道"] td{background:#262015}
+tr[data-col="狙击龙虎榜"] td{background:#2b1418}
+tr[data-col="风口研报·洞察"] td{background:#1f1930}
+tr[data-col="金牌纪要库"] td{background:#221d08}
+.lg-col{border-radius:7px;padding:5px 12px;font-weight:700;font-size:12.5px}
+.lg-cand{background:#2b2410;border:2px dashed #b38728;color:#f0b43c;border-radius:7px;padding:5px 12px;font-weight:700;font-size:12.5px}
+.lg-cand-exp{background:#33161a;border:1px solid #6e2230;color:#f4737f;border-radius:7px;padding:5px 12px;font-weight:700;font-size:12px}
+.fold-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.fold-sel{background:#16233c;color:#e6ebf4;border:1px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12.5px;font-family:inherit;cursor:pointer}
+.fold-btn{background:var(--primary);border:none;color:#fff;border-radius:7px;padding:6px 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+.fold-btn:hover{filter:brightness(1.15)}
+.fold-btn.ghost{background:#1b2740;color:#c6d2e4;border:1px solid var(--border)}
+.fold-info{font-size:12px;color:var(--muted)}
+details.rule,details.hist{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
+details.rule summary,details.hist summary{cursor:pointer;padding:10px 16px;font-weight:700;font-size:13.5px;background:#1b2740;list-style:none;overflow-wrap:anywhere}
+details.rule summary::before,details.hist summary::before{content:"▸ ";color:var(--primary)}
+details.rule[open] summary::before,details.hist[open] summary::before{content:"▾ "}
+.rule-n{font-size:11px;color:var(--muted);font-weight:600;margin-left:6px}
+ol.rule-list{margin:0;padding:10px 16px 12px 34px;font-size:13px;line-height:1.85;color:#d5deee}
+ol.rule-list li{margin:3px 0;overflow-wrap:anywhere}
+.hver{color:var(--gold);font-size:13.5px}
+.htime{font-size:11.5px;color:var(--muted);font-weight:600;margin-left:8px}
+.hnote{padding:8px 16px 12px;font-size:12.5px;line-height:1.8;color:#c6d2e4}
+.cand-card{border-top:5px solid #b38728}
+.cand-badge{display:inline-block;font-size:11px;border-radius:5px;padding:2px 8px;font-weight:700;background:#2b2410;color:#f0b43c;border:1px dashed #b38728;white-space:nowrap}
+.cand-expiry{background:#33161a;border:1px solid #6e2230;color:#f4737f;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;margin-top:6px}
+.pbar.cand i{background:#f0b43c}
 /* ===== 图表/其他 ===== */
 .chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px}
 .chart-card h3{font-size:14.5px;margin-bottom:4px}
@@ -201,7 +236,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 <div class="top">
 <div>
 <h1>财联社<span class="dot"> · </span>投研看板</h1>
-<p style="opacity:.85;margin-top:5px;font-size:13px">公众号「财联社VIP」付费栏目监控 · 夜刊 / 日刊 / 特刊 · 推断 + 交叉核验 · 入选投研池（21个交易日）</p>
+<p style="opacity:.85;margin-top:5px;font-size:13px">公众号「财联社VIP」付费栏目监控 · 公告全知道 / 财联社早知道 / 狙击龙虎榜 / 风口研报·洞察 / 金牌纪要库（≥280微信豆）· 推断 + 交叉核验 · 入选投研池（21个交易日）· 比对候选池（10个交易日）</p>
 <div class="chips">
 <span class="chip"><span class="live"></span>行情快照 <b id="quoteTime">—</b></span>
 <span class="chip">⭐ 自选 <b id="favCount">0</b> 只</span>
@@ -226,16 +261,19 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 <p style="font-size:13px;color:var(--muted);margin-bottom:10px">在入选投研池卡片中勾选「⭐ 加入自选」即可收藏，记录加入日期时间与自选价；股票移出投研池后自动同步移出自选。</p>
 <div id="favBox"></div></section>
 
-<section><h2>入选投研池</h2>
-<div class="legend">
-<span class="lg-night">🌙 夜刊 · 公告全知道</span>
-<span class="lg-day">☀ 日刊 · 财联社早知道</span>
-<span class="lg-special">🌟 特刊 · 掘金行业龙头</span>
-</div>
+<section><h2>入选投研池 <span class="sub">按财联社栏目分类 · 在池时长按交易日计算（21个交易日移出）</span></h2>
+<div class="legend" id="poolLegend"></div>
 <div class="stocks-grid" id="poolBox"></div></section>
 
+<section><h2>比对候选池 <span class="sub">比对未成功 · 暂不入池 · <b id="candCount" style="color:#f0b43c">0</b> 只待确认</span></h2>
+<div class="legend">
+<span class="lg-cand">◐ 推断 · 待正文确认</span>
+<span class="lg-cand-exp">⏳ 入候选池第10个交易日仍未确认 → 第11个交易日从看板彻底删除</span>
+</div>
+<div class="stocks-grid" id="candBox"></div></section>
+
 <section><h2>上涨概率 <span class="sub">仅统计近10个交易日内（含10日）入选投研池的标的</span></h2>
-<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:-2px 0 8px"><span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#ffd700;margin-right:5px"></i>🏅 金牌纪要库</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#a78bfa;margin-right:5px"></i>夜刊</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f472b6;margin-right:5px"></i>特刊</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4fc3f7;margin-right:5px"></i>日刊</span></div>
+<div class="legend" id="probLegend"></div>
 <div class="chart-card"><div class="chart" id="cProb"></div></div></section>
 
 <section><h2>投研池股票监控数据表</h2>
@@ -258,26 +296,45 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 </table></div>
 <p style="font-size:12px;color:var(--muted);margin-top:8px">「入池以来涨幅」按入选投研池价格（入选价）计算；10日预测高/中/低置信度以 红/黄/绿 字色标示。</p></section>
 
-<section><h2>监控图表 <span class="sub">累计涨幅仅统计自选股（红涨绿跌）</span></h2>
-<div class="charts">
-<div class="chart-card"><h3>自选股 · 入池以来涨幅</h3><div class="chart" id="cGain"></div></div>
-<div class="chart-card"><h3>投研池 · 入池以来涨幅（全部在池标的）</h3><div class="chart" id="cGainAll"></div></div>
-</div></section>
+<section><h2>监控图表 <span class="sub">红涨绿跌 · 投研池全池图为独立全宽动态高度 · 柱色按财联社栏目区分</span></h2>
+<div class="chart-card"><h3>自选股 · 入池以来涨幅（自选价基准）</h3><div class="chart" id="cGain"></div></div>
+<div class="chart-card" style="margin-top:14px"><h3>投研池 · 入池以来涨幅（全部在池标的 · 柱色 = 财联社栏目）</h3><div class="chart" id="cGainAll"></div></div></section>
 
 <section><h2>今日（<b id="rvDate" style="color:#f0b43c">—</b>）收盘数据复盘 <span class="sub">个股技术面要点 · 下一步操作提示与警示</span></h2><div id="rvBox"></div></section>
 
-<section><h2>期次备查 <span class="sub">抓取文章主要内容原文 · 角标：利好 / 上涨 / 异动</span></h2>
+<section><h2>期次备查 <span class="sub">抓取文章主要内容原文 · 角标：利好 / 上涨 / 异动 · 可按日期与栏目筛选查询</span></h2>
+<div class="fold-bar">
+<select class="fold-sel" id="batchDateSel" onchange="filterBatches()"><option value="">全部日期</option></select>
+<select class="fold-sel" id="batchColSel" onchange="filterBatches()"><option value="">全部栏目</option></select>
+<button class="fold-btn" onclick="expandAll('#batchBox')">一键展开</button>
+<button class="fold-btn ghost" onclick="collapseAll('#batchBox')">全部收起</button>
+<span class="fold-info" id="batchInfo"></span>
+</div>
 <div id="batchBox"></div></section>
 
-<section><h2>规则与更新记录</h2>
-<div class="note" id="noteBox"></div>
-<div class="note" style="background:#141f30;color:#b8c2d2" id="histBox"></div></section>
+<section><h2>规则和铁律 <span class="sub">监控范围 · 抓取门槛 · 信息源 · 入池流程 · 比对候选池 · 在池管理 · 数据文件 · 版本修订 · 流水线运维 · 展示口径</span></h2>
+<div class="fold-bar">
+<select class="fold-sel" id="ruleCatSel" onchange="jumpRule()"><option value="">跳转条款分类…</option></select>
+<button class="fold-btn" onclick="expandAll('#ruleBox')">一键展开</button>
+<button class="fold-btn ghost" onclick="collapseAll('#ruleBox')">全部收起</button>
+<span class="fold-info" id="ruleInfo"></span>
+</div>
+<div id="ruleBox"></div></section>
 
-<footer>财联社 · 投研看板 ｜ 数据驱动单文件 · 离线可用 ｜ 监控范围：财联社公众号作者「财联社VIP」发布的「公告全知道 / 财联社早知道 / 掘金行业龙头」收费文章（≥280微信豆） ｜ 云端自动采集：文章发现每 30 分钟 · 收盘行情每日 15:45 · 盘中价格每 60 秒实时同步<br>© 2026 财联社·投研看板 · 版权所有 ｜ 开发者：郭轲儇 ｜ 微信：GuoLiHai-TP<br>数据来源：财联社公众号「财联社VIP」付费栏目内容 × 腾讯证券行情接口（qt.gtimg.cn） ｜ 当前版本 <b id="footVer">—</b> · 最后更新 <b id="footUpd">—</b><br>免责声明：本看板全部数据、预测与复盘内容仅供个人研究参考，不构成任何投资建议；股市有风险，投资需谨慎。</footer>
+<section><h2>更新记录 <span class="sub">按版本号倒序留档 · 可按版本号筛选查询</span></h2>
+<div class="fold-bar">
+<select class="fold-sel" id="histVerSel" onchange="filterHistory()"><option value="">全部版本</option></select>
+<button class="fold-btn" onclick="expandAll('#histBox')">一键展开</button>
+<button class="fold-btn ghost" onclick="collapseAll('#histBox')">全部收起</button>
+<span class="fold-info" id="histInfo"></span>
+</div>
+<div id="histBox"></div></section>
+
+<footer>财联社 · 投研看板 ｜ 数据驱动单文件 · 离线可用 ｜ 监控范围：财联社公众号作者「财联社VIP」发布的「公告全知道 / 财联社早知道 / 狙击龙虎榜 / 风口研报·洞察 / 金牌纪要库」收费文章（全栏目统一 ≥280 微信豆；《掘金行业龙头》180 豆整栏不抓取） ｜ 云端自动采集：文章发现每 30 分钟 · 收盘行情每日 15:45 · 盘中价格每 60 秒实时同步<br>© 2026 财联社·投研看板 · 版权所有 ｜ 开发者：郭轲儇 ｜ 微信：GuoLiHai-TP<br>数据来源：财联社公众号「财联社VIP」付费栏目内容 × 腾讯证券行情接口（qt.gtimg.cn） ｜ 当前版本 <b id="footVer">—</b> · 最后更新 <b id="footUpd">—</b><br>在池时长均按交易日计算：2026 年国务院官方放假安排已内置（含调休上班交易日），2027 年按法定假日预估、官方发布后校准 · 比对未成功标的暂存【比对候选池】，第 11 个交易日自动清除<br>免责声明：本看板全部数据、预测与复盘内容仅供个人研究参考，不构成任何投资建议；股市有风险，投资需谨慎。</footer>
 </div>
 
 <script id="MONITOR_DATA" type="application/json">{
- "version": "5.4",
+ "version": "6.0",
  "lastUpdated": "2026-10-19 22:45（v5.4核验入池·12只新标的）",
  "collectTime": "2026-10-19 22:45（v5.4核验入池·12只新标的）",
  "quoteTime": "2026-10-19 16:14 收盘",
@@ -309,7 +366,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "prob": 72,
    "conf": "high",
    "pct": -3.98,
-   "price": 86.9
+   "price": 86.9,
+   "column": "公告全知道",
+   "batchId": "b20261011"
   },
   {
    "name": "鸿富瀚",
@@ -337,7 +396,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "prob": 68,
    "conf": "high",
    "pct": -2.43,
-   "price": 121.81
+   "price": 121.81,
+   "column": "公告全知道",
+   "batchId": "b20261011"
   },
   {
    "name": "东百集团",
@@ -365,7 +426,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "prob": 73,
    "conf": "mid",
    "pct": -10.03,
-   "price": 8.88
+   "price": 8.88,
+   "column": "公告全知道",
+   "batchId": "b20261011"
   },
   {
    "name": "弘信电子",
@@ -393,7 +456,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "tech": "入选价31.83，现价31.32（入选以来-1.60%）；今日-5.86%。",
    "forecast": "+5%~10%",
    "prob": 68,
-   "conf": "mid"
+   "conf": "mid",
+   "column": "公告全知道",
+   "batchId": "b20261012"
   },
   {
    "name": "富春染织",
@@ -417,11 +482,13 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "conf": "high",
    "verifyTag": "摘要确认",
    "tier": "night",
-   "beans": "280",
+   "beans": 280,
    "pub": "2026-10-13 22:00",
    "dateIn": "2026-10-13",
    "price": 17.2,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261013"
   },
   {
    "name": "宝鼎科技",
@@ -445,11 +512,13 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "conf": "high",
    "verifyTag": "摘要确认",
    "tier": "night",
-   "beans": "280",
+   "beans": 280,
    "pub": "2026-10-13 22:00",
    "dateIn": "2026-10-13",
    "price": 41.66,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261013"
   },
   {
    "name": "兴森科技",
@@ -473,11 +542,13 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "conf": "high",
    "verifyTag": "摘要确认",
    "tier": "night",
-   "beans": "280",
+   "beans": 280,
    "pub": "2026-10-13 22:00",
    "dateIn": "2026-10-13",
    "price": 34.52,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261013"
   },
   {
    "name": "武汉天源",
@@ -505,7 +576,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "tech": "入选价14.34，现价14.34（入选以来+0.00%）；当日-2.38%。",
    "forecast": "+5%~12%",
    "prob": 60,
-   "conf": "mid"
+   "conf": "mid",
+   "column": "公告全知道",
+   "batchId": "b20261014"
   },
   {
    "name": "嘉元科技",
@@ -533,7 +606,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-14 23:38",
    "dateIn": "2026-10-14",
    "price": 23.54,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261014"
   },
   {
    "name": "大族激光",
@@ -561,7 +636,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-15 22:52",
    "dateIn": "2026-10-15",
    "price": 63.2,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261015"
   },
   {
    "name": "光库科技",
@@ -589,7 +666,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-15 22:52",
    "dateIn": "2026-10-15",
    "price": 232.79,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261015"
   },
   {
    "name": "赣锋锂业",
@@ -617,7 +696,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-15 22:52",
    "dateIn": "2026-10-15",
    "price": 38.23,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261015"
   },
   {
    "name": "金丹科技",
@@ -646,7 +727,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-15 10:35",
    "dateIn": "2026-10-16",
    "price": 23.2,
-   "verify": true
+   "verify": true,
+   "column": "金牌纪要库",
+   "batchId": "b20261015_gold"
   },
   {
    "name": "浙江龙盛",
@@ -675,7 +758,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-15 10:35",
    "dateIn": "2026-10-16",
    "price": 11.34,
-   "verify": true
+   "verify": true,
+   "column": "金牌纪要库",
+   "batchId": "b20261015_gold"
   },
   {
    "name": "闰土股份",
@@ -704,7 +789,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-15 10:35",
    "dateIn": "2026-10-16",
    "price": 11.29,
-   "verify": true
+   "verify": true,
+   "column": "金牌纪要库",
+   "batchId": "b20261015_gold"
   },
   {
    "name": "利尔化学",
@@ -733,7 +820,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-15 10:35",
    "dateIn": "2026-10-16",
    "price": 14.16,
-   "verify": true
+   "verify": true,
+   "column": "金牌纪要库",
+   "batchId": "b20261015_gold"
   },
   {
    "name": "凡拓数创",
@@ -762,7 +851,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 19:19",
    "dateIn": "2026-10-18",
    "price": 39.0,
-   "verify": true
+   "verify": true,
+   "column": "财联社早知道",
+   "batchId": "b20261018"
   },
   {
    "name": "保隆科技",
@@ -791,7 +882,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 19:19",
    "dateIn": "2026-10-18",
    "price": 32.33,
-   "verify": true
+   "verify": true,
+   "column": "财联社早知道",
+   "batchId": "b20261018"
   },
   {
    "name": "嘉立创",
@@ -820,7 +913,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 19:19",
    "dateIn": "2026-10-18",
    "price": 168.11,
-   "verify": true
+   "verify": true,
+   "column": "财联社早知道",
+   "batchId": "b20261018"
   },
   {
    "name": "威尔高",
@@ -849,7 +944,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 22:23",
    "dateIn": "2026-10-18",
    "price": 75.19,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261018_ggzd"
   },
   {
    "name": "金海通",
@@ -878,7 +975,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 22:23",
    "dateIn": "2026-10-18",
    "price": 267.8,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261018_ggzd"
   },
   {
    "name": "数据港",
@@ -907,7 +1006,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 22:23",
    "dateIn": "2026-10-18",
    "price": 20.8,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261018_ggzd"
   },
   {
    "name": "万丰奥威",
@@ -936,7 +1037,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 20:54",
    "dateIn": "2026-10-18",
    "price": 10.9,
-   "verify": true
+   "verify": true,
+   "column": "金牌纪要库",
+   "batchId": "b20261018_gold"
   },
   {
    "name": "卧龙电驱",
@@ -965,7 +1068,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 20:54",
    "dateIn": "2026-10-18",
    "price": 24.3,
-   "verify": true
+   "verify": true,
+   "column": "金牌纪要库",
+   "batchId": "b20261018_gold"
   },
   {
    "name": "东方嘉盛",
@@ -994,7 +1099,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 21:17",
    "dateIn": "2026-10-18",
    "price": 15.74,
-   "verify": true
+   "verify": true,
+   "column": "狙击龙虎榜",
+   "batchId": "b20261018_lhb"
   },
   {
    "name": "长城军工",
@@ -1023,7 +1130,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-18 21:17",
    "dateIn": "2026-10-18",
    "price": 33.52,
-   "verify": true
+   "verify": true,
+   "column": "狙击龙虎榜",
+   "batchId": "b20261018_lhb"
   },
   {
    "name": "生益电子",
@@ -1052,7 +1161,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 22:06",
    "dateIn": "2026-10-19",
    "price": 93.0,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261019_ggzd"
   },
   {
    "name": "协创数据",
@@ -1081,7 +1192,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 22:06",
    "dateIn": "2026-10-19",
    "price": 216.77,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261019_ggzd"
   },
   {
    "name": "三峡新材",
@@ -1110,7 +1223,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 22:06",
    "dateIn": "2026-10-19",
    "price": 3.93,
-   "verify": true
+   "verify": true,
+   "column": "公告全知道",
+   "batchId": "b20261019_ggzd"
   },
   {
    "name": "长进光子",
@@ -1139,7 +1254,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:10",
    "dateIn": "2026-10-19",
    "price": 217.32,
-   "verify": true
+   "verify": true,
+   "column": "财联社早知道",
+   "batchId": "b20261019"
   },
   {
    "name": "天娱数科",
@@ -1168,7 +1285,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:10",
    "dateIn": "2026-10-19",
    "price": 7.42,
-   "verify": true
+   "verify": true,
+   "column": "财联社早知道",
+   "batchId": "b20261019"
   },
   {
    "name": "众生药业",
@@ -1197,7 +1316,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:10",
    "dateIn": "2026-10-19",
    "price": 27.94,
-   "verify": true
+   "verify": true,
+   "column": "财联社早知道",
+   "batchId": "b20261019"
   },
   {
    "name": "东安动力",
@@ -1226,7 +1347,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:26",
    "dateIn": "2026-10-19",
    "price": 11.28,
-   "verify": true
+   "verify": true,
+   "column": "狙击龙虎榜",
+   "batchId": "b20261019_lhb"
   },
   {
    "name": "能科科技",
@@ -1255,7 +1378,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:26",
    "dateIn": "2026-10-19",
    "price": 38.82,
-   "verify": true
+   "verify": true,
+   "column": "狙击龙虎榜",
+   "batchId": "b20261019_lhb"
   },
   {
    "name": "慈文传媒",
@@ -1284,7 +1409,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:26",
    "dateIn": "2026-10-19",
    "price": 10.26,
-   "verify": true
+   "verify": true,
+   "column": "狙击龙虎榜",
+   "batchId": "b20261019_lhb"
   },
   {
    "name": "宏川智慧",
@@ -1313,7 +1440,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:48",
    "dateIn": "2026-10-19",
    "price": 8.25,
-   "verify": true
+   "verify": true,
+   "column": "风口研报·洞察",
+   "batchId": "b20261019_dc"
   },
   {
    "name": "顺丰控股",
@@ -1342,7 +1471,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:48",
    "dateIn": "2026-10-19",
    "price": 31.82,
-   "verify": true
+   "verify": true,
+   "column": "风口研报·洞察",
+   "batchId": "b20261019_dc"
   },
   {
    "name": "振华股份",
@@ -1371,7 +1502,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-19 21:48",
    "dateIn": "2026-10-19",
    "price": 34.53,
-   "verify": true
+   "verify": true,
+   "column": "风口研报·洞察",
+   "batchId": "b20261019_dc"
   }
  ],
  "stocks": {
@@ -66583,7 +66716,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "③这家公司在手订单饱满，第三季度净利润同比预增205%-265%"
     ]
    },
-   "items": []
+   "items": [],
+   "column": "财联社早知道"
   },
   {
    "id": "b20261011",
@@ -66640,7 +66774,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "stock": "东百集团",
      "scode": "600693"
     }
-   ]
+   ],
+   "column": "公告全知道"
   },
   {
    "period": "2026-10-12",
@@ -66671,7 +66806,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "title": "【公告全知道】算力+PCB+液冷服务器+光模块+数据中心！公司签署近30亿元算力芯片合同",
    "pub": "2026-10-12 22:00",
    "beans": 280,
-   "companies": 1
+   "companies": 1,
+   "column": "公告全知道"
   },
   {
    "id": "b20261013",
@@ -66728,7 +66864,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "scode": "002436",
      "content": "公开公告（10-13晚）：预计2026年前三季度归母净利润4.0亿~4.3亿元，同比增长204.20%~227.02%；CSP封装基板量价齐升、光模块mSAP基板一线客户突破、宜兴硅谷扭亏。✔摘要确认。"
     }
-   ]
+   ],
+   "column": "公告全知道"
   },
   {
    "id": "b20261014_gold",
@@ -66749,7 +66886,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-14 10:30",
    "beans": 380,
    "companies": 0,
-   "note": "入池说明（2026-10-16 v4.33 方法论修正后重新核验）：本篇为《金牌纪要库》380微信豆付费文章（达标≥380），发布于2026-10-14。已按「公告全知道同款原则」用公开摘要线索做全网公开源交叉验证：摘要②「海外AI内容渗透率不足20%、用户数量存在翻倍以上增长空间，这些公司已经率先跑通」为板块级描述，公开源（证券时报/同花顺10-15概念股名单、21财经中文在线专题等）对应A股 50 余只 AI 短剧/漫剧概念股，慈文传媒、中文在线、掌阅科技、德才股份等均被点名「跑通」，无法收敛到唯一或固定小集合；摘要①③同为行业主题判断。按「唯一公开锚点」标准无法归属到具体单一个股，故本篇入池股票数为 0，仅作期次备查。"
+   "note": "入池说明（2026-10-16 v4.33 方法论修正后重新核验）：本篇为《金牌纪要库》380微信豆付费文章（达标≥380），发布于2026-10-14。已按「公告全知道同款原则」用公开摘要线索做全网公开源交叉验证：摘要②「海外AI内容渗透率不足20%、用户数量存在翻倍以上增长空间，这些公司已经率先跑通」为板块级描述，公开源（证券时报/同花顺10-15概念股名单、21财经中文在线专题等）对应A股 50 余只 AI 短剧/漫剧概念股，慈文传媒、中文在线、掌阅科技、德才股份等均被点名「跑通」，无法收敛到唯一或固定小集合；摘要①③同为行业主题判断。按「唯一公开锚点」标准无法归属到具体单一个股，故本篇入池股票数为 0，仅作期次备查。",
+   "column": "金牌纪要库"
   },
   {
    "period": "2026-10-14",
@@ -66769,7 +66907,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "title": "【掘金行业龙头】核聚变+铜连接，细分可控核聚变产品全球唯一生产者，224G高速传输产品构建坚实壁垒，这家公司客户包括安费诺、泰科等",
    "pub": "2026-10-14",
    "beans": 180,
-   "companies": 0
+   "companies": 0,
+   "column": "掘金行业龙头"
   },
   {
    "id": "b20261014",
@@ -66813,7 +66952,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "scode": "688388",
      "content": "公开公告（10-14晚）：预计前三季度归母净利润5.30亿~5.80亿元，同比+1196.60%~1318.92%；扣非3.60亿~3.90亿元，+3065.71%~3329.52%。铜箔产销两旺+高端电子电路铜箔（RTF/HVLP）突破；宁德时代62.6万吨长单；控股江门新雨切入PCB、战略入股恩达通切入光模块、固态电池用铜箔小批量供应。✔摘要确认。"
     }
-   ]
+   ],
+   "column": "公告全知道"
   },
   {
    "id": "b20261015_gold",
@@ -66883,7 +67023,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-15 10:35",
    "beans": 380,
    "companies": 4,
-   "note": "入池说明（2026-10-16 v4.33 方法论修正后重新识别）：本篇为《金牌纪要库》380微信豆付费文章（达标≥380），发布于2026-10-15 10:35。按用户指示的「公告全知道同款原则」——付费正文虽不可见，但公开摘要中的唯一事件/数字可经全网公开源交叉验证锁定唯一公司——本篇三段摘要全部完成识别并入池 4 只：①金丹科技(300829)：摘要①「乳酸龙头10月发布8%调价通知」→ 公司10-10乳酸系列统一上调8%调价通知（中国证券网/大河财立方/每经/新华财经多源逐字对应，唯一归属）；②浙江龙盛(600352)+闰土股份(002440)：摘要②「染料涨超30%+原料自供与成品染料产能的这几家企业」→ 中国证券网10-14每日研选明确还原物国内仅宁夏中盛（非上市）/浙江龙盛/闰土股份三家可稳定生产，A股一体化双龙头唯一收敛为两家；③利尔化学(002258)：摘要③「草铵膦9月下旬回升至每吨约5.95万元」→ 证券时报/百川盈孚华东均价5.95万元/吨逐字对应，规模化草铵膦+原药一体化龙头唯一归属。4 只均以金色「🏅 金牌纪要库」徽章+金边卡片特殊标记入池。"
+   "note": "入池说明（2026-10-16 v4.33 方法论修正后重新识别）：本篇为《金牌纪要库》380微信豆付费文章（达标≥380），发布于2026-10-15 10:35。按用户指示的「公告全知道同款原则」——付费正文虽不可见，但公开摘要中的唯一事件/数字可经全网公开源交叉验证锁定唯一公司——本篇三段摘要全部完成识别并入池 4 只：①金丹科技(300829)：摘要①「乳酸龙头10月发布8%调价通知」→ 公司10-10乳酸系列统一上调8%调价通知（中国证券网/大河财立方/每经/新华财经多源逐字对应，唯一归属）；②浙江龙盛(600352)+闰土股份(002440)：摘要②「染料涨超30%+原料自供与成品染料产能的这几家企业」→ 中国证券网10-14每日研选明确还原物国内仅宁夏中盛（非上市）/浙江龙盛/闰土股份三家可稳定生产，A股一体化双龙头唯一收敛为两家；③利尔化学(002258)：摘要③「草铵膦9月下旬回升至每吨约5.95万元」→ 证券时报/百川盈孚华东均价5.95万元/吨逐字对应，规模化草铵膦+原药一体化龙头唯一归属。4 只均以金色「🏅 金牌纪要库」徽章+金边卡片特殊标记入池。",
+   "column": "金牌纪要库"
   },
   {
    "id": "b20261015",
@@ -66940,7 +67081,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "title": "【公告全知道】芯片+PCB+光刻机+先进封装+第三代半导体！公司前三季度净利预计同比最高增超150%",
    "pub": "2026-10-15 22:52",
    "beans": 280,
-   "companies": 3
+   "companies": 3,
+   "column": "公告全知道"
   },
   {
    "id": "b20261016_gold",
@@ -66961,7 +67103,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "pub": "2026-10-16 10:01",
    "beans": 380,
    "companies": 0,
-   "note": "入池说明（2026-10-16 v4.33 方法论修正后重新核验）：本篇为《金牌纪要库》380微信豆付费文章（达标≥380），发布于2026-10-16。已按「公告全知道同款原则」用公开摘要线索做全网公开源交叉验证：①「海外14家CXO中8家上调全年指引」→ 中财网/同花顺10-09全球CXO跟踪研报确认该 14 家全部为海外公司（IQVIA/TMO/CharlesRiver/LONZA/PolyPeptide/Medpace 等），无 A 股唯一锚点；②「这个环节存量低价单是最后一棒、2027年最大弹性来源」→ 公开源中昭衍新药「低价订单出清+2027毛利率修复」为最强近似，但美迪西/益诺思等亦有同类叙事，且「这个环节」指代无法从公开部分唯一确定；③「中分子药物（环肽/PROTAC/分子胶）重构CDMO价值分配」→ 板块主题，公开研报推荐药明康德/凯莱英/普洛药业/博腾股份等多家并列，无唯一归属。按「唯一公开锚点」标准无法锁定具体单一个股，故本篇入池股票数为 0，仅作期次备查。"
+   "note": "入池说明（2026-10-16 v4.33 方法论修正后重新核验）：本篇为《金牌纪要库》380微信豆付费文章（达标≥380），发布于2026-10-16。已按「公告全知道同款原则」用公开摘要线索做全网公开源交叉验证：①「海外14家CXO中8家上调全年指引」→ 中财网/同花顺10-09全球CXO跟踪研报确认该 14 家全部为海外公司（IQVIA/TMO/CharlesRiver/LONZA/PolyPeptide/Medpace 等），无 A 股唯一锚点；②「这个环节存量低价单是最后一棒、2027年最大弹性来源」→ 公开源中昭衍新药「低价订单出清+2027毛利率修复」为最强近似，但美迪西/益诺思等亦有同类叙事，且「这个环节」指代无法从公开部分唯一确定；③「中分子药物（环肽/PROTAC/分子胶）重构CDMO价值分配」→ 板块主题，公开研报推荐药明康德/凯莱英/普洛药业/博腾股份等多家并列，无唯一归属。按「唯一公开锚点」标准无法锁定具体单一个股，故本篇入池股票数为 0，仅作期次备查。",
+   "column": "金牌纪要库"
   },
   {
    "id": "b20261018",
@@ -67019,7 +67162,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "content": "公开信源交叉验证：摘要③「前三季度净利润同比预增79%-118%，AI加速硬件创新全球硬件研发需求持续增长」与巨潮资讯网《深圳嘉立创科技集团股份有限公司2026年前三季度业绩预告》（2026-10-17）逐字对应：预计归母净利16.79亿~20.52亿元（+78.76%~118.48%），业绩变动原因首条即「AI加速硬件创新，全球硬件研发需求持续增长」。✔摘要③验证。"
     }
    ],
-   "note": "入池说明（2026-10-18 v5.0）：本篇为《财联社早知道》280微信豆付费文章（达标≥280），发布于2026-10-18。三只标的均按「唯一公开锚点」标准锁定入池：①凡拓数创（301313）——同花顺10-18公司专题与摘要①逐字对应；②保隆科技（603197）——全景网互动易官方答复与摘要②逐字对应；③嘉立创（001232）——巨潮资讯官方业绩预告与摘要③逐字对应。入池日10-18为周日（非交易日），行情数据取10-16收盘价。"
+   "note": "入池说明（2026-10-18 v5.0）：本篇为《财联社早知道》280微信豆付费文章（达标≥280），发布于2026-10-18。三只标的均按「唯一公开锚点」标准锁定入池：①凡拓数创（301313）——同花顺10-18公司专题与摘要①逐字对应；②保隆科技（603197）——全景网互动易官方答复与摘要②逐字对应；③嘉立创（001232）——巨潮资讯官方业绩预告与摘要③逐字对应。入池日10-18为周日（非交易日），行情数据取10-16收盘价。",
+   "column": "财联社早知道"
   },
   {
    "id": "b20261018_ggzd",
@@ -67077,7 +67221,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "content": "公开信源交叉验证：摘要③「算力+数据中心+云计算+国企改革！公司拟采购不超过10亿元算力服务」与数据港2026-10-16《关于采购算力服务的公告》（公告编号2026-037）逐字对应：拟采购不超过10亿元算力服务、服务期5年、总算力≥850P(fp16)、支持RDMA；控股股东上海市北高新（集团）持股32.98%、实控人上海市静安区国资委（国企改革✔）；已建成运营36座数据中心、IT负载401MW，IDC+云服务销售+算力业务（数据中心/云计算✔）。✔摘要③验证。"
     }
    ],
-   "note": "入池说明（2026-10-19 v5.1·cls.cn直抓补抓）：本篇为《公告全知道》280微信豆付费文章（达标≥280），发布于2026-10-18 22:23，经财联社官网直抓通道补抓（微信专辑列表自10-18 19:19起停更漏收录）。三只标的按「唯一公开锚点」标准锁定入池：①威尔高（301251）——三季报Q3净利+461.86%＞400%与四概念组合全匹配（科翔股份+638.54%亦为PCB三季报高增，但其公开信息无「机器人」公司级锚点且增幅表述应为「超600%」，与摘要①「超400%」量级不符，故①锁定威尔高）；②金海通（603061）——上交所前三季经营公告与摘要②逐字对应；③数据港（603881）——10亿算力采购公告与摘要③逐字对应。cls.cn接口显示本篇related_stock为「主板2+创业板2」共4只，第4只创业板标的仅见于付费正文、无公开唯一锚点，按信息源铁律不予入池（留痕）。行情数据取10-16收盘（10-18为周日非交易日）。在池股票19→22。"
+   "note": "入池说明（2026-10-19 v5.1·cls.cn直抓补抓）：本篇为《公告全知道》280微信豆付费文章（达标≥280），发布于2026-10-18 22:23，经财联社官网直抓通道补抓（微信专辑列表自10-18 19:19起停更漏收录）。三只标的按「唯一公开锚点」标准锁定入池：①威尔高（301251）——三季报Q3净利+461.86%＞400%与四概念组合全匹配（科翔股份+638.54%亦为PCB三季报高增，但其公开信息无「机器人」公司级锚点且增幅表述应为「超600%」，与摘要①「超400%」量级不符，故①锁定威尔高）；②金海通（603061）——上交所前三季经营公告与摘要②逐字对应；③数据港（603881）——10亿算力采购公告与摘要③逐字对应。cls.cn接口显示本篇related_stock为「主板2+创业板2」共4只，第4只创业板标的仅见于付费正文、无公开唯一锚点，按信息源铁律不予入池（留痕）。行情数据取10-16收盘（10-18为周日非交易日）。在池股票19→22。",
+   "column": "公告全知道"
   },
   {
    "id": "b20261018_gold",
@@ -67123,7 +67268,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "content": "公开信源交叉验证：摘要②「电推进系统既是新增硬件环节又占据最高成本比重，这家企业已开始为飞行汽车机型提供电推进开发和配套服务」与卧龙电驱公开信息唯一对应——电推进系统占eVTOL总价值量约40%（最高成本比重✔）；2019年成立电动航空研发中心，2024年联合中国商飞研发国内首台百千瓦级航空电动力系统，2025年6月与沃飞长空成立合资公司浙江龙飞电驱，专注750-5700kg适航航空器电推进系统研发制造并提供电机/控制器/集成方案及实验测试服务（电推进开发和配套服务✔）；已进入中国商飞、沃飞长空、山河星航核心供应链。✔摘要②验证。"
     }
    ],
-   "note": "入池说明（2026-10-19 v5.1·cls.cn直抓补抓）：本篇为《金牌纪要库》380微信豆付费文章（达标≥380），发布于2026-10-18 20:54，经财联社官网直抓通道补抓。①②两只标的按「唯一公开锚点」标准锁定入池。摘要③「航电、飞控和能源系统…这些企业已逐步进入该领域成为零部件供应商」为泛指表述、未给出任何公司级公开锚点，按信息源铁律不予入池（cls.cn接口显示本篇related_stock为「主板2+创业板3+科创板1」共6只，其余4仅见于付费正文，留痕）。行情数据取10-16收盘。在池股票22→24。"
+   "note": "入池说明（2026-10-19 v5.1·cls.cn直抓补抓）：本篇为《金牌纪要库》380微信豆付费文章（达标≥380），发布于2026-10-18 20:54，经财联社官网直抓通道补抓。①②两只标的按「唯一公开锚点」标准锁定入池。摘要③「航电、飞控和能源系统…这些企业已逐步进入该领域成为零部件供应商」为泛指表述、未给出任何公司级公开锚点，按信息源铁律不予入池（cls.cn接口显示本篇related_stock为「主板2+创业板3+科创板1」共6只，其余4仅见于付费正文，留痕）。行情数据取10-16收盘。在池股票22→24。",
+   "column": "金牌纪要库"
   },
   {
    "id": "b20261018_lhb",
@@ -67181,7 +67327,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "content": "公开信源交叉验证：摘要③「公司是兵装集团旗下核心弹药上市平台，并存在整合预期」与长城军工公开信息唯一对应——2023年8月安徽军工集团战略重组后中国兵器装备集团正式入主，为兵装集团旗下唯一弹药装备上市平台；兵装分立重组2025年6月获国务院批复带来整合预期；2026年关联方销售预计8亿元（+82%，含军贸）。✔摘要③验证。"
     }
    ],
-   "note": "入池说明（2026-10-19 v5.1·cls.cn直抓补抓）：本篇为《狙击龙虎榜》280微信豆付费文章（达标≥280），发布于2026-10-18 21:17，经财联社官网直抓通道补抓。三只标的全部按「唯一公开锚点」标准锁定入池；其中威尔高与同日《公告全知道》摘要①为同一标的（不同文章不同角度：公告看三季报业绩、龙虎榜看10-16放量异动），watchlist 合并为一条记录。10-16收盘万丰奥威/东方嘉盛/长城军工齐涨停（+9.99%），与栏目标题「军工、飞行汽车爆发」互相印证。行情数据取10-16收盘。在池股票24→26。"
+   "note": "入池说明（2026-10-19 v5.1·cls.cn直抓补抓）：本篇为《狙击龙虎榜》280微信豆付费文章（达标≥280），发布于2026-10-18 21:17，经财联社官网直抓通道补抓。三只标的全部按「唯一公开锚点」标准锁定入池；其中威尔高与同日《公告全知道》摘要①为同一标的（不同文章不同角度：公告看三季报业绩、龙虎榜看10-16放量异动），watchlist 合并为一条记录。10-16收盘万丰奥威/东方嘉盛/长城军工齐涨停（+9.99%），与栏目标题「军工、飞行汽车爆发」互相印证。行情数据取10-16收盘。在池股票24→26。",
+   "column": "狙击龙虎榜"
   },
   {
    "id": "b20261018_dc",
@@ -67203,7 +67350,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
     ]
    },
    "items": [],
-   "note": "入池说明（2026-10-19 v5.1·cls.cn直抓补抓）：本篇为《风口研报·洞察》280微信豆付费文章（达标≥280），发布于2026-10-18 22:03，经财联社官网直抓通道补抓。公开摘要提及的个股（赣锋锂业、宇通客车、江顺科技、永兴股份、金盘科技、川投能源、分众传媒、恩捷股份）均为「今日全市场机构研报共发布210篇」的统计示例与个股机构关注度排行，非本篇推荐标的，无唯一公开锚点，按信息源铁律0只入池（cls.cn接口显示本篇related_stock为「主板4+创业板1」共5只，仅见于付费正文，留痕）。"
+   "note": "入池说明（2026-10-19 v5.1·cls.cn直抓补抓）：本篇为《风口研报·洞察》280微信豆付费文章（达标≥280），发布于2026-10-18 22:03，经财联社官网直抓通道补抓。公开摘要提及的个股（赣锋锂业、宇通客车、江顺科技、永兴股份、金盘科技、川投能源、分众传媒、恩捷股份）均为「今日全市场机构研报共发布210篇」的统计示例与个股机构关注度排行，非本篇推荐标的，无唯一公开锚点，按信息源铁律0只入池（cls.cn接口显示本篇related_stock为「主板4+创业板1」共5只，仅见于付费正文，留痕）。",
+   "column": "风口研报·洞察"
   },
   {
    "id": "b20261019_ggzd",
@@ -67264,7 +67412,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "content": "公开信源交叉验证：中国基金报/东方财富报道三峡新材(600293)10-19披露重组预案，拟收购珠海赛纬100%股权「快速切入锂电新材料高景气赛道」，与摘要③逐字对应；股票10-20复牌。"
     }
    ],
-   "note": "入池说明（2026-10-19 v5.4·第三层唤醒核验流水线试跑）：板块分布主板1+创业1+科创1，实际三板各1只完全吻合；三条线索均为10-19晚公告，公开转载充分，3只全部入池。"
+   "note": "入池说明（2026-10-19 v5.4·第三层唤醒核验流水线试跑）：板块分布主板1+创业1+科创1，实际三板各1只完全吻合；三条线索均为10-19晚公告，公开转载充分，3只全部入池。",
+   "column": "公告全知道"
   },
   {
    "id": "b20261019",
@@ -67325,7 +67474,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "content": "公开信源交叉验证：新华财经公告众生药业(002317)10-16投资者关系活动记录表「逐步打造AI驱动的药物发现平台、小核酸技术创新平台、多肽/抗体筛选技术平台」，与摘要③逐字对应。"
     }
    ],
-   "note": "入池说明（2026-10-19 v5.4·第三层唤醒核验流水线试跑）：板块分布创业3+主板4+科创1，公开摘要仅展示3条线索，对应科创1+主板2共3只；其余5只摘要未展示，按铁律不外部补名。"
+   "note": "入池说明（2026-10-19 v5.4·第三层唤醒核验流水线试跑）：板块分布创业3+主板4+科创1，公开摘要仅展示3条线索，对应科创1+主板2共3只；其余5只摘要未展示，按铁律不外部补名。",
+   "column": "财联社早知道"
   },
   {
    "id": "b20261019_lhb",
@@ -67386,7 +67536,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "content": "公开信源交叉验证：公开产业梳理能科科技(603859)「已完成25个工业智能体的开发，在70余家行业龙头及重点企业实现落地应用」，与摘要③逐字对应。"
     }
    ],
-   "note": "入池说明（2026-10-19 v5.4·第三层唤醒核验流水线试跑）：板块分布主板3，实际3只全部主板，完全吻合；10-19当日东安动力、能科科技涨停，慈文传媒+9.97%，题材爆发与栏目标题「题材轮动」互相印证。"
+   "note": "入池说明（2026-10-19 v5.4·第三层唤醒核验流水线试跑）：板块分布主板3，实际3只全部主板，完全吻合；10-19当日东安动力、能科科技涨停，慈文传媒+9.97%，题材爆发与栏目标题「题材轮动」互相印证。",
+   "column": "狙击龙虎榜"
   },
   {
    "id": "b20261019_dc",
@@ -67445,7 +67596,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
      "content": "公开摘要字面点名：「顺丰控股、振华股份获新财富分析师深度覆盖」。"
     }
    ],
-   "note": "入池说明（2026-10-19 v5.4·第三层唤醒核验流水线试跑）：本篇无板块分布数据；入池3只均为公开摘要字面点名且有明确信号（拐点研判/新财富分析师首覆）；摘要④关注度排行5家（宇通客车/金盘科技/川投能源/沪电股份/远大健科）为纯统计排行、无个股投资信号，仅记录不入池。"
+   "note": "入池说明（2026-10-19 v5.4·第三层唤醒核验流水线试跑）：本篇无板块分布数据；入池3只均为公开摘要字面点名且有明确信号（拐点研判/新财富分析师首覆）；摘要④关注度排行5家（宇通客车/金盘科技/川投能源/沪电股份/远大健科）为纯统计排行、无个股投资信号，仅记录不入池。",
+   "column": "风口研报·洞察"
   }
  ],
  "alerts": [
@@ -67453,35 +67605,6 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
   "风险提示：东百集团已发布股票异动公告（10/8-10/12累计涨幅19.96%，收购正式协议尚未签署），短线波动风险高。",
   "技术分析以量价、均线、K线形态与公开行情为依据；同花顺资金净流入/大单等指标数据待接入。",
   "微信专辑列表自2026-10-18 19:19起结构性停更（漏收录10-16下午以来文章），已切换财联社官网 cls.cn 直抓通道（签名API+SSR详情页，与公众号同源）；10-18晚间四篇过门槛文章（公告全知道/金牌纪要库/狙击龙虎榜/风口研报洞察）已补抓，按铁律入池7只（威尔高同时命中两篇合并记录），6篇180豆以下文章标记seen。"
- ],
- "notes": [
-  "监控范围：财联社公众号作者「财联社VIP」发布的「公告全知道」（夜刊·金色）、「财联社早知道」（日刊·蓝色）、「掘金行业龙头」（特刊·粉色）收费文章，仅抓取≥280微信豆文章。",
-  "入选规则：确因所抓取文章分析判断而确定标的方可入池；入选日期与发布时间以公众号文章发布时间为准（夜刊右上时间同步文章发布时间）。",
-  "核验规则：每只入池股票须与其他媒体/信息渠道公开信息比对核验，核验无误标记「✔摘要确认」，无法确认标记「◐推断·待正文确认」。",
-  "10日预测色阶：≤10%绿｜10%~30%黄｜30%~50%蓝｜50%~100%紫｜>100%红；置信度高/中/低以红/黄/绿标示。",
-  "移除规则：入选第21个交易日后自动移出投研池，并同步移出我的自选股。",
-  "「入池以来涨幅」按入选投研池价格计算、对全部在池标的展示；「自选以来涨幅」仅对加入我的自选股的标的展示（基于加入自选时的自选价）；「上涨概率」仅统计近10个交易日（含）内入选标的。",
-  "旧看板（公告全知道·投研看板 / 投研动态看板）已合并为本看板，旧数据按新规则重新核验注入。",
-  "本文件为唯一看板文件：所有更新（定时采集/人工修改）一律原地修改本文件内嵌 MONITOR_DATA，不新建任何文件；如确需新建文件，必须事先征得用户同意。",
-  "【母版铁律（2026-10-14 起）】本看板最新版本为唯一母版：定时任务（15:35/0:30）一律以本母版为基准，只做数据更新与注入（行情/分时/K线/期次备查/复盘/头部时间戳），严禁修改母版的 HTML 结构、CSS、JS 渲染代码及 version 字段；任何版本更新迭代需求只在人工会话中由用户驱动完成，定时任务无权升版。",
-  "【信息源铁律（2026-10-14 起）】本看板唯一信息源为财联社公众号作者「财联社VIP」发布的三个收费栏目（公告全知道/财联社早知道/掘金行业龙头，≥280微信豆）文章本身——收费文章开头免费公开的引语/摘要中即含标的股票的基本介绍，据其分析判断确认公司名称与股票名称；外部其他渠道（财经网站转载、券商研报、新闻报道等）的信息仅作比对核验之用，严禁作为标的入选的信息源，以免污染信息源准确性。全文转载渠道（东方财富/搜狐等）若完整转载公众号原文，视同原文载体，但必须以公众号发布内容为准进行比对确认。2026-10-14执行记录：已通过财联社官方渠道（官网 api3.cls.cn 栏目分享页/文章分享页，与公众号同源发布）直接获取20261013期《公告全知道》文章公开部分（标题+引语①②③），三条引语经外部渠道逐条比对确认为兴森科技、宝鼎科技、富春染织，铁律执行成功。强化规则（2026-10-14）：公众号文章公开内容提到了几只就验证几只、入池几只，严禁以任何外部来源（含全文转载）补充未在公开内容中出现的标的；已从入选池删除的股票须彻底清除全部相关数据与信息（watchlist/行情/复盘/期次条目/统计联动），不再回流。",
-  "【期次备查清理执行记录（2026-10-14 v4.16）】期次备查（batches）全面清理：10-13期《公告全知道》items由15条核减为公众号公开部分确证的3条（富春染织/宝鼎科技/兴森科技），彻底删除其余12条自全文转载付费正文混入的非入选池条目；companies 22→3；teasers删除非入选池聚焦条；foreword/meta清除全文转载违规表述并改为“公开部分唯一信息源”标注；alerts清除外部候选股线索；同步清理复盘要点与说明区中提及的全部非入选池股票。期次备查、复盘与说明区自此只展示与入选池股票相关的内容，与看板全页面“只展示入选池股票数据”规则一致；已删除股票名仅在页脚修订历史中留档审计。",
-  "【铁律纠偏执行记录（2026-10-14 v4.17）】经全面复查，10-11期《公告全知道》公开引语仅确证3只标的（①PCB龙头→景旺电子②液冷散热→鸿富瀚③仓储物流重大事项→东百集团）；另有3只系当初从付费正文推断入选（未经公开部分确认），违反“公开内容提到了几只就验证几只、入池几只”铁律，本次从入选池/行情/复盘/期次备查全链路彻底删除，不再回流。入选池最终构成：10-11期公开引语确证3只 + 10-13期公开引语确证3只（兴森科技/宝鼎科技/富春染织），共6只，全部有公开部分依据。",
-  "【价格核实铁律（2026-10-15 起）】每篇期次的微信豆价格必须以文章页实际显示为准（页面fee字段÷10=微信豆，1元=10微信豆）：已实测《公告全知道》夜刊=280豆、《财联社早知道》日刊=280豆、《掘金行业龙头》特刊=180豆（低于280门槛，整栏不抓）；严禁未核实价格即按280记录。",
-  "【价格核实执行记录（2026-10-15）】用户决策执行：①《掘金行业龙头》整栏实价180微信豆（fee=1800÷10，09-30/10-09/10-14三篇实测一致），低于280门槛，整栏不抓；②来源为该栏目10-14特刊的1只标的已按用户授权从投研池/行情库/期次条目/复盘全链路删除（股票名与删除明细留档于页脚修订历史），该特刊期次备查价格改正为180豆并保留作审计记录；③景旺电子/鸿富瀚/东百集团经用户确认保留，其来源10-11夜刊《公告全知道》官方专辑查无此文、价格无从核实，beans字段由未核实的280如实改标\"待核实\"；④定时采集已增加价格门槛过滤（fee÷10<280的文章自动跳过不入库），从源头防止低价文章入池。",
-  "【版本号规则澄清（2026-10-15）】「定时任务无权升版」仅约束15:35/0:30自动采集（守护进程对version字段有断言保护）；人工会话中由用户驱动的实质性修订（增删入池标的、改正来源数据政策、修改采集规则、调整显示口径等）必须同步升版，并联动版本徽标（verBadge/verTxt/footVer均由D.version渲染）与页脚修订历史；严禁以「版本不变」记录实质变更；机械采集/数据刷新/基础设施部署不升版。版本沿革（v4.17滞留期已按修正任务记录补登）：v4.18=复盘口径改自选价基准、v4.19=复盘仅展示自选股、v4.20=数据起点彻底纠偏、v4.21=硬删除4只池前标的与6篇期次、v4.22=10-14夜刊标的补全、v4.23=宁缺毋滥删嘉元/沪电、v4.24=来源质量自查与数据勘误、v4.25=价格核实与勘误、v4.26=删除180豆来源标的、v4.27=版本号规则纠正执行。",
-  "【操盘建议模型说明（2026-10-15 v4.28）】复盘表【操盘建议】列由内置量化模型基于当日收盘真实数据自动计算，全程无主观赋值：输入为各标的80根日K（开/收/高/低/量）与实时行情；计算MA5/MA10/MA20、MACD(12, 26, 9)、RSI(14, Wilder平滑)、KDJ(9, 3, 3)、BOLL(20, 2)及%B、乖离BIAS20、量比（现量/5日均量）、ATR14、近20日高低点；七维信号加权评分（趋势2.0/MACD2.0/RSI1.0/KDJ1.0/BOLL位置1.0/BIAS1.0/量价1.0，总分[-10, +10]）；指令映射：总分≥+3.5买进（仓位30%~60%）、+1.5~+3.5逢低增持（20%~30%）、-1.5~+1.5持有观望、-3.5~-1.5减仓（卖50%）、≤-3.5卖出（≥80%或清仓）；硬性风控优先于总分：R1破位（跌破20日低点且MACD绿柱）强制卖出、R2 RSI>80禁止买进、R3入选以来≤-8%触发止损线（买入价-8%）、-5%~-8%预警、R4涨跌停日指令降半级；建议列附带支撑/压力/止损关键价位与核心依据。模型参数与计算过程完整公开于页内折叠说明，可逐项复算检验；结果为技术面研究参考，不构成投资建议。",
-  "【定时任务可靠性加固（2026-10-16 v4.29）】针对沙箱VM休眠即重建（旧进程必死、恢复后无自动触发源）导致00:30夜间槽位整体缺失的问题，守护进程（daemon.py）新增「启动即补偿」机制：每次被拉起时（MCP自愈/手动/休眠恢复后首次会话调用）自动核对status.json的runs运行记录，凡当日已过时点而未成功执行的槽位立即补跑——补偿数据依然有效（行情接口返回最近收盘价，文章检索返回最新清单），runs以触发日记录、不与历史槽位混淆；配合原有「90分钟迟到补偿窗口」与「每次会话MCP调用即触发自愈+槽位补齐」的运维规范，形成三层防御，凌晨槽位不再依赖进程存活。",
-  "【漏入池彻查与补池（2026-10-16 v4.30）】彻查确认：文章抓取链路已修复（10-15夜刊22:52发布的《公告全知道》280豆期次已由守护进程补偿抓取入库），但「核验公开摘要→提取标的→入池」为会话人工职责，此前数次刷新只汇报了自动抓取链路、入池环节未执行，导致文章提及个股未入池——此为本次问题的根因。本次按「公开内容提到几只就验证几只、入池几只」原则完成补池：10-15期入池大族激光(002008)/光库科技(300620)/赣锋锂业(002460)3只（业绩数字经中证网/央广网/证券时报等多源公开交叉核验）；并发现10-14期（b20261014）此前仅入池1只，本次补录嘉元科技(688388)（teaser①），teaser②景旺电子已于10-11期入池不重复收录。10-11之前发布的文章（09-29、10-07、10-08三期）按「数据只从2026-10-11起」铁律不入池；金牌纪要库（380豆）为纪要类栏目、无入池先例，是否纳入入池范围待用户确认。",
-  "【金牌纪要库纳入规则（2026-10-16 08:59 v4.31·用户指令）】经用户确认：金牌纪要库栏目380微信豆及以上的文章，其中公开摘要部分具名的上市公司可纳入投研池；入池股票以金色「🏅 金牌纪要库」徽章（金底金字）、股票卡片金色顶边、监控表/复盘表金色底行、上涨概率图金色柱特殊标记，与夜刊/日刊/特刊来源股票明确区分。纳入前提不变：发布时间须在2026-10-11及以后；公开部分须具名（付费墙后内容不得推断入池）。经核查现有两篇金牌纪要库——10-14《AI短剧、长剧、电影多点开花》（380豆·10:30）与10-15《乳酸、染料接连提价》（380豆·10:35）——公开摘要均为行业主题描述、零具名公司，按铁律入池股票数均为0，已留档于期次备查（b20261014_gold / b20261015_gold）备审计。",
-  "【「刷新」指令标准流程（2026-10-16 08:59 v4.31·用户指令）】经用户确认：用户发出「刷新」或「刷新模板数据」指令时，执行完整三步闭环，缺一不可——①抓取核验：确认守护进程已抓取当期新文章（普通栏目≥280微信豆、金牌纪要库≥380微信豆），逐篇换算发布时间（早于2026-10-11的不入池）、读取公开摘要；②入池：对公开摘要具名的标的做多源交叉核验后写入母版（watchlist入选池/stocks行情库/review复盘/batches期次备查四表同步更新并升版），漏一篇即为执行事故；③复盘刷新：全池标的行情/日K/分时同步至最新收盘，量化引擎calc_signals.py重算全部操盘建议。三步全部完成并向用户汇报后，方视为一次有效「刷新」。",
-  "【金牌纪要库第三篇核查（2026-10-16 10:32 v4.32）】10-16 10:01发布《金牌纪要库·CXO三季报订单高增…》（380豆）经守护进程抓取并人工核验：公开摘要为CXO行业三段主题描述、零具名公司（已抓原页面确认），按铁律入池0只，留档b20261016_gold。金牌纪要库已核查三篇（10-14 AI短剧/10-15 乳酸染料/10-16 CXO），公开部分均零具名，累计入池0只；金色标记体系已就绪，一旦公开部分具名即按金牌规则入池并金色标记。",
-  "【金牌纪要库识别方法论修正（2026-10-16 v4.33·用户指令）】用户指出：金牌纪要库文章虽为付费内容、看不到公司名与股票代码，但公开摘要中包含唯一事件/数字，经与全网公开信息分析比对、交叉验证即可判断具体公司与股票——此方法与「公告全知道」完全相同。此前以「公开摘要零具名」为由将三篇金牌文章入池数全部记为 0，系方法错误。本次按正确方法重新执行三篇金牌文章的数据刷新：①《乳酸、染料接连提价》（b20261015_gold）三段摘要全部完成公开源唯一归属验证，入池 4 只——金丹科技(300829，乳酸系列10-10统一上调8%，中国证券网/大河财立方/每经/新华财经)、浙江龙盛(600352)+闰土股份(002440，还原物国内仅宁夏中盛(非上市)/龙盛/闰土可稳定生产，中国证券网10-14研选；染料较6-22涨超30%对应摘要②)、利尔化学(002258，草铵膦9月下旬华东5.95万元/吨逐字对应摘要③，证券时报/百川盈孚)；②《AI短剧…》（b20261014_gold）与③《CXO三季报…》（b20261016_gold）经同样的公开源交叉验证后如实判定：前者为板块级描述、公开源对应50余只概念股无法收敛，后者「14家上调指引」全部为海外CXO、「最后一棒」环节与「中分子CDMO」主题均无 A 股唯一归属，故维持入池 0 只（非未验证，而是验证后无唯一锚点）。4 只金牌股票均以金色徽章+金边卡片+金色底行特殊标记。",
-  "【新标的确证入池（2026-10-18 v5.0）】10-18《财联社早知道》（280豆）三只标的全部按「唯一公开锚点」标准锁定入池：①凡拓数创（301313）——摘要①「AI 3D空间智能为技术底座+自主可控的数字孪生渲染引擎/AI三维重建/AI 3D数字孪生平台」与同花顺10-18公司专题逐字对应；②保隆科技（603197）——摘要②「关节模组及编码器、摄像头与超声波雷达、力传感器的机器人产品矩阵」与全景网互动易2026-05-11官方答复逐字对应；③嘉立创（001232）——摘要③「前三季度净利润同比预增79%-118%+AI加速硬件创新」与巨潮资讯网官方业绩预告（2026-10-17）逐字对应。行情数据取10-16收盘（入池日10-18为周日，非交易日）。在池股票16→19。",
-  "【夜报漏抓修复与 cls.cn 直抓通道（2026-10-19 v5.1·用户指令）】微信专辑列表自2026-10-18 19:19《财联社早知道》起停止更新（非延迟、系结构性漏收录），10-16下午起累计漏抓9篇池内文章（6篇180豆低于门槛已跳过、3篇过门槛夜报漏抓）。应用户「不依赖专辑链接，直接抓取文章」指令，完成财联社官网 cls.cn 全自动直抓通道：①逆向 featured API 签名算法 sign=md5(sha1(参数字典排序平铺qs).hexdigest)，自动附加 os=web/sv=8.7.9/app=CailianpressWeb，端点 /featured/v1/column/detail/load 按栏目 type 翻页取文章列表（无需cookie、无反爬，与公众号同源发布）；②SSR 详情页 /detail/{id} 内嵌 __NEXT_DATA__ 取 articleDetail（title/brief/articlePrice），价格映射 微信豆=articlePrice×10 已验证（380豆↔38元、280豆↔28元）。本次直抓补抓10-18晚间四篇过门槛文章并完成核验入池：公告全知道（威尔高/金海通/数据港）、金牌纪要库·飞行汽车（万丰奥威/卧龙电驱）、狙击龙虎榜（威尔高/东方嘉盛/长城军工）、风口研报·洞察（0只）。价格复核中新发现狙击龙虎榜2507687实为280豆（此前漏判为180豆档），已按门槛纳入核验。",
-  "【v5.1 铁律留痕与科翔股份纠偏】①《公告全知道》related_stock显示「主板2+创业板2」共4只，公开摘要仅3条，第4只创业板标的仅见于付费正文、无公开唯一锚点，按铁律不予入池；②《金牌纪要库·飞行汽车》related_stock显示共6只，摘要③「航电、飞控和能源系统…这些企业」为泛指表述、无公司级公开锚点，按铁律仅入池有唯一锚点的①②（万丰奥威/卧龙电驱）；③《风口研报·洞察·国家数据集团》公开摘要个股均为研报统计示例与机构关注度排行，非推荐标的，0只入池。纠偏记录：前期排查曾将「Q3净利+638.54%」误挂在威尔高名下并误判科翔股份三季报亏损——经复核，+638.54%实为科翔股份（300903）2026年三季报（10-16晚披露，单季营收18.50亿+100.90%、归母净利3.11亿+638.54%，终结此前连亏）；威尔高为+461.86%（环比+268.51%）。公告全知道摘要①「PCB+机器人+光模块+人工智能+超400%」四概念与量级唯一锁定威尔高（科翔公开信息缺「机器人」公司级锚点且增幅应为「超600%」表述）。科翔股份作为「第4只创业板」候选因无公开摘要锚点，按铁律未入池。",
-  "【cls.cn 直抓源上线与存量盘点（2026-10-19 v5.2）】①发现源重构为财联社官网 cls.cn（与公众号「财联社VIP」同源发布）：11 个 VIP 栏目签名 API 翻页发现 + SSR 详情核价（articlePrice 元 ×10 = 微信豆，与公众号 fee 口径实测一致）+ isFree 免费推广文识别 + 最长公共前缀≥20 字跨源标题判重（微信标题与官网标题存在同文不同截断——实例：金牌纪要库 CXO 篇微信版截断于「订单沿临床前…」而官网版作「海外14家CXO…」，40 字前缀去重会漏）+ 数据窗口 2026-10-11 过滤（更早文章标记已见、不入待核验队列）；门槛按栏目区分（普通 280 豆 / 金牌纪要库 380 豆）；微信专辑列表降为备用源、biz/cookie 兜底；抓取失败一律不标记 seen、下轮自动重试（零静默丢数据铁律保留）。②存量盘点：窗口内 144 篇旧系统仅处理 21 篇；123 篇从未处理文章中，45 篇以上门槛已入 pending/ 待核验、78 篇低于门槛或免费已标记已见。③批次发布时间口径提示：v5.2 仅纠偏 3 处确证错误；其余批次中，晚间栏目 pub 与官网 ctime 相差 10~90 分钟（微信推送时差）、金牌纪要库 3 篇为微信次日晨推口径（官网实际发布于前一晚 22:4x）、b20261011 与 b20261011_499 对应文章已下架无法核实——如需统一改按官网 ctime 口径，请在后续修订版指示。",
-  "【第三层定时唤醒核验入池流水线试跑（2026-10-19 v5.4）】①首次跑通「云端文章发现（Actions每30分钟）→本地唤醒核验→入池升版→GitHub API推送→Pages自动更新」全链路；②10-19四篇工单经公开转载逐字取证确认12只标的：公告全知道（生益电子/协创数据/三峡新材）、早知道（长进光子/天娱数科/众生药业）、狙击龙虎榜（东安动力/能科科技/慈文传媒）、风口研报洞察（宏川智慧/顺丰控股/振华股份），在池26→38；③铁律执行：早知道摘要未展示的其余5只不外部补名，风口研报关注度排行5家（宇通客车/金盘科技/川投能源/沪电股份/远大健科）仅记录不入池；④当日市场印证：东安动力/能科科技涨停（+10.05%/+10.00%），慈文传媒+9.97%，长进光子+6.17%，众生药业+5.51%；⑤三峡新材停牌至10-20复牌，入池价取停牌价3.93；⑥verify_ledger.jsonl按aid幂等记账（31→35篇）；⑦云端文章发现工作流自上线累计发现新文章并入队正常。"
  ],
  "history": [
   {
@@ -67798,6 +67921,11 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "version": "5.4",
    "time": "2026-10-19 22:45",
    "note": "第三层定时唤醒核验入池流水线试跑（首次跑通全链路）：10-19四篇pending工单（公告全知道2508954/早知道2508475/狙击龙虎榜2508953/风口研报洞察2508534）逐篇公开信源取证，确认12只标的入池（在池26→38），行情/分时/K线同步至10-19收盘，量化引擎calc_signals重算全部12只技术评分。"
+  },
+  {
+   "version": "6.0",
+   "time": "2026-10-20 00:58",
+   "note": "v6.0 重大版本更新（8 项需求全量落地）：①取消日刊/夜刊/特刊/金牌 tier 分类，改按财联社原栏目名分类（公告全知道/财联社早知道/狙击龙虎榜/风口研报·洞察/金牌纪要库），统一以彩色图标+色块徽章+卡片顶边+表格行底色+图表柱色区分；②抓取门槛统一为全栏目 ≥280 微信豆（替代原普通 280/金牌 380 双轨制），《掘金行业龙头》180 豆整栏不抓取、历史期次留档标注；③新建【比对候选池】：比对未成功股票标识「推断·待正文确认」暂存，比对成功自动移入投研池并删除候选记录，入候选池第 10 个交易日仍未确认的第 11 个交易日从看板彻底删除（页面按交易日自动隐藏）；④在池时长统一按交易日计算：内置 2026 年国务院官方放假安排（含调休上班交易日），2027 年按法定假日预估并标注待官方发布后校准，tdIndex/10 日统计/21 日移出/候选池清退全部改日历口径；⑤修复【投研池·入池以来涨幅】图表：原与自选股图并列同高（320px），38 只标的柱体挤压、名称标签大量隐藏难以识别；已改为独立全宽+动态高度（每标的 26px）+栏目配色柱+超过 40 只启用缩放，并经无头浏览器三遍核查确认全部在池标的完整显示；⑥【规则与更新记录】拆分为【规则和铁律】与【更新记录】两个平级章节；⑦期次备查/规则和铁律/更新记录改为折叠式显示并增加筛选菜单（期次按日期与栏目、更新记录按版本号）与一键展开/全部收起；⑧【规则和铁律】结合历史规则指令与现有内容，按监控范围/抓取门槛/信息源/入池流程/候选池/在池管理/数据文件/版本修订/流水线运维/展示口径十大类重写为 34 条条款。"
   }
  ],
  "review": {
@@ -68716,7 +68844,110 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
     "point": "入池首日（10-19收盘，信号确立日即入场）：【风口研报·洞察·摘要③】顺丰控股、振华股份获新财富分析师深度覆盖；量化评分0.8（持有观望·维持现有仓位），技术与题材共振，按纪律跟踪"
    }
   ]
- }
+ },
+ "candidates": [],
+ "tradingCalendar": {
+  "updated": "2026-10-20",
+  "source": "2026年：国务院办公厅《关于2026年部分节假日安排的通知》（2025-11-04发布，含调休上班日）；2027年：法定假日预估，待官方发布后校准",
+  "holidays2026": "01-01~01-03 元旦 / 02-15~02-23 春节 / 04-04~04-06 清明 / 05-01~05-05 劳动节 / 06-19~06-21 端午 / 09-25~09-27 中秋 / 10-01~10-07 国庆",
+  "makeup2026": "01-04(日) 02-14(六) 02-28(六) 05-09(六) 09-20(日) 10-10(六) 调休上班·正常交易"
+ },
+ "ruleCats": [
+  {
+   "icon": "📡",
+   "name": "一、监控范围与栏目",
+   "items": [
+    "本看板唯一信息源为财联社公众号作者「财联社VIP」发布（财联社官网 cls.cn 同源发布，视同原文载体）的收费栏目文章。",
+    "纳入监控的栏目：公告全知道、财联社早知道、狙击龙虎榜、风口研报·洞察、金牌纪要库。",
+    "《掘金行业龙头》整栏实价 180 微信豆（fee÷10 实测一致），低于统一门槛，整栏不抓取、不比对、不入池；历史期次仅在期次备查留档并标注。",
+    "数据窗口：只处理 2026-10-11 及以后发布（以公众号发布时间为准）的文章，更早文章不入池。"
+   ]
+  },
+  {
+   "icon": "💰",
+   "name": "二、抓取门槛",
+   "items": [
+    "所有栏目统一执行 ≥280 微信豆门槛：文章页实际显示价格（fee 字段÷10，或官网 articlePrice 元×10）= 微信豆；低于 280 的文章不抓取、不比对、不入池，全栏目一视同仁。",
+    "价格以文章页实际显示为准，严禁未核实价格即按 280 记录；价格未核实的文章不得入队。",
+    "定时采集层对低于门槛文章自动跳过不入库，从源头防止低价文章入池。"
+   ]
+  },
+  {
+   "icon": "⚖",
+   "name": "三、信息源铁律",
+   "items": [
+    "入池标的只来源于所抓取文章的公开部分（开头免费公开的引语/摘要）：公开摘要或公开转载字面点名该公司，或有可逐字引用的公开信源证据（公告原文、权威媒体标题/正文与摘要逐字对应）。",
+    "严禁由模型依据自身知识或推断补名；摘要没提的公司、检索不到公开出处的，一律不入池。",
+    "公开内容提到了几只就验证几只、入池几只；已删除的标的不回流，并彻底清除全部关联数据（watchlist/行情/复盘/期次条目/统计联动）。",
+    "外部渠道（财经网站转载、券商研报、新闻报道等）仅作比对核验之用，严禁作为标的入选的信息源；全文转载渠道若完整转载公众号原文，视同原文载体，但必须以公众号发布内容为准进行比对确认。"
+   ]
+  },
+  {
+   "icon": "🔍",
+   "name": "四、入池流程与核验",
+   "items": [
+    "标准流程：抓取符合门槛文章 → 读取公开摘要 → 全网公开信息比对核验 → 比对确认写入入选投研池（标记「✔ 摘要确认」）→ 行情/分时/K线同步 → 量化引擎重算操盘建议。",
+    "每只入池股票须经公开信息比对核验；比对无法确认的标记「◐ 推断·待正文确认」并转入比对候选池（见第五条），不得直接进入投研池。",
+    "「刷新」指令执行三步闭环（抓取核验 → 入池 → 复盘刷新），缺一不可；漏抓一篇即为执行事故。"
+   ]
+  },
+  {
+   "icon": "🅿",
+   "name": "五、比对候选池",
+   "items": [
+    "比对未成功的股票暂不入投研池，进入【比对候选池】，统一标识「◐ 推断·待正文确认」。",
+    "日后比对成功确认的，自动移入【入选投研池】，并从【比对候选池】直接删除该条全部数据。",
+    "入候选池第 10 个交易日仍未比对成功和确认的，第 11 个交易日起从看板彻底删除（候选池、图表、统计数据全部剔除）；页面按交易日历自动执行到期提示与隐藏。"
+   ]
+  },
+  {
+   "icon": "📅",
+   "name": "六、在池管理与移出",
+   "items": [
+    "在池时长、10 日统计、21 日移出、候选池 10 日清退，一律按交易日计算。",
+    "交易日历以国务院办公厅发布的年度放假安排为准（含调休上班交易日）：2026 年官方安排已内置页面；2027 年暂按法定假日预估并标注，官方安排发布后必须及时校准。",
+    "入选第 21 个交易日后自动移出投研池，并同步移出我的自选股；已移出股票的全部统计数据即时剔除。",
+    "期次备查、复盘与说明区只展示与入池/候选流程相关的内容，与全页面「只展示入池流程股票数据」规则一致；已删除股票名仅在更新记录留档审计。"
+   ]
+  },
+  {
+   "icon": "📄",
+   "name": "七、数据与文件铁律",
+   "items": [
+    "本看板为单文件 HTML：所有更新（定时采集/人工修改）一律原地修改文件内嵌 MONITOR_DATA，不新建任何文件；确需新建文件必须事先征得用户同意。",
+    "母版铁律：最新版本为唯一母版；定时任务（15:35/0:30）只做数据更新与注入（行情/分时/K线/期次备查/复盘/时间戳），严禁修改 HTML 结构、CSS、JS 渲染代码及 version 字段。",
+    "行情数据来源为腾讯证券行情接口；统计与演示口径以真实收盘数据为准。"
+   ]
+  },
+  {
+   "icon": "🏷",
+   "name": "八、版本与修订记录",
+   "items": [
+    "人工会话实质性修订（增删入池标的、改正来源数据政策、修改采集规则、调整显示口径等）必须同步升版，并联动版本徽标与页脚修订历史；定时采集/数据刷新/基础设施部署不升版。",
+    "更新记录按版本号倒序留档，支持按版本号筛选查询；严禁以「版本不变」记录实质变更。"
+   ]
+  },
+  {
+   "icon": "⚙",
+   "name": "九、流水线与运维",
+   "items": [
+    "三层流水线：第一层云端文章发现（Actions 每 30 分钟，过门槛文章写入 pending 队列）→ 第三层本地唤醒核验入池（每天 00:30/12:45/16:00/23:45 四个时点，按 aid 幂等跳过已核验）→ 收盘 15:45 采集更新；第二层云端安全自动入池为二期规划，待用户确认后开工。",
+    "核验台账按 aid（整数）幂等记账；台账与工单标题格式不一致，必须用 aid 匹配，勿用标题匹配。",
+    "守护进程「启动即补偿」机制保障凌晨槽位不缺失；抓取失败一律不标记已见、下轮自动重试（零静默丢数据）。"
+   ]
+  },
+  {
+   "icon": "🎨",
+   "name": "十、展示口径",
+   "items": [
+    "栏目分类：按财联社原栏目名区分（公告全知道📢 / 财联社早知道☀ / 狙击龙虎榜🎯 / 风口研报·洞察🔭 / 金牌纪要库🏅），以色块、图标、卡片顶边、表格行底色、图表柱色统一标识。",
+    "10 日预测色阶：≤10% 绿｜10%~30% 黄｜30%~50% 蓝｜50%~100% 紫｜>100% 红；置信度高/中/低以红/黄/绿标示。",
+    "「入池以来涨幅」按入选价计算、对全部在池标的展示；「自选以来涨幅」按自选价计算、仅对自选标的展示；「上涨概率」仅统计近 10 个交易日（含）内入选标的。",
+    "涨幅图表：自选股与投研池全池分别独立展示，全池图采用全宽动态高度与栏目配色柱，确保全部在池标的可识别。",
+    "操盘建议由内置量化模型基于真实收盘数据自动计算，参数与过程页内公开、可逐项复算；结果为技术面研究参考，不构成投资建议。"
+   ]
+  }
+ ]
 }</script>
 <script>
 var D=JSON.parse(document.getElementById('MONITOR_DATA').textContent);
@@ -68727,16 +68958,44 @@ function saveLS(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 var FAVS=loadLS(FAV_KEY),DELS=loadLS(DEL_KEY);
 function cls(v){return v>0?'up':v<0?'down':'flat';}
 function fmtPct(v){return (v>0?'+':'')+v.toFixed(2)+'%';}
-function tierName(t){return t==='gold'?'金牌纪要库':(t==='night'?'夜刊':(t==='special'?'特刊':'日刊'));}
-function tierBadgeHtml(w){var c=w.tier==='night'?'night':(w.tier==='special'?'special':'day');var i=w.tier==='night'?'🌙':(w.tier==='special'?'🌟':'☀');return '<span class="tier-badge '+c+'">'+i+' '+tierName(w.tier)+'</span>';}
-function goldBadgeHtml(w){return w.gold?'<span class="tier-badge gold">🏅 金牌纪要库</span>':'';}
+// ===== v6.0 财联社栏目分类（取消日刊/夜刊/特刊/金牌 tier，改按财联社原栏目名）=====
+var COLUMNS={
+ '公告全知道':{name:'公告全知道',icon:'📢',color:'#7fd3ff',bg:'#10283a',bd:'#1d4e6b',bar:'#4fc3f7'},
+ '财联社早知道':{name:'财联社早知道',icon:'☀',color:'#f5c86e',bg:'#2e2410',bd:'#6b5510',bar:'#f0b43c'},
+ '狙击龙虎榜':{name:'狙击龙虎榜',icon:'🎯',color:'#f4737f',bg:'#33161a',bd:'#6e2230',bar:'#f4505e'},
+ '风口研报·洞察':{name:'风口研报·洞察',icon:'🔭',color:'#c9a6f5',bg:'#241b38',bd:'#4a3a6b',bar:'#a78bfa'},
+ '金牌纪要库':{name:'金牌纪要库',icon:'🏅',color:'#ffd700',bg:'linear-gradient(135deg,#4a3a00,#6b5510 55%,#4a3a00)',bd:'#b38728',bar:'#ffd700'},
+ '掘金行业龙头':{name:'掘金行业龙头',icon:'🌟',color:'#f8b3d4',bg:'#331a2a',bd:'#6b2a4a',bar:'#f472b6'}
+};
+var COL_ORDER=['公告全知道','财联社早知道','狙击龙虎榜','风口研报·洞察','金牌纪要库'];
+function colOf(w){var c=w&&w.column;return COLUMNS[c]?c:'公告全知道';}
+function colBadgeHtml(c){var m=COLUMNS[colOf({column:c})];return '<span class="tier-badge" style="background:'+m.bg+';color:'+m.color+';border:1px solid '+m.bd+'">'+m.icon+' '+m.name+'</span>';}
+function colBarColor(c){return (COLUMNS[colOf({column:c})]||{}).bar||'#4fc3f7';}
+function tierName(t){return t==='gold'?'金牌纪要库':(t==='night'?'公告全知道':(t==='special'?'掘金行业龙头':'财联社早知道'));}
+function goldBadgeHtml(w){return '';}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function exBadges(w){var h='';var m={sh:'上',sz:'深',cy:'创',kc:'科',bj:'北'};(w.exch||[]).forEach(function(e){h+='<span class="exb '+e+'">'+(m[e]||e)+'</span>';});if(w.margin)h+='<span class="exb rz">融</span>';return h;}
 function fcClass(fc){var m=fc.match(/([+-]?\d+(?:\.\d+)?)\s*%?\s*[~～-]\s*([+-]?\d+(?:\.\d+)?)/);var v=m?(parseFloat(m[1])+parseFloat(m[2]))/2:0;v=Math.abs(v);return v<=10?'g1':v<=30?'g2':v<=50?'g3':v<=100?'g4':'g5';}
 function fcHtml(fc){return '<b class="fcp '+fcClass(fc)+'">'+esc(fc)+'</b>';}
 function confHtml(c){var M={high:'高',mid:'中',low:'低'};var T={high:'置信度·高：公告硬数据且已核验，判断锚点可靠',mid:'置信度·中：已核验但题材/波动因素较多',low:'置信度·低：付费正文未确认，标的归属为推断'};if(!M[c])c='mid';return '<span class="confb '+c+'" title="'+T[c]+'">'+M[c]+'</span>';}
 function verifyHtml(w){return w.verifyTag==='摘要确认'?'<span class="vbadge ok">✔ 摘要确认</span>':'<span class="vbadge warn">◐ 推断·待正文确认</span>';}
-function tdIndex(w){var s=D.stocks[w.q];if(!s||!s.kline)return 0;return s.kline.filter(function(k){return k[0]>w.dateIn;}).length;}
+// ===== 交易日历（v6.0：在池时长统一按交易日计算）=====
+// 2026年：国务院办公厅《关于2026年部分节假日安排的通知》（2025-11-04发布，含调休上班日）
+// 2027年：法定假日预估（官方安排发布后必须校准，见【规则和铁律】第六条）
+var CAL_HOLIDAYS={'2026-01-01':1,'2026-01-02':1,'2026-01-03':1,
+'2026-02-15':1,'2026-02-16':1,'2026-02-17':1,'2026-02-18':1,'2026-02-19':1,'2026-02-20':1,'2026-02-21':1,'2026-02-22':1,'2026-02-23':1,
+'2026-04-04':1,'2026-04-05':1,'2026-04-06':1,
+'2026-05-01':1,'2026-05-02':1,'2026-05-03':1,'2026-05-04':1,'2026-05-05':1,
+'2026-06-19':1,'2026-06-20':1,'2026-06-21':1,
+'2026-09-25':1,'2026-09-26':1,'2026-09-27':1,
+'2026-10-01':1,'2026-10-02':1,'2026-10-03':1,'2026-10-04':1,'2026-10-05':1,'2026-10-06':1,'2026-10-07':1,
+'2027-01-01':1,'2027-02-08':1,'2027-04-05':1,'2027-05-01':1,'2027-05-02':1,'2027-06-09':1,'2027-09-15':1,'2027-10-01':1,'2027-10-02':1,'2027-10-03':1};
+var CAL_MAKEUP={'2026-01-04':1,'2026-02-14':1,'2026-02-28':1,'2026-05-09':1,'2026-09-20':1,'2026-10-10':1};
+function fmtDay(d){function p(x){return (x<10?'0':'')+x;}return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());}
+function todayStr(){return fmtDay(new Date());}
+function isTradingDay(ds){ds=String(ds).slice(0,10);if(CAL_MAKEUP[ds])return true;var t=new Date(ds+'T00:00:00');var w=t.getDay();if(w===0||w===6)return false;if(CAL_HOLIDAYS[ds])return false;return true;}
+function tradingDaysBetween(a,b){if(!a||!b)return 0;var n=0;var d=new Date(a+'T00:00:00');d.setDate(d.getDate()+1);var end=new Date(b+'T00:00:00');while(d<=end){if(isTradingDay(fmtDay(d)))n++;d.setDate(d.getDate()+1);}return n;}
+function tdIndex(w){return w&&w.dateIn?tradingDaysBetween(w.dateIn,todayStr()):0;}
 function in10d(w){return tdIndex(w)<=10;}
 // ===== 入选日期七色 + 星期 =====
 var WK=['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
@@ -68761,7 +69020,7 @@ document.getElementById('quoteTime').textContent=D.quoteTime;
 
 // ===== 渲染总控：任何勾选/删除后全量重算刷新 =====
 var CHARTS={};
-function chart(id,opt){var el=document.getElementById(id);if(!el)return;var c=CHARTS[id];if(!c){c=echarts.init(el);CHARTS[id]=c;window.addEventListener('resize',function(){c.resize();});}c.clear();c.setOption(darkOpt(opt));}
+function chart(id,opt){var el=document.getElementById(id);if(!el)return;var c=CHARTS[id];if(!c){c=echarts.init(el);CHARTS[id]=c;window.addEventListener('resize',function(){c.resize();});}c.clear();c.setOption(darkOpt(opt));c.resize();}
 
 function renderOverview(){
 var pool10=W.filter(in10d);
@@ -68780,7 +69039,7 @@ var allItems=(D.batches||[]).reduce(function(a,b){return a.concat(b.items||[]);}
 var sHao=allItems.filter(function(x){return (x.tags||[]).indexOf('利好')>=0;}).length;
 var sZhang=allItems.filter(function(x){return (x.tags||[]).indexOf('上涨')>=0;}).length;
 var sYi=allItems.filter(function(x){return (x.tags||[]).indexOf('异动')>=0;}).length;
-var nB=lbItems.filter(function(x){return x.tier==='night';}).length,dB=lbItems.filter(function(x){return x.tier==='day';}).length,spB=lbItems.filter(function(x){return x.tier==='special';}).length,gB=lbItems.filter(function(x){return x.tier==='gold';}).length;
+var poolCol={};W.forEach(function(w){var c=colOf(w);poolCol[c]=(poolCol[c]||0)+1;});var candN=(D.candidates||[]).filter(function(c){return tdIndex(c)<11;}).length;
 var delN=Object.keys(DELS).length-removed21.length;
 document.getElementById('ovBox').innerHTML=
 '<div class="cell"><div class="k">投研池标的数（10日内/总数）</div><div class="v"><span class="c-gold">'+pool10.length+'</span><small> / </small><span class="c-blue">'+W.length+'</span></div></div>'+
@@ -68791,7 +69050,7 @@ document.getElementById('ovBox').innerHTML=
 '<div class="cell"><div class="k">自选以来胜率（自选价基准）</div><div class="v">'+(favWin===null?'<small>暂无自选</small>':'<span class="'+(favWin>=50?'c-red':'c-green')+'">'+favWin+'%</span>')+'</div></div>'+
 '<div class="cell"><div class="k" style="white-space:normal;line-height:1.55">入池以来胜率<br>（10日内·入选价基准）</div><div class="v">'+(pool10Win===null?'<small>暂无标的</small>':'<span class="'+(pool10Win>=50?'c-red':'c-green')+'">'+pool10Win+'%</span>')+'</div></div>'+
 '<div class="cell"><div class="k">本期快讯条数</div><div class="v"><span class="c-purple">'+lbItems.length+'</span></div></div>'+
-'<div class="cell"><div class="k">本期 日刊/夜刊/特刊/金牌</div><div class="v"><span class="c-blue">'+dB+'</span><small>/</small><span class="c-gold">'+nB+'</span><small>/</small><span class="c-pink">'+spB+'</span>'+(gB>0?'<small>/</small><span style="color:#ffd700;font-weight:800">'+gB+'</span>':'')+'</div></div>'+
+'<div class="cell"><div class="k">本期栏目</div><div class="v" style="font-size:13px">'+(COLUMNS[LB.column]?COLUMNS[LB.column].icon+' '+esc(LB.column):'—')+'</div></div>'+'<div class="cell"><div class="k">在池栏目分布</div><div class="v" style="font-size:12px;line-height:1.7">'+COL_ORDER.filter(function(c){return poolCol[c];}).map(function(c){return '<span style="color:'+COLUMNS[c].color+'">'+COLUMNS[c].icon+' '+poolCol[c]+'</span>';}).join(' <small>·</small> ')+'</div></div>'+'<div class="cell"><div class="k">比对候选池（待确认）</div><div class="v">'+(candN?'<span class="c-yellow">'+candN+' 只</span>':'<small>暂无</small>')+'</div></div>'
 '<div class="cell"><div class="k">已核验数（本期入池/已核验）</div><div class="v"><span class="c-gold">'+lbItems.length+'</span><small> / </small><span class="c-green">'+verifN+'</span></div></div>'+
 '<div class="cell"><div class="k">涉及上市公司数（本期）</div><div class="v"><span class="c-blue">'+((LB.companies)||lbItems.length)+'</span></div></div>'+
 '<div class="cell"><div class="k">利好 / 上涨信号数（全部期次）</div><div class="v"><span class="c-green">'+sHao+'</span><small> / </small><span class="c-yellow">'+sZhang+'</span></div></div>'+
@@ -68807,9 +69066,9 @@ function cardHtml(w,isFav){
 var f=FAVS[w.code];
 var st=D.stocks[w.q]||{};
 var pct=st.pct||0;
-return '<div class="stock-card tier-'+(w.tier||'day')+(w.gold?' gold-src':'')+'" data-code="'+w.code+'">'+
+return '<div class="stock-card'+(colOf(w)==='金牌纪要库'?' gold-src':'')+'" data-code="'+w.code+'" data-col="'+esc(colOf(w))+'">'+
 '<div class="head"><span class="nm">'+esc(w.name)+'</span><span class="cd">'+exBadges(w)+w.code+' · '+esc(w.sector)+'</span></div>'+
-'<div>'+tierBadgeHtml(w)+' '+goldBadgeHtml(w)+' <span class="beans">'+esc(w.pub)+' · '+esc(w.beans||'≥280')+'微信豆</span></div>'+
+'<div>'+colBadgeHtml(w.column)+' <span class="beans">'+esc(w.pub)+' · '+(w.beans==='待核实'?'<b style="color:var(--yellow)">豆数待核实</b>':esc(w.beans||'≥280')+'微信豆')+'</span></div>'+
 '<div class="sp">'+w.priceNow.toFixed(2)+'<span class="spct '+cls(pct)+'">'+fmtPct(pct)+'</span></div>'+
 '<div class="blk t1"><b class="lbl">入选 '+wkHtml(w.dateIn)+' @ '+w.priceIn.toFixed(2)+'</b>'+esc(w.reason)+'</div>'+
 '<div class="blk"><b class="lbl">基本面</b>'+esc(w.fundamental)+'</div>'+
@@ -68936,8 +69195,8 @@ return {pts:pts,days:days,up:up,title:'目标 '+(up?'+':'')+tgt.toFixed(1)+'% ·
 function renderTable(){
 document.getElementById('watchBody').innerHTML=W.map(function(w){
 var isFav=!!FAVS[w.code];
-return '<tr class="tier-'+(w.tier||'day')+(w.gold?' gold-src':'')+'">'+
-'<td>'+wkHtml(w.dateIn)+'<div style="margin-top:4px">'+tierBadgeHtml(w)+' '+goldBadgeHtml(w)+'</div></td>'+
+return '<tr data-col="'+esc(colOf(w))+'"'+(colOf(w)==='金牌纪要库'?' class="gold-src"':'')+'>'+
+'<td>'+wkHtml(w.dateIn)+'<div style="margin-top:4px">'+colBadgeHtml(w.column)+'</div></td>'+
 '<td><b>'+esc(w.name)+'</b><br><span style="font-size:11.5px;color:var(--muted)">'+exBadges(w)+w.code+' · '+esc(w.sector)+'</span></td>'+
 '<td>'+esc(w.reason)+'</td>'+
 '<td>'+esc(w.fundamental)+'</td>'+
@@ -68957,11 +69216,25 @@ function renderCharts(){
 var AX='#8b98ad',GRID='#223050';
 // 上涨概率：高→低（修正排序）
 var byProb=W.filter(in10d).slice().sort(function(a,b){return b.prob-a.prob;});
-chart('cProb',{tooltip:{formatter:function(p){var w=byProb[p.dataIndex];return esc(w.name)+' · '+esc(tierName(w.tier))+(w.gold?' · 🏅金牌纪要库':'')+'<br>入选 '+w.dateIn+'（第'+(tdIndex(w)+1)+'个交易日）<br>上涨概率 '+w.prob+'% · 10日预测 '+esc(w.forecast);}},grid:{left:8,right:44,top:6,bottom:6,containLabel:true},xAxis:{type:'value',max:100,axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:byProb.map(function(w){return w.name;})},series:[{type:'bar',barWidth:14,itemStyle:{borderRadius:[0,7,7,0],borderColor:'#141f30',borderWidth:1,color:function(p){var w=byProb[p.dataIndex];return w.gold?'#ffd700':(w.tier==='night'?PURPLE:(w.tier==='special'?PINK:BLUE));}},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,formatter:function(p){return byProb[p.dataIndex].prob+'%';}},data:byProb.map(function(w){return w.prob;})}]});
+chart('cProb',{tooltip:{formatter:function(p){var w=byProb[p.dataIndex];return esc(w.name)+' · '+esc(colOf(w))+'<br>入选 '+w.dateIn+'（第'+(tdIndex(w)+1)+'个交易日）<br>上涨概率 '+w.prob+'% · 10日预测 '+esc(w.forecast);}},grid:{left:8,right:44,top:6,bottom:6,containLabel:true},xAxis:{type:'value',max:100,axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:byProb.map(function(w){return w.name;})},series:[{type:'bar',barWidth:14,itemStyle:{borderRadius:[0,7,7,0],borderColor:'#141f30',borderWidth:1,color:function(p){return colBarColor(byProb[p.dataIndex].column);}},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,formatter:function(p){return byProb[p.dataIndex].prob+'%';}},data:byProb.map(function(w){return w.prob;})}]});
+// 自选股涨幅图：动态高度 + 空态提示
 var fs=favList().slice().sort(function(a,b){return b.gainSince-a.gainSince;});
-chart('cGain',{tooltip:{formatter:function(p){var w=fs[p.dataIndex];return esc(w.name)+'<br>入选 '+w.dateIn+' @ '+w.priceIn.toFixed(2)+'<br>累计 '+fmtPct(w.gainSince);}},grid:{left:8,right:56,top:6,bottom:6,containLabel:true},xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:fs.map(function(w){return w.name;})},series:[{type:'bar',barWidth:14,itemStyle:{color:function(p){var v=fs[p.dataIndex].gainSince;return v>0?RED:v<0?GREEN:FLAT;},borderRadius:[0,7,7,0]},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,formatter:function(p){return fmtPct(fs[p.dataIndex].gainSince);}},data:fs.map(function(w){return w.gainSince;})}]});
+var gel=document.getElementById('cGain');
+if(gel){
+ if(!fs.length){
+  if(CHARTS['cGain']){try{CHARTS['cGain'].dispose();}catch(e){}delete CHARTS['cGain'];}
+  gel.innerHTML='<div class="fav-empty" style="padding-top:36px">暂无自选股。在入选投研池卡片中勾选「⭐ 加入自选」后，此处展示自选标的的入池以来涨幅。</div>';
+ }else{
+  gel.innerHTML='';gel.style.height=Math.max(240,fs.length*30+70)+'px';
+  chart('cGain',{tooltip:{formatter:function(p){var w=fs[p.dataIndex];return esc(w.name)+'<br>入选 '+w.dateIn+' @ '+w.priceIn.toFixed(2)+'<br>累计 '+fmtPct(w.gainSince);}},grid:{left:8,right:56,top:6,bottom:6,containLabel:true},xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:fs.map(function(w){return w.name;})},series:[{type:'bar',barWidth:14,itemStyle:{color:function(p){var v=fs[p.dataIndex].gainSince;return v>0?RED:v<0?GREEN:FLAT;},borderRadius:[0,7,7,0]},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,formatter:function(p){return fmtPct(fs[p.dataIndex].gainSince);}},data:fs.map(function(w){return w.gainSince;})}]});
+ }
+}
+// 投研池全池涨幅图（v6.0：独立全宽 + 动态高度 + 栏目配色柱 + 超40只启用缩放）
 var as=W.slice().sort(function(a,b){return b.gainSince-a.gainSince;});
-chart('cGainAll',{tooltip:{formatter:function(p){var w=as[p.dataIndex];return esc(w.name)+' · '+esc(tierName(w.tier))+'<br>入选 '+w.dateIn+' @ '+w.priceIn.toFixed(2)+'<br>累计 '+fmtPct(w.gainSince);}},grid:{left:8,right:56,top:6,bottom:6,containLabel:true},xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:as.map(function(w){return w.name;})},series:[{type:'bar',barWidth:14,itemStyle:{color:function(p){var v=as[p.dataIndex].gainSince;return v>0?RED:v<0?GREEN:FLAT;},borderRadius:[0,7,7,0]},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,formatter:function(p){return fmtPct(as[p.dataIndex].gainSince);}},data:as.map(function(w){return w.gainSince;})}]});
+var ael=document.getElementById('cGainAll');
+if(ael){ael.style.height=Math.max(400,as.length*26+100)+'px';}
+var gainDz=as.length>40?[{type:'inside',yAxisIndex:0,start:0,end:100}]:[];
+chart('cGainAll',{tooltip:{formatter:function(p){var w=as[p.dataIndex];return esc(w.name)+' · '+esc(colOf(w))+'<br>入选 '+w.dateIn+' @ '+w.priceIn.toFixed(2)+'<br>累计 '+fmtPct(w.gainSince);}},grid:{left:8,right:64,top:6,bottom:6,containLabel:true},xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:as.map(function(w){return w.name;})},dataZoom:gainDz,series:[{type:'bar',barWidth:as.length>30?10:14,itemStyle:{color:function(p){return colBarColor(as[p.dataIndex].column);},borderRadius:[0,7,7,0]},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,fontSize:as.length>30?10:12,formatter:function(p){return fmtPct(as[p.dataIndex].gainSince);}},data:as.map(function(w){return w.gainSince;})}]});
 }
 
 // ===== 今日收盘数据复盘 =====
@@ -68986,7 +69259,7 @@ var st=D.stocks[x.q]||{};var pct=(st.pct!==undefined?st.pct:(x.pct||0));
 var wk=W.filter(function(w){return w.code===x.code;})[0];
 var f=wk?FAVS[wk.code]:null;var favGain=(f&&f.priceFav)?+(((wk?wk.priceNow:x.price)/f.priceFav-1)*100).toFixed(2):null;
 var nmCol=wk?WKC[new Date(wk.dateIn+'T00:00:00').getDay()]:'#e6ebf4';
-return '<tr class="tier-'+(wk?wk.tier:'day')+(wk&&wk.gold?' gold-src':'')+'">'+
+return '<tr data-col="'+esc(colOf(wk||{}))+'"'+(wk&&colOf(wk)==='金牌纪要库'?' class="gold-src"':'')+'>'+
 '<td><b style="color:'+nmCol+';font-size:14px">'+esc(x.name)+'</b><br><span style="font-size:11.5px;color:var(--muted)">'+x.code+' · '+esc(x.sector)+'</span></td>'+
 '<td><b>'+x.priceIn.toFixed(2)+'</b></td>'+
 '<td><b class="'+cls(pct)+'">'+(st.price||x.price).toFixed(2)+'</b></td>'+
@@ -69000,10 +69273,17 @@ return '<tr class="tier-'+(wk?wk.tier:'day')+(wk&&wk.gold?' gold-src':'')+'">'+
 
 // ===== 期次备查（含股票名标识）=====
 function renderBatches(){
-document.getElementById('batchBox').innerHTML=(D.batches||[]).map(function(b){
-var tcls=b.tier==='night'?'night':(b.tier==='gold'?'gold':(b.tier==='special'?'special':'day'));
-var icon=b.tier==='night'?'🌙 夜刊':(b.tier==='gold'?'🏅 金牌纪要库':(b.tier==='special'?'🌟 特刊':'☀ 日刊'));
-return '<details class="batch" open><summary><span class="tier-badge '+tcls+'">'+icon+'</span> '+esc(b.period)+' · '+esc(b.title)+' <span class="beans" style="margin-left:8px">'+esc(b.pub)+' · '+esc(b.beans||'≥280')+'微信豆</span></summary>'+
+var B=D.batches||[];
+var dates=[],cols=[];
+B.forEach(function(b){if(b.period&&dates.indexOf(b.period)<0)dates.push(b.period);var c=b.column||'公告全知道';if(cols.indexOf(c)<0)cols.push(c);});
+var dsel=document.getElementById('batchDateSel'),csel=document.getElementById('batchColSel');
+if(dsel){var dv=dsel.value;dsel.innerHTML='<option value="">全部日期（'+dates.length+' 个）</option>'+dates.slice().sort().reverse().map(function(d){return '<option'+(dv===d?' selected':'')+'>'+esc(d)+'</option>';}).join('');}
+if(csel){var cv=csel.value;csel.innerHTML='<option value="">全部栏目（'+cols.length+' 个）</option>'+cols.map(function(c){return '<option'+(cv===c?' selected':'')+'>'+esc(c)+'</option>';}).join('');}
+var binfo=document.getElementById('batchInfo');if(binfo)binfo.textContent='共 '+B.length+' 期 · 默认仅展开最新一期';
+document.getElementById('batchBox').innerHTML=B.map(function(b,i){
+var col=b.column||'公告全知道';
+var lowBeans=(typeof b.beans==='number'&&b.beans<280);
+return '<details class="batch" data-date="'+esc(b.period)+'" data-col="'+esc(col)+'"'+(i===B.length-1?' open':'')+'><summary>'+colBadgeHtml(col)+' '+esc(b.period)+' · '+esc(b.title)+' <span class="beans" style="margin-left:8px">'+esc(b.pub)+' · '+(b.beans==='待核实'?'<b style="color:var(--yellow)">豆数待核实</b>':esc(b.beans||'≥280')+'微信豆')+(lowBeans?' <b style="color:var(--red)">· 低于门槛 · 不供入池</b>':'')+'</span></summary>'+
 (b.article.foreword?'<div class="news-item"><div class="title">【栏目前言】</div><div class="content">'+esc(b.article.foreword)+'</div></div>':'')+(b.note?'<div class="news-item" style="border-color:#b38728"><div class="title" style="color:#ffd700">📌 入池说明</div><div class="content">'+esc(b.note)+'</div></div>':'')+
 (b.article.teasers||[]).map(function(t,i){return '<div class="news-item"><div class="title">摘要 '+(i+1)+'</div><div class="content">'+esc(t)+'</div></div>';}).join('')+
 (b.items||[]).map(function(x){
@@ -69013,12 +69293,81 @@ return '<div class="news-item"><div class="title">'+sg+stk+esc(x.title)+'</div><
 '</details>';
 }).join('')||'<div class="fav-empty">暂无期次备查数据。</div>';
 }
+window.filterBatches=function(){
+var dv=document.getElementById('batchDateSel').value;
+var cv=document.getElementById('batchColSel').value;
+document.querySelectorAll('#batchBox details.batch').forEach(function(d){
+var okd=!dv||d.getAttribute('data-date')===dv;
+var okc=!cv||d.getAttribute('data-col')===cv;
+d.style.display=(okd&&okc)?'':'none';
+if((dv||cv)&&okd&&okc)d.open=true;
+});
+};
+// ===== 比对候选池（v6.0）=====
+function candCardHtml(c){
+var td=tdIndex(c);
+var exp=td>=10;
+var st=D.stocks[c.q]||{};
+return '<div class="stock-card cand-card" data-col="'+esc(colOf(c))+'">'+
+'<div class="head"><span class="nm">'+esc(c.name)+'</span><span class="cd">'+esc(c.code)+'</span></div>'+
+'<div>'+colBadgeHtml(c.column)+' <span class="cand-badge">◐ 推断 · 待正文确认</span></div>'+
+(st.pct!==undefined?'<div class="sp">'+st.price.toFixed(2)+'<span class="spct '+cls(st.pct)+'">'+fmtPct(st.pct)+'</span></div>':'')+
+'<div class="blk t1"><b class="lbl">入候选池 '+esc(c.dateIn)+' · 来源 '+esc(c.pub||'—')+'</b>'+esc(c.reason)+'</div>'+
+((c.tags&&c.tags.length)?'<div class="blk"><b class="lbl">题材线索</b>'+c.tags.map(function(t){return '<span class="tagin">'+esc(t)+'</span>';}).join(' ')+'</div>':'')+
+'<div class="since">入候选池第 <b>'+td+'</b> 个交易日 · 全网公开信息比对<b>未确认</b>，暂不入投研池<div class="pbar cand"><i style="width:'+Math.min(100,td*10)+'%"></i></div></div>'+
+(exp?'<div class="cand-expiry">⚠ 已满 10 个交易日仍未比对确认 · 下一交易日从看板彻底删除（候选池/图表/统计全部剔除）</div>':'')+
+'<div class="since" style="color:var(--muted);font-size:11.5px">比对成功确认后自动移入【入选投研池】并删除本候选记录'+(c.beans?' · 来源文章 '+esc(c.beans)+' 微信豆':'')+'</div>'+
+'</div>';
+}
+function renderCandidates(){
+var box=document.getElementById('candBox');if(!box)return;
+var poolNames={};W.forEach(function(w){poolNames[w.name]=1;});
+var arr=(D.candidates||[]).filter(function(c){return !poolNames[c.name]&&tdIndex(c)<11;});
+var cc=document.getElementById('candCount');if(cc)cc.textContent=arr.length;
+arr=arr.slice().sort(function(a,b){return a.dateIn<b.dateIn?1:-1;});
+box.innerHTML=arr.length?('<div class="stocks-grid">'+arr.map(candCardHtml).join('')+'</div>'):'<div class="fav-empty">比对候选池暂无标的。抓取文章中比对未成功的股票将暂存于此，并标识「推断·待正文确认」：比对成功自动移入投研池；入候选池第 10 个交易日仍未确认的，第 11 个交易日从看板彻底删除。</div>';
+}
 function renderStatic(){
-document.getElementById('noteBox').innerHTML='<b>监控与入选规则</b><ul>'+(D.notes||[]).map(function(n){return '<li>'+esc(n)+'</li>';}).join('')+'</ul>';
-document.getElementById('histBox').innerHTML='<b>更新记录</b><ul>'+(D.history||[]).map(function(h){return '<li><b>v'+esc(h.version)+'</b>（'+esc(h.time)+'）：'+esc(h.note)+'</li>';}).join('')+'</ul>';
+// 栏目图例（入选投研池 / 上涨概率）
+var lg=document.getElementById('poolLegend');
+if(lg)lg.innerHTML=COL_ORDER.map(function(c){var m=COLUMNS[c];return '<span class="lg-col" style="background:'+m.bg+';border:2px solid '+m.bar+';color:'+m.color+'">'+m.icon+' '+m.name+'</span>';}).join('')+'<span class="lg-col" style="background:#331a2a;border:2px solid #6b2a4a;color:#f8b3d4">🌟 掘金行业龙头（180豆·整栏不抓取·仅留档）</span>';
+var pl=document.getElementById('probLegend');
+if(pl)pl.innerHTML=COL_ORDER.map(function(c){var m=COLUMNS[c];return '<span style="font-size:12px;color:var(--muted)"><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+m.bar+';margin-right:5px"></i>'+m.icon+' '+m.name+'</span>';}).join('');
+// 规则和铁律（条款化·折叠）
+var cats=D.ruleCats||[];
+var ruleN=cats.reduce(function(a,c){return a+(c.items||[]).length;},0);
+var ri=document.getElementById('ruleInfo');if(ri)ri.textContent='共 '+cats.length+' 类 · '+ruleN+' 条';
+document.getElementById('ruleBox').innerHTML=cats.map(function(c){
+return '<details class="rule" data-cat="'+esc(c.name)+'"><summary>'+esc(c.icon)+' '+esc(c.name)+' <span class="rule-n">'+(c.items||[]).length+' 条</span></summary><ol class="rule-list">'+(c.items||[]).map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ol></details>';
+}).join('')||'<div class="fav-empty">暂无规则内容。</div>';
+var rsel=document.getElementById('ruleCatSel');
+if(rsel)rsel.innerHTML='<option value="">跳转条款分类…</option>'+cats.map(function(c){return '<option>'+esc(c.name)+'</option>';}).join('');
+// 更新记录（版本号倒序·折叠）
+var hs=(D.history||[]).slice().reverse();
+var hi=document.getElementById('histInfo');if(hi)hi.textContent='共 '+hs.length+' 个版本';
+document.getElementById('histBox').innerHTML=hs.map(function(h){
+return '<details class="hist" data-ver="v'+esc(h.version)+'"><summary><b class="hver">v'+esc(h.version)+'</b><span class="htime">'+esc(h.time)+'</span></summary><div class="hnote">'+esc(h.note)+'</div></details>';
+}).join('')||'<div class="fav-empty">暂无更新记录。</div>';
+var hsel=document.getElementById('histVerSel');
+if(hsel)hsel.innerHTML='<option value="">全部版本（'+hs.length+' 个）</option>'+hs.map(function(h){return '<option>v'+esc(h.version)+'</option>';}).join('');
 document.getElementById('alertBox').innerHTML=(D.alerts||[]).map(function(a){return '<div class="alert-banner">⚠ '+esc(a)+'</div>';}).join('');
 }
-function renderAll(){['renderOverview','renderFavs','renderPool','renderTable','renderCharts','renderReview','renderBatches'].forEach(function(fn){try{window[fn]&&window[fn]();}catch(e){if(window.console)console.error('[看板渲染]',fn,e);}});}
+window.filterHistory=function(){
+var v=document.getElementById('histVerSel').value;
+document.querySelectorAll('#histBox details.hist').forEach(function(d){
+var ok=!v||d.getAttribute('data-ver')===v;
+d.style.display=ok?'':'none';
+if(v&&ok)d.open=true;
+});
+};
+window.jumpRule=function(){
+var v=document.getElementById('ruleCatSel').value;if(!v)return;
+var el=document.querySelector('#ruleBox details.rule[data-cat="'+v.replace(/"/g,'')+'"]');
+if(el){el.open=true;el.scrollIntoView({behavior:'smooth',block:'start'});}
+};
+window.expandAll=function(sel){document.querySelectorAll(sel+' details').forEach(function(d){d.open=true;});};
+window.collapseAll=function(sel){document.querySelectorAll(sel+' details').forEach(function(d){d.open=false;});};
+function renderAll(){['renderOverview','renderFavs','renderPool','renderCandidates','renderTable','renderCharts','renderReview','renderBatches'].forEach(function(fn){try{window[fn]&&window[fn]();}catch(e){if(window.console)console.error('[看板渲染]',fn,e);}});}
 renderStatic();renderAll();bindDrag('favBox','fav');bindDrag('poolBox','pool');
 
 // ===== 触摸/鼠标拖拽排序（我的自选股 / 入选投研池）=====

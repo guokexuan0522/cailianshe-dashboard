@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-20 00:01:04",
+ "lastScanAt": "2026-10-19 22:13:02",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 0,
  "failed": 0,
- "source": "",
- "note": "cls.cn 各栏目无新文章（已全部收录）",
- "newTitles": [],
+ "source": "cls.cn",
+ "note": "",
+ "newTitles": [
+  "【公告全知道】PCB+光模块+卫星通信+华为！公司1.6T交换机产品进入小批量量产"
+ ],
  "failedList": []
 }
