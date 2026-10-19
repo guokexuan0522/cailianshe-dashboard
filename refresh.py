@@ -125,7 +125,8 @@ def fetch_kline(q):
     text, _ = http_get(
         'https://proxy.finance.qq.com/ifzqgtimg/appstock/app/newfqkline/get?param=%s,day,,,80,qfq' % q)
     j = json.loads(text)
-    day = j['data'][q]['qfqday']
+    node = j['data'][q]
+    day = node.get('qfqday') or node.get('day')  # 部分标的返回 day 字段（如 sh688635）
     return [[c[0], float(c[1]), float(c[2]), float(c[3]), float(c[4]), float(c[5])] for c in day]
 
 
