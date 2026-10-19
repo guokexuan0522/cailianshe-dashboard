@@ -1,0 +1,41 @@
+name: cls-autopool
+
+# 财联社投研看板 · 第二层云端自动入池工作流（v6.0 二期）
+# 与 articles.yml（第一层·文章发现 */30）分工：本流程对 pending/ 工单做
+#   确定性预核验——公开点名字面匹配 + 板块分布校验 + 过 280 豆门槛，
+#   零模型推断；产出 autopool/results|routed 供本地唤醒（第三层）消费落地。
+# 频率：每小时 :15 与 :45 各一次（文章发现后 ≤15 分钟完成预核验）。
+# 安全边界：
+#   - 绝不修改 index.html（母版唯一权威，入池由本地唤醒会话落地并升版）
+#   - 只 commit autopool/ 与 ref/ 两个目录
+#   - 推送前先 pull --rebase，与本地人工推送/collect.yml 并行不冲突
+on:
+  schedule:
+    - cron: "15,45 * * * *"   # 每小时 :15/:45（UTC）
+  workflow_dispatch:          # 支持手动触发测试
+
+permissions:
+  contents: write
+
+jobs:
+  autopool:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      - uses: actions/checkout@v4
+      - name: 第二层自动入池预核验
+        run: python3 autopool.py
+      - name: 提交并推送
+        run: |
+          git config user.name "cailianshe-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git pull --rebase origin main || true
+          git add autopool/ ref/
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "autopool $(date +%F) $(date +%T) (auto)"
+            git push origin HEAD:main || echo "push failed, next run retries"
+          fi
