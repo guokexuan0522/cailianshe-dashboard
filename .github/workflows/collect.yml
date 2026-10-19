@@ -1,17 +1,17 @@
 name: cailianshe-dashboard
 
-# 云端自动刷新工作流（替代本地/平台定时任务）
-# 目标：每个交易日更新 3 次，GitHub Pages 发布最新看板，浏览器打开即最新。
+# 云端行情刷新工作流（替代本地/平台定时任务）
+# 目标：每个交易日收盘后更新一次，GitHub Pages 发布最新看板，浏览器打开即最新。
 # 说明：
-#   - GitHub cron 用 UTC；北京 = UTC+8。
-#   - 北京 08:30 = UTC 00:30 / 15:45 = UTC 07:45 / 18:00 = UTC 10:00。
-#   - 08:30（UTC 00 时）跑 night（盘前/早间同步最新行情）；其余跑 close（收盘采集）。
+#   - GitHub cron 用 UTC；北京 = UTC+8。北京 15:45 = UTC 07:45。
+#   - 15:00 收盘、行情约 15:35 落定，15:45 触发留足缓冲；非交易日由 refresh.run
+#     内部护栏自动跳过（ok=true+skipped，不写文件不出错）。
+#   - 盘中实时价格由页面 liveBar JSONP 每 60 秒直连腾讯行情（零成本真实时），无需工作流。
+#   - 文章自动发现由 articles.yml（每 30 分钟）负责，本流程只更新行情数据。
 #   - 云端推送用 secrets.GITHUB_TOKEN（actions/checkout 自动携带），不写个人 PAT。
 on:
   schedule:
-    - cron: "30 0 * * *"   # 北京 08:30
-    - cron: "45 7 * * *"   # 北京 15:45
-    - cron: "0 10 * * *"   # 北京 18:00
+    - cron: "45 7 * * *"   # 北京 15:45（收盘后）
   workflow_dispatch:        # 支持手动触发测试
 
 permissions:
@@ -25,18 +25,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 采集并刷新看板
-        run: |
-          H=$(date -u +%H)
-          if [ "$H" = "00" ]; then JOB=night; else JOB=close; fi
-          echo "UTC 小时=$H -> 执行 job=$JOB"
-          python3 collect.py $JOB
+        run: python3 collect.py close
       - name: 提交并推送
         run: |
           git config user.name "cailianshe-bot"
           git config user.email "bot@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          # 先 rebase 远端（本地人工升版推送后，此处必须同步后再推，否则 non-fast-forward 被拒）
+          # 先 rebase 远端（本地人工升版推送/articles.yml 提交后，此处必须同步后再推）
           git pull --rebase origin main || true
           git add index.html
           git commit -m "update $(date +%F) $(date +%T) (auto)" || echo "no change"
-          git push origin HEAD:main
+          git push origin HEAD:main || echo "push failed, next run retries"

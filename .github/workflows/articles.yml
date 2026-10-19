@@ -1,0 +1,39 @@
+name: cls-article-scan
+
+# 财联社投研看板 · 文章自动发现工作流（与 collect.yml 分工：本流程只发现文章，不碰行情）
+# 频率：每 30 分钟扫描一次 11 个 VIP 栏目（公开仓库 Actions 免费额度无限）
+# 产出：过价格门槛的新文章 → 仓库 pending/ 待核验队列；seen/ 持久化跨运行共享
+# 说明：
+#   - 只 commit pending/ 与 seen/ 两个目录，绝不碰 index.html（那是 collect.yml 的职责）
+#   - 推送前先 pull --rebase，与本地人工推送/collect.yml 并行不冲突
+#   - 入池核验由会话内人工完成（铁律：公开内容提到几只就验证几只），本流程只负责"不漏文章"
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # 每 30 分钟（UTC，全天候覆盖早间/盘中/晚间发布）
+  workflow_dispatch:          # 支持手动触发测试
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      - uses: actions/checkout@v4
+      - name: 扫描新文章入待核验队列
+        run: python3 scan_articles.py
+      - name: 提交并推送
+        run: |
+          git config user.name "cailianshe-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git pull --rebase origin main || true
+          git add pending/ seen/
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "scan $(date +%F) $(date +%T) (auto)"
+            git push origin HEAD:main || echo "push failed, next run retries"
+          fi
