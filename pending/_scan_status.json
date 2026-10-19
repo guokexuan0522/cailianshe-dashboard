@@ -1,11 +1,11 @@
 {
- "lastScanAt": "2026-10-20 06:23:42",
+ "lastScanAt": "2026-10-20 06:57:13",
  "ok": true,
  "new": 0,
- "skipped": 0,
+ "skipped": 1,
  "failed": 0,
- "source": "",
- "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "source": "cls.cn",
+ "note": "",
  "newTitles": [],
  "failedList": []
 }
