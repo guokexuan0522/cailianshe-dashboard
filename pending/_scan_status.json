@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-20 07:56:58",
+ "lastScanAt": "2026-10-20 08:33:34",
  "ok": true,
- "new": 0,
- "skipped": 1,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【九点特供】工信部要求以人形机器人为“小切口”，带动具身智能大产业发展，分析师看好大模型持续进步有望加速通用具身落地；美光科技将举办研讨会聚焦DRAM、HBM及NAND创新"
+ ],
  "failedList": []
 }
