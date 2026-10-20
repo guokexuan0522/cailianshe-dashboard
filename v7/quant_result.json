@@ -1,0 +1,2264 @@
+{
+ "state": {
+  "p": 0.6636955654291975,
+  "avg": 0.022249935135109866,
+  "n": 15,
+  "pRaw": 0.7952592592592593,
+  "tag": "超跌反弹区",
+  "mid": -0.04267849667375312,
+  "slope": -0.007249116457938909,
+  "note": "上证距EXPMA60≤-2.5% 且 EMA60 五日斜率<-0.6%：历史同类 10 日全池上涨 77.8%（504 个观测）",
+  "baseP": 0.4979253112033195,
+  "baseN": 241,
+  "bands": [
+   {
+    "name": "超跌反弹区",
+    "n": 15,
+    "p": 0.7952592592592593,
+    "pHist": 0.778,
+    "nHist": 504,
+    "note": "上证距EXPMA60≤-2.5% 且 EMA60 五日斜率<-0.6%：历史同类 10 日全池上涨 77.8%（504 个观测）",
+    "avg": 0.022249935135109866,
+    "current": true
+   },
+   {
+    "name": "下跌中继区",
+    "n": 13,
+    "p": 0.6249624060150376,
+    "pHist": 0.626,
+    "nHist": 431,
+    "note": "上证深跌但指数未确认下行：历史同类 62.6%（431 个观测），超额不显著",
+    "avg": 0.011643343637653762,
+    "current": false
+   },
+   {
+    "name": "中性整理区",
+    "n": 212,
+    "p": 0.46204819277108433,
+    "pHist": 0.47,
+    "nHist": 7731,
+    "note": "上证距EXPMA60 >-2.5%（约 97% 的时间）：无稳定方向，按历史基准处理",
+    "avg": -0.0034321917854388292,
+    "current": false
+   }
+  ]
+ },
+ "experience": {
+  "baseP": 0.4955048409405256,
+  "n": 8676,
+  "stocks": 36
+ },
+ "stocks": {
+  "sh603228": {
+   "code": "sh603228",
+   "name": "景旺电子",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.119,
+    "past5": -0.101,
+    "devE12": -0.06,
+    "rsi": 39.67,
+    "pos": 0.073,
+    "atrp": 8.09
+   },
+   "forecast": "-15% ~ +34%",
+   "forecastLo": -15.3,
+   "forecastHi": 34.0,
+   "conf": "high",
+   "confScore": 0.214,
+   "composite": 8.1,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 17.5,
+    "volume": -4.0,
+    "position": 38.5,
+    "volatility": -56.4,
+    "rs": 0.0,
+    "pattern": -21.9
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+0.04%），EXPMA50五日斜率-0.96%",
+    "momentum": "收盘距EXPMA12 -5.99%",
+    "rsi": "RSI39.7，布林%B=0.10",
+    "volume": "OBV十日斜率-6.3%，量比0.28，收阳",
+    "position": "20日区间位置7%（0%=区间底）",
+    "volatility": "ATR8.09%，20日σ6.65%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+2.18%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 94.23,
+    "e50": 94.19,
+    "ma20": 99.2
+   },
+   "rsi": 39.7,
+   "atrp": 8.09
+  },
+  "sz301086": {
+   "code": "sz301086",
+   "name": "鸿富瀚",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.196,
+    "past5": -0.087,
+    "devE12": -0.076,
+    "rsi": 38.12,
+    "pos": 0.086,
+    "atrp": 8.99
+   },
+   "forecast": "-17% ~ +38%",
+   "forecastLo": -17.0,
+   "forecastHi": 37.8,
+   "conf": "high",
+   "confScore": 0.204,
+   "composite": 6.9,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 17.5,
+    "volume": 6.7,
+    "position": 37.2,
+    "volatility": -85.4,
+    "rs": 0.0,
+    "pattern": -33.7
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-3.53%），EXPMA50五日斜率-2.22%",
+    "momentum": "收盘距EXPMA12 -7.65%",
+    "rsi": "RSI38.1，布林%B=0.16",
+    "volume": "OBV十日斜率-16.3%，量比0.36，收阳",
+    "position": "20日区间位置9%（0%=区间底）",
+    "volatility": "ATR8.99%，20日σ11.21%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+4.54%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 136.96,
+    "e50": 141.98,
+    "ma20": 149.4
+   },
+   "rsi": 38.1,
+   "atrp": 8.99
+  },
+  "sh600693": {
+   "code": "sh600693",
+   "name": "东百集团",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.053,
+    "past5": -0.298,
+    "devE12": -0.136,
+    "rsi": 40.51,
+    "pos": 0.0,
+    "atrp": 9.8
+   },
+   "forecast": "-19% ~ +41%",
+   "forecastLo": -18.5,
+   "forecastHi": 41.2,
+   "conf": "high",
+   "confScore": 0.203,
+   "composite": 29.9,
+   "factors": {
+    "trend": 55.0,
+    "momentum": 100,
+    "rsi": 14.5,
+    "volume": -0.4,
+    "position": 45.0,
+    "volatility": -86.7,
+    "rs": 0.0,
+    "pattern": -12.2
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+2.18%），EXPMA50五日斜率+0.58%",
+    "momentum": "收盘距EXPMA12 -13.57%",
+    "rsi": "RSI40.5，布林%B=0.20",
+    "volume": "OBV十日斜率-10.0%，量比0.29，收阳",
+    "position": "20日区间位置0%（0%=区间底）",
+    "volatility": "ATR9.80%，20日σ10.33%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+0.23%"
+   },
+   "advice": {
+    "action": "持有观望",
+    "pos": "5日急跌>15%，等企稳再看",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 10.0,
+    "e50": 9.78,
+    "ma20": 9.84
+   },
+   "rsi": 40.5,
+   "atrp": 9.8
+  },
+  "sz300657": {
+   "code": "sz300657",
+   "name": "弘信电子",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.09,
+    "past5": -0.066,
+    "devE12": -0.034,
+    "rsi": 40.26,
+    "pos": 0.083,
+    "atrp": 5.82
+   },
+   "forecast": "-11% ~ +24%",
+   "forecastLo": -11.0,
+   "forecastHi": 24.5,
+   "conf": "high",
+   "confScore": 0.242,
+   "composite": 3.5,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 67.8,
+    "rsi": 13.9,
+    "volume": 1.7,
+    "position": 37.5,
+    "volatility": -48.3,
+    "rs": 0.0,
+    "pattern": -23.5
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-6.84%），EXPMA50五日斜率-2.20%",
+    "momentum": "收盘距EXPMA12 -3.39%",
+    "rsi": "RSI40.3，布林%B=0.24",
+    "volume": "OBV十日斜率-12.4%，量比0.27，收阳",
+    "position": "20日区间位置8%（0%=区间底）",
+    "volatility": "ATR5.82%，20日σ8.21%",
+    "rs": "样本不足",
+    "pattern": "连续阳2日，实体+0.29%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 32.18,
+    "e50": 34.54,
+    "ma20": 34.0
+   },
+   "rsi": 40.3,
+   "atrp": 5.82
+  },
+  "sh605189": {
+   "code": "sh605189",
+   "name": "富春染织",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.197,
+    "past5": 0.113,
+    "devE12": 0.051,
+    "rsi": 59.09,
+    "pos": 0.66,
+    "atrp": 5.25
+   },
+   "forecast": "-13% ~ +19%",
+   "forecastLo": -12.8,
+   "forecastHi": 19.3,
+   "conf": "mid",
+   "confScore": 0.153,
+   "composite": -14.6,
+   "factors": {
+    "trend": 55.0,
+    "momentum": -100,
+    "rsi": -15.0,
+    "volume": -51.7,
+    "position": -14.4,
+    "volatility": -45.9,
+    "rs": 0.0,
+    "pattern": 25.5
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+5.02%），EXPMA50五日斜率+2.95%",
+    "momentum": "收盘距EXPMA12 +5.13%（正偏离→回踩压力）",
+    "rsi": "RSI59.1，布林%B=0.84",
+    "volume": "OBV十日斜率+219.5%，量比0.41，收阴",
+    "position": "20日区间位置66%（0%=区间底）",
+    "volatility": "ATR5.25%，20日σ8.53%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-2.90%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 15.62,
+    "e50": 14.87,
+    "ma20": 14.73
+   },
+   "rsi": 59.1,
+   "atrp": 5.25
+  },
+  "sz002552": {
+   "code": "sz002552",
+   "name": "宝鼎科技",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.077,
+    "past5": 0.032,
+    "devE12": -0.034,
+    "rsi": 41.86,
+    "pos": 0.183,
+    "atrp": 8.81
+   },
+   "forecast": "-17% ~ +37%",
+   "forecastLo": -16.7,
+   "forecastHi": 37.1,
+   "conf": "high",
+   "confScore": 0.206,
+   "composite": -1.5,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 68.8,
+    "rsi": 11.7,
+    "volume": -3.2,
+    "position": 28.5,
+    "volatility": -83.5,
+    "rs": 0.0,
+    "pattern": -47.6
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-7.86%），EXPMA50五日斜率-2.04%",
+    "momentum": "收盘距EXPMA12 -3.44%",
+    "rsi": "RSI41.9，布林%B=0.28",
+    "volume": "OBV十日斜率-5.3%，量比0.41，收阳",
+    "position": "20日区间位置18%（0%=区间底）",
+    "volatility": "ATR8.81%，20日σ11.08%",
+    "rs": "样本不足",
+    "pattern": "连续阳2日，实体+5.11%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 44.51,
+    "e50": 48.31,
+    "ma20": 47.65
+   },
+   "rsi": 41.9,
+   "atrp": 8.81
+  },
+  "sz301127": {
+   "code": "sz301127",
+   "name": "武汉天源",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.127,
+    "past5": -0.081,
+    "devE12": -0.078,
+    "rsi": 34.56,
+    "pos": 0.018,
+    "atrp": 8.06
+   },
+   "forecast": "-15% ~ +34%",
+   "forecastLo": -15.3,
+   "forecastHi": 33.9,
+   "conf": "high",
+   "confScore": 0.215,
+   "composite": 8.0,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 21.4,
+    "volume": -8.5,
+    "position": 43.4,
+    "volatility": -67.4,
+    "rs": 0.0,
+    "pattern": -29.9
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-8.95%），EXPMA50五日斜率-2.98%",
+    "momentum": "收盘距EXPMA12 -7.84%",
+    "rsi": "RSI34.6，布林%B=0.12",
+    "volume": "OBV十日斜率-2.4%，量比0.23，收阳",
+    "position": "20日区间位置2%（0%=区间底）",
+    "volatility": "ATR8.06%，20日σ8.90%",
+    "rs": "样本不足",
+    "pattern": "连续阳2日，实体+1.58%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 14.65,
+    "e50": 16.09,
+    "ma20": 15.63
+   },
+   "rsi": 34.6,
+   "atrp": 8.06
+  },
+  "sh688388": {
+   "code": "sh688388",
+   "name": "嘉元科技",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.143,
+    "past5": -0.013,
+    "devE12": -0.052,
+    "rsi": 40.25,
+    "pos": 0.071,
+    "atrp": 7.44
+   },
+   "forecast": "-14% ~ +31%",
+   "forecastLo": -14.1,
+   "forecastHi": 31.3,
+   "conf": "high",
+   "confScore": 0.222,
+   "composite": 7.8,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 14.9,
+    "volume": 1.8,
+    "position": 38.6,
+    "volatility": -64.3,
+    "rs": 0.0,
+    "pattern": -24.0
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-8.58%），EXPMA50五日斜率-2.64%",
+    "momentum": "收盘距EXPMA12 -5.18%",
+    "rsi": "RSI40.2，布林%B=0.20",
+    "volume": "OBV十日斜率-12.3%，量比0.29，收阳",
+    "position": "20日区间位置7%（0%=区间底）",
+    "volatility": "ATR7.44%，20日σ9.13%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+2.60%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 25.4,
+    "e50": 27.79,
+    "ma20": 27.1
+   },
+   "rsi": 40.2,
+   "atrp": 7.44
+  },
+  "sz002008": {
+   "code": "sz002008",
+   "name": "大族激光",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.212,
+    "past5": -0.092,
+    "devE12": -0.101,
+    "rsi": 25.39,
+    "pos": 0.033,
+    "atrp": 7.68
+   },
+   "forecast": "-15% ~ +32%",
+   "forecastLo": -14.5,
+   "forecastHi": 32.3,
+   "conf": "high",
+   "confScore": 0.219,
+   "composite": 9.0,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 27.9,
+    "volume": 5.7,
+    "position": 42.1,
+    "volatility": -97.9,
+    "rs": 0.0,
+    "pattern": -22.8
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-18.01%），EXPMA50五日斜率-5.48%",
+    "momentum": "收盘距EXPMA12 -10.10%",
+    "rsi": "RSI25.4，布林%B=0.17",
+    "volume": "OBV十日斜率-16.1%，量比0.31，收阳",
+    "position": "20日区间位置3%（0%=区间底）",
+    "volatility": "ATR7.68%，20日σ15.54%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+2.37%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 71.62,
+    "e50": 87.36,
+    "ma20": 80.88
+   },
+   "rsi": 25.4,
+   "atrp": 7.68
+  },
+  "sz300620": {
+   "code": "sz300620",
+   "name": "光库科技",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.09,
+    "past5": -0.055,
+    "devE12": -0.042,
+    "rsi": 38.49,
+    "pos": 0.09,
+    "atrp": 7.29
+   },
+   "forecast": "-14% ~ +31%",
+   "forecastLo": -13.8,
+   "forecastHi": 30.7,
+   "conf": "high",
+   "confScore": 0.224,
+   "composite": 4.4,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 83.8,
+    "rsi": 15.8,
+    "volume": -7.9,
+    "position": 36.9,
+    "volatility": -62.6,
+    "rs": 0.0,
+    "pattern": -22.8
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-8.84%），EXPMA50五日斜率-2.85%",
+    "momentum": "收盘距EXPMA12 -4.19%",
+    "rsi": "RSI38.5，布林%B=0.22",
+    "volume": "OBV十日斜率-1.1%，量比0.36，收阳",
+    "position": "20日区间位置9%（0%=区间底）",
+    "volatility": "ATR7.29%，20日σ9.02%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+2.36%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 247.86,
+    "e50": 271.89,
+    "ma20": 263.93
+   },
+   "rsi": 38.5,
+   "atrp": 7.29
+  },
+  "sz002460": {
+   "code": "sz002460",
+   "name": "赣锋锂业",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.131,
+    "past5": -0.101,
+    "devE12": -0.088,
+    "rsi": 23.69,
+    "pos": 0.0,
+    "atrp": 4.7
+   },
+   "forecast": "-9% ~ +20%",
+   "forecastLo": -8.9,
+   "forecastHi": 19.8,
+   "conf": "high",
+   "confScore": 0.256,
+   "composite": 16.9,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 33.3,
+    "volume": 20.6,
+    "position": 45.0,
+    "volatility": -31.1,
+    "rs": 0.0,
+    "pattern": 13.2
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-13.42%），EXPMA50五日斜率-3.82%",
+    "momentum": "收盘距EXPMA12 -8.82%",
+    "rsi": "RSI23.7，布林%B=-0.01",
+    "volume": "OBV十日斜率-11.7%，量比0.33，收阴",
+    "position": "20日区间位置0%（0%=区间底）",
+    "volatility": "ATR4.70%，20日σ6.34%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-0.45%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 41.33,
+    "e50": 47.73,
+    "ma20": 43.29
+   },
+   "rsi": 23.7,
+   "atrp": 4.7
+  },
+  "sz300829": {
+   "code": "sz300829",
+   "name": "金丹科技",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": 0.003,
+    "past5": -0.201,
+    "devE12": -0.045,
+    "rsi": 51.89,
+    "pos": 0.452,
+    "atrp": 9.1
+   },
+   "forecast": "-17% ~ +38%",
+   "forecastLo": -17.2,
+   "forecastHi": 38.3,
+   "conf": "high",
+   "confScore": 0.203,
+   "composite": 20.0,
+   "factors": {
+    "trend": 55.0,
+    "momentum": 90.1,
+    "rsi": 0.0,
+    "volume": 4.9,
+    "position": 4.3,
+    "volatility": -95.4,
+    "rs": 0.0,
+    "pattern": -17.6
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+18.55%），EXPMA50五日斜率+4.40%",
+    "momentum": "收盘距EXPMA12 -4.51%",
+    "rsi": "RSI51.9，布林%B=0.43",
+    "volume": "OBV十日斜率-16.8%，量比0.20，收阳",
+    "position": "20日区间位置45%（0%=区间底）",
+    "volatility": "ATR9.10%，20日σ13.04%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+1.32%"
+   },
+   "advice": {
+    "action": "持有观望",
+    "pos": "5日急跌>15%，等企稳再看",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 24.13,
+    "e50": 20.35,
+    "ma20": 23.96
+   },
+   "rsi": 51.9,
+   "atrp": 9.1
+  },
+  "sh600352": {
+   "code": "sh600352",
+   "name": "浙江龙盛",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.093,
+    "past5": -0.068,
+    "devE12": -0.05,
+    "rsi": 38.1,
+    "pos": 0.079,
+    "atrp": 4.57
+   },
+   "forecast": "-9% ~ +19%",
+   "forecastLo": -8.6,
+   "forecastHi": 19.2,
+   "conf": "high",
+   "confScore": 0.257,
+   "composite": 14.0,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 99.7,
+    "rsi": 18.9,
+    "volume": 15.1,
+    "position": 37.9,
+    "volatility": -21.3,
+    "rs": 0.0,
+    "pattern": 20.8
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-4.76%），EXPMA50五日斜率-1.84%",
+    "momentum": "收盘距EXPMA12 -4.99%",
+    "rsi": "RSI38.1，布林%B=0.09",
+    "volume": "OBV十日斜率-6.4%，量比0.36，收阴",
+    "position": "20日区间位置8%（0%=区间底）",
+    "volatility": "ATR4.57%，20日σ4.57%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-1.96%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 11.56,
+    "e50": 12.13,
+    "ma20": 11.86
+   },
+   "rsi": 38.1,
+   "atrp": 4.57
+  },
+  "sz002258": {
+   "code": "sz002258",
+   "name": "利尔化学",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.022,
+    "past5": -0.026,
+    "devE12": -0.007,
+    "rsi": 45.73,
+    "pos": 0.268,
+    "atrp": 3.45
+   },
+   "forecast": "-8% ~ +13%",
+   "forecastLo": -8.4,
+   "forecastHi": 12.7,
+   "conf": "high",
+   "confScore": 0.167,
+   "composite": 1.3,
+   "factors": {
+    "trend": -34.5,
+    "momentum": 13.9,
+    "rsi": 6.7,
+    "volume": 0.6,
+    "position": 20.9,
+    "volatility": -6.0,
+    "rs": 0.0,
+    "pattern": 44.4
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-0.82%），EXPMA50五日斜率-0.25%",
+    "momentum": "收盘距EXPMA12 -0.70%",
+    "rsi": "RSI45.7，布林%B=0.36",
+    "volume": "OBV十日斜率+10.2%，量比0.26，收阴",
+    "position": "20日区间位置27%（0%=区间底）",
+    "volatility": "ATR3.45%，20日σ3.06%",
+    "rs": "样本不足",
+    "pattern": "连续阴4日，实体-0.07%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 14.23,
+    "e50": 14.35,
+    "ma20": 14.38
+   },
+   "rsi": 45.7,
+   "atrp": 3.45
+  },
+  "sz301313": {
+   "code": "sz301313",
+   "name": "凡拓数创",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.555,
+    "past5": 0.418,
+    "devE12": 0.352,
+    "rsi": 76.94,
+    "pos": 1.0,
+    "atrp": 6.74
+   },
+   "forecast": "-16% ~ +25%",
+   "forecastLo": -16.4,
+   "forecastHi": 24.7,
+   "conf": "mid",
+   "confScore": 0.142,
+   "composite": -29.8,
+   "factors": {
+    "trend": 55.0,
+    "momentum": -100,
+    "rsi": -42.4,
+    "volume": -50.2,
+    "position": -45.0,
+    "volatility": -79.3,
+    "rs": 0.0,
+    "pattern": -74.3
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+1.99%），EXPMA50五日斜率+2.07%",
+    "momentum": "收盘距EXPMA12 +35.21%（正偏离→回踩压力）",
+    "rsi": "RSI76.9，布林%B=1.40",
+    "volume": "OBV十日斜率+52.8%，量比1.03，收阳",
+    "position": "20日区间位置100%（0%=区间底）",
+    "volatility": "ATR6.74%，20日σ13.12%",
+    "rs": "样本不足",
+    "pattern": "连续阳3日，实体+8.26%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 34.61,
+    "e50": 33.94,
+    "ma20": 31.79
+   },
+   "rsi": 76.9,
+   "atrp": 6.74
+  },
+  "sh603197": {
+   "code": "sh603197",
+   "name": "保隆科技",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.134,
+    "past5": 0.116,
+    "devE12": 0.103,
+    "rsi": 67.33,
+    "pos": 1.0,
+    "atrp": 4.05
+   },
+   "forecast": "-10% ~ +15%",
+   "forecastLo": -9.9,
+   "forecastHi": 14.9,
+   "conf": "high",
+   "confScore": 0.162,
+   "composite": -22.2,
+   "factors": {
+    "trend": 55.0,
+    "momentum": -100,
+    "rsi": -30.2,
+    "volume": -81.2,
+    "position": -45.0,
+    "volatility": -17.3,
+    "rs": 0.0,
+    "pattern": 41.7
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+1.28%），EXPMA50五日斜率+0.47%",
+    "momentum": "收盘距EXPMA12 +10.34%（正偏离→回踩压力）",
+    "rsi": "RSI67.3，布林%B=1.21",
+    "volume": "OBV十日斜率+5996.6%，量比2.52，收阴",
+    "position": "20日区间位置100%（0%=区间底）",
+    "volatility": "ATR4.05%，20日σ4.49%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-6.15%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 29.75,
+    "e50": 29.38,
+    "ma20": 29.11
+   },
+   "rsi": 67.3,
+   "atrp": 4.05
+  },
+  "sz301251": {
+   "code": "sz301251",
+   "name": "威尔高",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": -0.132,
+    "past5": 0.007,
+    "devE12": -0.019,
+    "rsi": 53.63,
+    "pos": 0.341,
+    "atrp": 8.86
+   },
+   "forecast": "-22% ~ +32%",
+   "forecastLo": -21.5,
+   "forecastHi": 32.5,
+   "conf": "mid",
+   "confScore": 0.126,
+   "composite": 14.7,
+   "factors": {
+    "trend": 55.0,
+    "momentum": 38.6,
+    "rsi": 0.6,
+    "volume": 3.1,
+    "position": 14.3,
+    "volatility": -63.5,
+    "rs": 0.0,
+    "pattern": -28.7
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+17.92%），EXPMA50五日斜率+4.27%",
+    "momentum": "收盘距EXPMA12 -1.93%",
+    "rsi": "RSI53.6，布林%B=0.33",
+    "volume": "OBV十日斜率-13.2%，量比0.32，收阳",
+    "position": "20日区间位置34%（0%=区间底）",
+    "volatility": "ATR8.86%，20日σ7.00%",
+    "rs": "样本不足",
+    "pattern": "连续阳2日，实体+1.34%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 77.38,
+    "e50": 65.61,
+    "ma20": 79.6
+   },
+   "rsi": 53.6,
+   "atrp": 8.86
+  },
+  "sh603061": {
+   "code": "sh603061",
+   "name": "金海通",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.157,
+    "past5": -0.074,
+    "devE12": -0.055,
+    "rsi": 34.83,
+    "pos": 0.112,
+    "atrp": 7.75
+   },
+   "forecast": "-15% ~ +33%",
+   "forecastLo": -14.7,
+   "forecastHi": 32.6,
+   "conf": "high",
+   "confScore": 0.219,
+   "composite": 7.2,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 19.4,
+    "volume": 1.0,
+    "position": 34.9,
+    "volatility": -72.9,
+    "rs": 0.0,
+    "pattern": -27.3
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-9.27%），EXPMA50五日斜率-3.38%",
+    "momentum": "收盘距EXPMA12 -5.47%",
+    "rsi": "RSI34.8，布林%B=0.20",
+    "volume": "OBV十日斜率-9.7%，量比0.41，收阳",
+    "position": "20日区间位置11%（0%=区间底）",
+    "volatility": "ATR7.75%，20日σ10.44%",
+    "rs": "样本不足",
+    "pattern": "连续阳2日，实体+1.05%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 284.14,
+    "e50": 313.16,
+    "ma20": 307.5
+   },
+   "rsi": 34.8,
+   "atrp": 7.75
+  },
+  "sh603881": {
+   "code": "sh603881",
+   "name": "数据港",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.102,
+    "past5": -0.076,
+    "devE12": -0.051,
+    "rsi": 31.35,
+    "pos": 0.088,
+    "atrp": 4.08
+   },
+   "forecast": "-8% ~ +17%",
+   "forecastLo": -7.7,
+   "forecastHi": 17.2,
+   "conf": "high",
+   "confScore": 0.263,
+   "composite": 9.8,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 24.0,
+    "volume": -8.8,
+    "position": 37.1,
+    "volatility": -25.8,
+    "rs": 0.0,
+    "pattern": -24.7
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-9.20%），EXPMA50五日斜率-2.93%",
+    "momentum": "收盘距EXPMA12 -5.06%",
+    "rsi": "RSI31.4，布林%B=0.12",
+    "volume": "OBV十日斜率-1.8%，量比0.24，收阳",
+    "position": "20日区间位置9%（0%=区间底）",
+    "volatility": "ATR4.08%，20日σ6.14%",
+    "rs": "样本不足",
+    "pattern": "连续阳2日，实体+0.53%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 21.8,
+    "e50": 24.01,
+    "ma20": 22.82
+   },
+   "rsi": 31.4,
+   "atrp": 4.08
+  },
+  "sz002085": {
+   "code": "sz002085",
+   "name": "万丰奥威",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.187,
+    "past5": 0.175,
+    "devE12": 0.107,
+    "rsi": 69.17,
+    "pos": 1.0,
+    "atrp": 3.63
+   },
+   "forecast": "-9% ~ +13%",
+   "forecastLo": -8.8,
+   "forecastHi": 13.3,
+   "conf": "high",
+   "confScore": 0.166,
+   "composite": -35.3,
+   "factors": {
+    "trend": -25.7,
+    "momentum": -100,
+    "rsi": -31.3,
+    "volume": -7.6,
+    "position": -45.0,
+    "volatility": -17.4,
+    "rs": 0.0,
+    "pattern": -42.3
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-1.84%），EXPMA50五日斜率+0.09%",
+    "momentum": "收盘距EXPMA12 +10.70%（正偏离→回踩压力）",
+    "rsi": "RSI69.2，布林%B=1.19",
+    "volume": "OBV十日斜率+15.8%，量比1.54，收阳",
+    "position": "20日区间位置100%（0%=区间底）",
+    "volatility": "ATR3.63%，20日σ5.10%",
+    "rs": "样本不足",
+    "pattern": "连续阳3日，实体+1.87%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 9.85,
+    "e50": 10.03,
+    "ma20": 9.55
+   },
+   "rsi": 69.2,
+   "atrp": 3.63
+  },
+  "sh600580": {
+   "code": "sh600580",
+   "name": "卧龙电驱",
+   "prob": 62.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 300.0
+    }
+   ],
+   "feats": {
+    "past10": -0.057,
+    "past5": -0.009,
+    "devE12": -0.014,
+    "rsi": 36.74,
+    "pos": 0.338,
+    "atrp": 3.87
+   },
+   "forecast": "-8% ~ +15%",
+   "forecastLo": -8.4,
+   "forecastHi": 15.3,
+   "conf": "high",
+   "confScore": 0.215,
+   "composite": -6.1,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 28.5,
+    "rsi": 16.1,
+    "volume": -9.0,
+    "position": 14.6,
+    "volatility": -20.0,
+    "rs": 0.0,
+    "pattern": -41.9
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-11.96%），EXPMA50五日斜率-3.31%",
+    "momentum": "收盘距EXPMA12 -1.42%",
+    "rsi": "RSI36.7，布林%B=0.27",
+    "volume": "OBV十日斜率+0.6%，量比0.40，收阳",
+    "position": "20日区间位置34%（0%=区间底）",
+    "volatility": "ATR3.87%，20日σ5.28%",
+    "rs": "样本不足",
+    "pattern": "连续阳3日，实体+1.79%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.51
+   },
+   "ema": {
+    "e12": 24.83,
+    "e50": 28.21,
+    "ma20": 25.72
+   },
+   "rsi": 36.7,
+   "atrp": 3.87
+  },
+  "sz002889": {
+   "code": "sz002889",
+   "name": "东方嘉盛",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.352,
+    "past5": 0.359,
+    "devE12": 0.212,
+    "rsi": 86.92,
+    "pos": 1.0,
+    "atrp": 4.41
+   },
+   "forecast": "-11% ~ +16%",
+   "forecastLo": -10.7,
+   "forecastHi": 16.2,
+   "conf": "mid",
+   "confScore": 0.16,
+   "composite": -28.9,
+   "factors": {
+    "trend": 55.0,
+    "momentum": -100,
+    "rsi": -47.1,
+    "volume": -47.8,
+    "position": -45.0,
+    "volatility": -49.8,
+    "rs": 0.0,
+    "pattern": -75.9
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+8.11%），EXPMA50五日斜率+3.44%",
+    "momentum": "收盘距EXPMA12 +21.16%（正偏离→回踩压力）",
+    "rsi": "RSI86.9，布林%B=1.23",
+    "volume": "OBV十日斜率+79.0%，量比1.87，收阳",
+    "position": "20日区间位置100%（0%=区间底）",
+    "volatility": "ATR4.41%，20日σ10.48%",
+    "rs": "样本不足",
+    "pattern": "连续阳4日，实体+6.38%"
+   },
+   "advice": {
+    "action": "持有观望",
+    "pos": "RSI>80 超买，暂不追加",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 13.48,
+    "e50": 12.47,
+    "ma20": 12.51
+   },
+   "rsi": 86.9,
+   "atrp": 4.41
+  },
+  "sh601606": {
+   "code": "sh601606",
+   "name": "长城军工",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.024,
+    "past5": 0.044,
+    "devE12": 0.015,
+    "rsi": 50.12,
+    "pos": 0.624,
+    "atrp": 5.23
+   },
+   "forecast": "-13% ~ +19%",
+   "forecastLo": -12.7,
+   "forecastHi": 19.2,
+   "conf": "mid",
+   "confScore": 0.154,
+   "composite": -16.4,
+   "factors": {
+    "trend": -55.0,
+    "momentum": -30.3,
+    "rsi": -1.4,
+    "volume": 1.2,
+    "position": -11.2,
+    "volatility": -23.7,
+    "rs": 0.0,
+    "pattern": 41.5
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-2.34%），EXPMA50五日斜率-0.59%",
+    "momentum": "收盘距EXPMA12 +1.52%（正偏离→回踩压力）",
+    "rsi": "RSI50.1，布林%B=0.56",
+    "volume": "OBV十日斜率+0.8%，量比0.87，收阴",
+    "position": "20日区间位置62%（0%=区间底）",
+    "volatility": "ATR5.23%，20日σ4.13%",
+    "rs": "样本不足",
+    "pattern": "连续阴2日，实体-3.89%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 31.35,
+    "e50": 32.11,
+    "ma20": 31.52
+   },
+   "rsi": 50.1,
+   "atrp": 5.23
+  },
+  "sh688183": {
+   "code": "sh688183",
+   "name": "生益电子",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.142,
+    "past5": -0.058,
+    "devE12": -0.063,
+    "rsi": 34.95,
+    "pos": 0.053,
+    "atrp": 7.48
+   },
+   "forecast": "-14% ~ +31%",
+   "forecastLo": -14.2,
+   "forecastHi": 31.5,
+   "conf": "high",
+   "confScore": 0.222,
+   "composite": 8.8,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 19.7,
+    "volume": 4.8,
+    "position": 40.2,
+    "volatility": -68.6,
+    "rs": 0.0,
+    "pattern": -25.7
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-8.81%），EXPMA50五日斜率-2.88%",
+    "momentum": "收盘距EXPMA12 -6.27%",
+    "rsi": "RSI34.9，布林%B=0.18",
+    "volume": "OBV十日斜率-14.7%，量比0.34，收阳",
+    "position": "20日区间位置5%（0%=区间底）",
+    "volatility": "ATR7.48%，20日σ9.94%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+2.94%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 101.09,
+    "e50": 110.85,
+    "ma20": 108.59
+   },
+   "rsi": 34.9,
+   "atrp": 7.48
+  },
+  "sz300857": {
+   "code": "sz300857",
+   "name": "协创数据",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.149,
+    "past5": -0.08,
+    "devE12": -0.074,
+    "rsi": 34.69,
+    "pos": 0.061,
+    "atrp": 6.82
+   },
+   "forecast": "-13% ~ +29%",
+   "forecastLo": -12.9,
+   "forecastHi": 28.7,
+   "conf": "high",
+   "confScore": 0.23,
+   "composite": 12.1,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 21.0,
+    "volume": 5.3,
+    "position": 39.5,
+    "volatility": -60.5,
+    "rs": 0.0,
+    "pattern": 30.1
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-7.62%），EXPMA50五日斜率-2.81%",
+    "momentum": "收盘距EXPMA12 -7.41%",
+    "rsi": "RSI34.7，布林%B=0.13",
+    "volume": "OBV十日斜率-5.2%，量比0.98，收阴",
+    "position": "20日区间位置6%（0%=区间底）",
+    "volatility": "ATR6.82%，20日σ9.24%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-3.81%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 226.47,
+    "e50": 245.15,
+    "ma20": 242.79
+   },
+   "rsi": 34.7,
+   "atrp": 6.82
+  },
+  "sh600293": {
+   "code": "sh600293",
+   "name": "三峡新材",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.358,
+    "past5": 0.245,
+    "devE12": 0.205,
+    "rsi": 82.27,
+    "pos": 1.0,
+    "atrp": 5.23
+   },
+   "forecast": "-13% ~ +19%",
+   "forecastLo": -12.7,
+   "forecastHi": 19.2,
+   "conf": "mid",
+   "confScore": 0.154,
+   "composite": -29.6,
+   "factors": {
+    "trend": 55.0,
+    "momentum": -100,
+    "rsi": -42.3,
+    "volume": -73.1,
+    "position": -45.0,
+    "volatility": -59.8,
+    "rs": 0.0,
+    "pattern": -44.0
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+13.79%），EXPMA50五日斜率+5.07%",
+    "momentum": "收盘距EXPMA12 +20.54%（正偏离→回踩压力）",
+    "rsi": "RSI82.3，布林%B=1.19",
+    "volume": "OBV十日斜率+80.6%，量比0.06，收阳",
+    "position": "20日区间位置100%（0%=区间底）",
+    "volatility": "ATR5.23%，20日σ11.34%",
+    "rs": "样本不足",
+    "pattern": "连续阳4日，实体+0.00%"
+   },
+   "advice": {
+    "action": "持有观望",
+    "pos": "RSI>80 超买，暂不追加",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 3.58,
+    "e50": 3.15,
+    "ma20": 3.29
+   },
+   "rsi": 82.3,
+   "atrp": 5.23
+  },
+  "sz002354": {
+   "code": "sz002354",
+   "name": "天娱数科",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.037,
+    "past5": -0.034,
+    "devE12": 0.007,
+    "rsi": 49.75,
+    "pos": 0.46,
+    "atrp": 6.11
+   },
+   "forecast": "-15% ~ +22%",
+   "forecastLo": -14.9,
+   "forecastHi": 22.4,
+   "conf": "mid",
+   "confScore": 0.147,
+   "composite": -13.4,
+   "factors": {
+    "trend": -42.9,
+    "momentum": -14.5,
+    "rsi": -0.3,
+    "volume": -0.3,
+    "position": 3.6,
+    "volatility": -26.9,
+    "rs": 0.0,
+    "pattern": -36.4
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-1.25%），EXPMA50五日斜率-0.26%",
+    "momentum": "收盘距EXPMA12 +0.72%（正偏离→回踩压力）",
+    "rsi": "RSI49.7，布林%B=0.52",
+    "volume": "OBV十日斜率-8.4%，量比0.41，收阳",
+    "position": "20日区间位置46%（0%=区间底）",
+    "volatility": "ATR6.11%，20日σ3.53%",
+    "rs": "样本不足",
+    "pattern": "连续阳2日，实体+2.88%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 7.46,
+    "e50": 7.55,
+    "ma20": 7.49
+   },
+   "rsi": 49.7,
+   "atrp": 6.11
+  },
+  "sz002317": {
+   "code": "sz002317",
+   "name": "众生药业",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.193,
+    "past5": 0.066,
+    "devE12": 0.044,
+    "rsi": 58.11,
+    "pos": 0.852,
+    "atrp": 5.45
+   },
+   "forecast": "-13% ~ +20%",
+   "forecastLo": -13.2,
+   "forecastHi": 20.0,
+   "conf": "mid",
+   "confScore": 0.152,
+   "composite": -9.7,
+   "factors": {
+    "trend": 55.0,
+    "momentum": -88.7,
+    "rsi": -14.8,
+    "volume": 3.4,
+    "position": -31.7,
+    "volatility": -32.6,
+    "rs": 0.0,
+    "pattern": 17.0
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+2.05%），EXPMA50五日斜率+1.36%",
+    "momentum": "收盘距EXPMA12 +4.43%（正偏离→回踩压力）",
+    "rsi": "RSI58.1，布林%B=0.86",
+    "volume": "OBV十日斜率+7.4%，量比0.24，收阴",
+    "position": "20日区间位置85%（0%=区间底）",
+    "volatility": "ATR5.45%，20日σ5.60%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-1.20%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 26.03,
+    "e50": 25.5,
+    "ma20": 25.13
+   },
+   "rsi": 58.1,
+   "atrp": 5.45
+  },
+  "sh600178": {
+   "code": "sh600178",
+   "name": "东安动力",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.251,
+    "past5": 0.264,
+    "devE12": 0.196,
+    "rsi": 79.08,
+    "pos": 1.0,
+    "atrp": 3.91
+   },
+   "forecast": "-10% ~ +14%",
+   "forecastLo": -9.5,
+   "forecastHi": 14.3,
+   "conf": "high",
+   "confScore": 0.164,
+   "composite": -24.4,
+   "factors": {
+    "trend": 55.0,
+    "momentum": -100,
+    "rsi": -44.2,
+    "volume": -39.9,
+    "position": -45.0,
+    "volatility": -28.3,
+    "rs": 0.0,
+    "pattern": -33.0
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+5.04%），EXPMA50五日斜率+1.70%",
+    "momentum": "收盘距EXPMA12 +19.55%（正偏离→回踩压力）",
+    "rsi": "RSI79.1，布林%B=1.40",
+    "volume": "OBV十日斜率+35.0%，量比0.55，收阳",
+    "position": "20日区间位置100%（0%=区间底）",
+    "volatility": "ATR3.91%，20日σ6.90%",
+    "rs": "样本不足",
+    "pattern": "连续阳3日，实体+0.00%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 10.38,
+    "e50": 9.88,
+    "ma20": 9.95
+   },
+   "rsi": 79.1,
+   "atrp": 3.91
+  },
+  "sh603859": {
+   "code": "sh603859",
+   "name": "能科科技",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.056,
+    "past5": 0.074,
+    "devE12": 0.068,
+    "rsi": 58.27,
+    "pos": 0.862,
+    "atrp": 4.82
+   },
+   "forecast": "-12% ~ +18%",
+   "forecastLo": -11.7,
+   "forecastHi": 17.7,
+   "conf": "mid",
+   "confScore": 0.157,
+   "composite": -34.8,
+   "factors": {
+    "trend": -55.0,
+    "momentum": -100,
+    "rsi": -14.4,
+    "volume": 5.7,
+    "position": -32.6,
+    "volatility": -21.6,
+    "rs": 0.0,
+    "pattern": -25.6
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-2.98%），EXPMA50五日斜率-0.85%",
+    "momentum": "收盘距EXPMA12 +6.81%（正偏离→回踩压力）",
+    "rsi": "RSI58.3，布林%B=0.84",
+    "volume": "OBV十日斜率+7.4%，量比1.92，收阳",
+    "position": "20日区间位置86%（0%=区间底）",
+    "volatility": "ATR4.82%，20日σ4.26%",
+    "rs": "样本不足",
+    "pattern": "连续阳2日，实体+0.72%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 37.72,
+    "e50": 38.88,
+    "ma20": 38.09
+   },
+   "rsi": 58.3,
+   "atrp": 4.82
+  },
+  "sz002343": {
+   "code": "sz002343",
+   "name": "慈文传媒",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.767,
+    "past5": 0.374,
+    "devE12": 0.259,
+    "rsi": 86.6,
+    "pos": 0.969,
+    "atrp": 5.38
+   },
+   "forecast": "-13% ~ +20%",
+   "forecastLo": -13.1,
+   "forecastHi": 19.7,
+   "conf": "mid",
+   "confScore": 0.153,
+   "composite": -26.3,
+   "factors": {
+    "trend": 55.0,
+    "momentum": -100,
+    "rsi": -42.2,
+    "volume": -54.3,
+    "position": -42.2,
+    "volatility": -100,
+    "rs": 0.0,
+    "pattern": 14.9
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+28.30%），EXPMA50五日斜率+12.42%",
+    "momentum": "收盘距EXPMA12 +25.85%（正偏离→回踩压力）",
+    "rsi": "RSI86.6，布林%B=1.02",
+    "volume": "OBV十日斜率+399.2%，量比0.59，收阴",
+    "position": "20日区间位置97%（0%=区间底）",
+    "volatility": "ATR5.38%，20日σ24.00%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-0.79%"
+   },
+   "advice": {
+    "action": "持有观望",
+    "pos": "RSI>80 超买，暂不追加",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 8.03,
+    "e50": 6.26,
+    "ma20": 6.73
+   },
+   "rsi": 86.6,
+   "atrp": 5.38
+  },
+  "sz002436": {
+   "code": "sz002436",
+   "name": "兴森科技",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.164,
+    "past5": -0.025,
+    "devE12": -0.054,
+    "rsi": 41.86,
+    "pos": 0.069,
+    "atrp": 8.21
+   },
+   "forecast": "-16% ~ +35%",
+   "forecastLo": -15.5,
+   "forecastHi": 34.6,
+   "conf": "high",
+   "confScore": 0.213,
+   "composite": 7.1,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 14.2,
+    "volume": -3.8,
+    "position": 38.8,
+    "volatility": -67.4,
+    "rs": 0.0,
+    "pattern": -22.3
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-1.38%），EXPMA50五日斜率-1.22%",
+    "momentum": "收盘距EXPMA12 -5.42%",
+    "rsi": "RSI41.9，布林%B=0.16",
+    "volume": "OBV十日斜率-5.9%，量比0.32，收阳",
+    "position": "20日区间位置7%（0%=区间底）",
+    "volatility": "ATR8.21%，20日σ8.69%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+2.26%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 37.32,
+    "e50": 37.84,
+    "ma20": 39.96
+   },
+   "rsi": 41.9,
+   "atrp": 8.21
+  },
+  "sz002440": {
+   "code": "sz002440",
+   "name": "闰土股份",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.179,
+    "past5": -0.123,
+    "devE12": -0.089,
+    "rsi": 35.41,
+    "pos": 0.0,
+    "atrp": 6.7
+   },
+   "forecast": "-13% ~ +28%",
+   "forecastLo": -12.7,
+   "forecastHi": 28.2,
+   "conf": "high",
+   "confScore": 0.231,
+   "composite": 14.5,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 100,
+    "rsi": 22.1,
+    "volume": 13.9,
+    "position": 45.0,
+    "volatility": -47.9,
+    "rs": 0.0,
+    "pattern": 29.1
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-4.02%），EXPMA50五日斜率-2.06%",
+    "momentum": "收盘距EXPMA12 -8.95%",
+    "rsi": "RSI35.4，布林%B=0.05",
+    "volume": "OBV十日斜率-7.1%，量比0.50，收阴",
+    "position": "20日区间位置0%（0%=区间底）",
+    "volatility": "ATR6.70%，20日σ6.90%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-3.62%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 11.71,
+    "e50": 12.2,
+    "ma20": 12.16
+   },
+   "rsi": 35.4,
+   "atrp": 6.7
+  },
+  "sz002930": {
+   "code": "sz002930",
+   "name": "宏川智慧",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.075,
+    "past5": -0.058,
+    "devE12": -0.037,
+    "rsi": 34.94,
+    "pos": 0.103,
+    "atrp": 3.55
+   },
+   "forecast": "-7% ~ +15%",
+   "forecastLo": -6.7,
+   "forecastHi": 14.9,
+   "conf": "high",
+   "confScore": 0.27,
+   "composite": 7.6,
+   "factors": {
+    "trend": -55.0,
+    "momentum": 73.4,
+    "rsi": 22.6,
+    "volume": -0.2,
+    "position": 35.7,
+    "volatility": -8.0,
+    "rs": 0.0,
+    "pattern": -14.6
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-4.20%），EXPMA50五日斜率-1.55%",
+    "momentum": "收盘距EXPMA12 -3.67%",
+    "rsi": "RSI34.9，布林%B=0.05",
+    "volume": "OBV十日斜率-9.4%，量比0.34，收阳",
+    "position": "20日区间位置10%（0%=区间底）",
+    "volatility": "ATR3.55%，20日σ3.34%",
+    "rs": "样本不足",
+    "pattern": "连续阳1日，实体+0.72%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 8.67,
+    "e50": 9.05,
+    "ma20": 8.89
+   },
+   "rsi": 34.9,
+   "atrp": 3.55
+  },
+  "sz002352": {
+   "code": "sz002352",
+   "name": "顺丰控股",
+   "prob": 59.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    }
+   ],
+   "feats": {
+    "past10": 0.032,
+    "past5": 0.01,
+    "devE12": 0.01,
+    "rsi": 54.27,
+    "pos": 0.779,
+    "atrp": 1.61
+   },
+   "forecast": "-4% ~ +6%",
+   "forecastLo": -3.9,
+   "forecastHi": 5.9,
+   "conf": "high",
+   "confScore": 0.181,
+   "composite": -15.0,
+   "factors": {
+    "trend": -40.8,
+    "momentum": -20.5,
+    "rsi": -12.5,
+    "volume": 3.8,
+    "position": -25.1,
+    "volatility": 16.4,
+    "rs": 0.0,
+    "pattern": 14.6
+   },
+   "factDesc": {
+    "trend": "EXPMA12下穿EXPMA50（乖离-1.41%），EXPMA50五日斜率-0.19%",
+    "momentum": "收盘距EXPMA12 +1.03%（正偏离→回踩压力）",
+    "rsi": "RSI54.3，布林%B=0.91",
+    "volume": "OBV十日斜率+6.4%，量比0.29，收阴",
+    "position": "20日区间位置78%（0%=区间底）",
+    "volatility": "ATR1.61%，20日σ1.16%",
+    "rs": "样本不足",
+    "pattern": "连续阴1日，实体-0.73%"
+   },
+   "advice": {
+    "action": "逢低增持",
+    "pos": "可加至 6-7 成",
+    "score": 0.39
+   },
+   "ema": {
+    "e12": 31.16,
+    "e50": 31.61,
+    "ma20": 30.9
+   },
+   "rsi": 54.3,
+   "atrp": 1.61
+  },
+  "sh603067": {
+   "code": "sh603067",
+   "name": "振华股份",
+   "prob": 65.6,
+   "probBase": 49.6,
+   "probAdjust": [
+    {
+     "name": "state",
+     "delta": 1010.0
+    },
+    {
+     "name": "stock",
+     "delta": 600.0
+    }
+   ],
+   "feats": {
+    "past10": -0.145,
+    "past5": -0.236,
+    "devE12": -0.125,
+    "rsi": 39.76,
+    "pos": 0.0,
+    "atrp": 8.76
+   },
+   "forecast": "-17% ~ +37%",
+   "forecastLo": -16.6,
+   "forecastHi": 36.9,
+   "conf": "high",
+   "confScore": 0.206,
+   "composite": 36.8,
+   "factors": {
+    "trend": 55.0,
+    "momentum": 100,
+    "rsi": 17.4,
+    "volume": 24.5,
+    "position": 45.0,
+    "volatility": -67.5,
+    "rs": 0.0,
+    "pattern": 48.3
+   },
+   "factDesc": {
+    "trend": "EXPMA12在EXPMA50（乖离+3.22%），EXPMA50五日斜率+0.44%",
+    "momentum": "收盘距EXPMA12 -12.51%",
+    "rsi": "RSI39.8，布林%B=0.10",
+    "volume": "OBV十日斜率-15.7%，量比0.33，收阴",
+    "position": "20日区间位置0%（0%=区间底）",
+    "volatility": "ATR8.76%，20日σ7.95%",
+    "rs": "样本不足",
+    "pattern": "连续阴4日，实体-0.85%"
+   },
+   "advice": {
+    "action": "持有观望",
+    "pos": "5日急跌>15%，等企稳再看",
+    "score": 0.63
+   },
+   "ema": {
+    "e12": 38.53,
+    "e50": 37.33,
+    "ma20": 38.62
+   },
+   "rsi": 39.8,
+   "atrp": 8.76
+  }
+ },
+ "walkforward": {
+  "n": 2603,
+  "trainN": 6073,
+  "testN": 2603,
+  "trainBase": 0.5162193314671497,
+  "testBase": 0.44717633499807913,
+  "hit": 0.44717633499807913,
+  "brier": 0.24630187230182268,
+  "brierBase": 0.2519765957772012,
+  "skill": 0.022520835547743312,
+  "stateStat": {
+   "超跌反弹区": {
+    "p": 0.7777777777777778,
+    "n": 72
+   },
+   "下跌中继区": {
+    "p": 0.7160493827160493,
+    "n": 324
+   },
+   "中性整理区": {
+    "p": 0.501676371978119,
+    "n": 5667
+   }
+  },
+  "lowBucket": {
+   "pred": 0.5074935557737363,
+   "actual": 0.36101499423298733,
+   "avgRet": -0.03297202720703922,
+   "n": 867
+  },
+  "highBucket": {
+   "pred": 0.651103263134901,
+   "actual": 0.629757785467128,
+   "avgRet": 0.05150768292425564,
+   "n": 867
+  },
+  "spread": 0.2687427912341407,
+  "corr": 0.27419344332118734
+ }
+}
