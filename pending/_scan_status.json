@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-20 14:00:08",
+ "lastScanAt": "2026-10-20 14:38:33",
  "ok": true,
- "new": 0,
- "skipped": 2,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】AI加快向该领域全链路渗透，年末旺季催化下，四季度相关板块有望呈现结构性机会，这家企业自研平台上半年提升运营效率超50%"
+ ],
  "failedList": []
 }
