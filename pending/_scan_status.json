@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-20 23:06:20",
+ "lastScanAt": "2026-10-21 00:04:01",
  "ok": true,
- "new": 1,
- "skipped": 1,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【金牌纪要库】物理AI“训练数据”存在刚性供给缺口，真实物理数据与软件AI数据获取逻辑完全不同，相关厂商具备行业独占性"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
