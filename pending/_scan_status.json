@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-20 20:29:13",
+ "lastScanAt": "2026-10-20 21:18:09",
  "ok": true,
- "new": 0,
- "skipped": 2,
+ "new": 1,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【财联社早知道】重磅！国家数据集团成立，分析师称2026年数据要素价值释放和产业开花有望加速，这家公司已形成从云服务、大模型服务、数据服务到智能应用的全链路服务能力"
+ ],
  "failedList": []
 }
