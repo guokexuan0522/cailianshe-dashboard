@@ -21,10 +21,20 @@ var QX = (function () {
   ];
 
   /* ---- 个股层：三项均值回复修正，取最大值不叠加 ---- */
+  /* v7.1：deep 改为按偏离深度连续分档（训练段 n=5184 分档实测，对折保守、封顶 +7pp），
+     与 quant.py _deep_adj 逐位一致 —— 旧版一档 +6pp 使 36 只只有 3 个概率值 */
+  function deepAdj(f) {
+    var d = f.devE12;
+    if (d <= -0.10) return 7.0;
+    if (d <= -0.07) return 5.5;
+    if (d <= -0.05) return 4.0;
+    if (d <= -0.03) return 2.0;
+    return 0;
+  }
   var ADJUSTERS = [
-    { name: 'deep',   wp: 6.0, note: '距EXPMA12≤-3%（短线深跌）实测 +6pp', test: function (f) { return f.devE12 <= -0.03; } },
-    { name: 'lowRsi', wp: 3.0, note: 'RSI<45（动能偏弱）实测 +3pp',        test: function (f) { return f.rsi < 45; } },
-    { name: 'lowPos', wp: 3.0, note: '20日区间位置<20% 实测 +3pp',          test: function (f) { return f.pos < 0.20; } }
+    { name: 'deep',   wp: deepAdj, note: '距EXPMA12偏离≤-3%（短线深跌）按深度连续 +2~+7pp，训练段实测单调', test: function (f) { return f.devE12 <= -0.03; } },
+    { name: 'lowRsi', wp: function () { return 3.0; }, note: 'RSI<45（动能偏弱）实测 +3pp',        test: function (f) { return f.rsi < 45; } },
+    { name: 'lowPos', wp: function () { return 3.0; }, note: '20日区间位置<20% 实测 +3pp',          test: function (f) { return f.pos < 0.20; } }
   ];
   var FLOOR = 0.30, CEIL = 0.70;
   var BASE_P = 0.4955;                     // 全池历史 10 日上涨率（页面数据里可被 D.quant.baseP 覆盖）
@@ -188,7 +198,9 @@ var QX = (function () {
       var nHere = seg.length, u = 0, av = 0;
       for (j = 0; j < seg.length; j++) { if (seg[j].fwd > 0) u++; av += seg[j].fwd; }
       var pHere = nHere ? u / nHere : B.histP;
-      var w = nHere ? nHere / (nHere + 120.0) : 0;
+      /* v7.1：现场样本 <50 的档位完全弃用点估计（w=0），直接用历史值 ——
+         超跌反弹区/下跌中继区现场只有 13~15 个观测，二项 95% CI 宽达 ±20pp */
+      var w = nHere >= 50 ? nHere / (nHere + 120.0) : 0;
       pHere = pHere * w + B.histP * (1 - w);
       var item = {
         name: B.name, n: nHere, p: pHere, pHist: B.histP, nHist: B.histN,
@@ -235,7 +247,7 @@ var QX = (function () {
     }];
     var adj = 0, hit = [], i;
     for (i = 0; i < ADJUSTERS.length; i++) {
-      if (ADJUSTERS[i].test(f)) { adj = Math.max(adj, ADJUSTERS[i].wp / 100); hit.push(ADJUSTERS[i].name); }
+      if (ADJUSTERS[i].test(f)) { adj = Math.max(adj, ADJUSTERS[i].wp(f) / 100); hit.push(ADJUSTERS[i].name); }
     }
     if (adj > 0) {
       p += adj;
@@ -268,12 +280,16 @@ var QX = (function () {
     if (sc >= 0.08) return { level: 'mid', score: Math.round(sc * 1000) / 1000 };
     return { level: 'low', score: Math.round(sc * 1000) / 1000 };
   }
-  function adviceOf(prob, f, conf, state) {
+  function adviceOf(prob, f, conf, state, baseP) {
     if (conf === 'low') return { action: '持有观望', pos: '信号不足，不改仓位' };
-    var act, pos;
-    if (prob >= 0.58) { act = '逢低增持'; pos = '可加至 6-7 成'; }
-    else if (prob >= 0.52) { act = '持有偏多'; pos = '维持仓位，回调可小加'; }
-    else if (prob >= 0.47) { act = '持有观望'; pos = '中性，维持仓位'; }
+    /* v7.1：阈值改为相对全池基准 baseP 的偏离（edge=prob−base）——
+       状态层把全池概率压进 60~66% 窄带，绝对阈值（旧版 ≥58%）会让
+       36 只里 30 只给出同一动作，建议层失去意义 */
+    var base = baseP || BASE_P;
+    var edge = prob - base, act, pos;
+    if (edge >= 0.12) { act = '逢低增持'; pos = prob >= 0.65 ? '可加至 6-7 成' : '可加至 5-6 成'; }
+    else if (edge >= 0.04) { act = '持有偏多'; pos = '维持仓位，回调可小加'; }
+    else if (edge >= 0.0) { act = '持有观望'; pos = '中性，维持仓位'; }
     else { act = '减仓'; pos = '缩至 4-5 成'; }
     var tag = state ? state.tag : '';
     if (tag === '下跌中继区' && (act === '逢低增持' || act === '持有偏多')) {
@@ -300,7 +316,7 @@ var QX = (function () {
     var pr = probOf(f, state, baseP);
     var fc = forecast(f.atrp, pr.p, state);
     var cf = confidence(pr.p, f.atrp);
-    var ad = adviceOf(pr.p, f, cf.level, state);
+    var ad = adviceOf(pr.p, f, cf.level, state, baseP);
     function pct(x) { return (x >= 0 ? '+' : '') + x.toFixed(0) + '%'; }
     return {
       n: bars.length, feats: f, prob: pr.p * 100, probRaw: pr.raw * 100, parts: pr.parts,

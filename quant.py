@@ -485,8 +485,11 @@ def index_state(bars, horizon=10):
                and (r['slope'] < STATE_SLOPE) == need_down]
         n_here = len(seg)
         p_here = (sum(1 for r in seg if r['fwd'] > 0) / n_here) if n_here else histP
-        # 收缩：现场样本与历史大样本按样本量加权，样本少就向历史值靠
-        w = n_here / (n_here + 120.0) if n_here else 0.0
+        # 收缩：现场样本与历史大样本按样本量加权，样本少就向历史值靠。
+        # v7.1 修正：现场样本 <50 的档位**完全弃用点估计**（w=0）——
+        # 超跌反弹区/下跌中继区现场只有 13~15 个观测，二项 95% 置信区间宽达 ±20pp，
+        # 拿它给全池 35/36 只股票定概率中枢等于掷骰子，必须直接用历史值。
+        w = n_here / (n_here + 120.0) if n_here >= 50 else 0.0
         p_here = p_here * w + histP * (1 - w)
         item = {'name': name, 'n': n_here, 'p': p_here, 'pHist': histP, 'nHist': histN,
                 'note': note, 'avg': (sum(r['fwd'] for r in seg) / n_here) if n_here else None,
@@ -534,19 +537,37 @@ def index_state(bars, horizon=10):
 
 BASE_FLOOR, BASE_CEIL = 0.30, 0.70
 
-# 修正项：(名称, 条件函数, 幅度, 说明)
-# 幅度按「本池 8666 个观测」实测，不是拍脑袋：
-#   deep   : devE12≤-3% 的观测，10 日上涨率比对立组高约 +6pp（样本内外同向）
+# 修正项：(名称, 条件函数, 修正函数, 说明)
+# 幅度按「本池训练段 5184 个观测」实测标定（分档条件频率），不是拍脑袋：
+#
+#   deep（距EXPMA12偏离）—— 训练段分档实测，单调性完整：
+#     devE12 ≤ -10%  → 67.4% (+14.5pp, n=43)
+#     -10% ~ -7%     → 64.9% (+11.9pp, n=151)
+#     -7%  ~ -5%     → 58.6% (+5.6pp,  n=292)
+#     -5%  ~ -3%     → 54.9% (+2.0pp,  n=577)
+#     其余           → 约等于基准，不修正
+#     深跌组样本小、且超跌未必一天结束 → 按对折保守取值并封顶 +7pp，
+#     且改为**按偏离深度连续分档**（v7.1 修正：旧版一档 +6pp 使 36 只只有
+#     3 个概率值，深跌组与浅跌组无法区分，属设计缺陷）
 #   lowRsi : RSI<45 的观测，+3pp 量级（样本内外同向，幅度小）
 #   lowPos : 20 日区间位置<20%，+3pp 量级（样本内外同向，幅度小）
 # 三者**不叠加求和**，取最大值 —— 它们高度相关（深跌时 RSI 必然低、位置必然低），
 # 相加会重复计算同一件事，把概率推高成假信号。
+def _deep_adj(f):
+    """距 EXPMA12 偏离的连续修正（训练段 n=5184 分档实测，对折保守、封顶 +7pp）。"""
+    d = f['devE12']
+    if d <= -0.10: return 0.070
+    if d <= -0.07: return 0.055
+    if d <= -0.05: return 0.040
+    if d <= -0.03: return 0.020
+    return 0.0
+
 ADJUSTERS = [
-    ('deep', lambda f: f['devE12'] <= -0.03, 0.060,
-     '距EXPMA12≤-3%（短线深跌）：实测 +6pp'),
-    ('lowRsi', lambda f: f['rsi'] < 45, 0.030,
+    ('deep', lambda f: f['devE12'] <= -0.03, _deep_adj,
+     '距EXPMA12偏离≤-3%（短线深跌）：按深度连续 +2~+7pp，训练段实测单调'),
+    ('lowRsi', lambda f: f['rsi'] < 45, lambda f: 0.030,
      'RSI<45（动能偏弱）：实测 +3pp'),
-    ('lowPos', lambda f: f['pos'] < 0.20, 0.030,
+    ('lowPos', lambda f: f['pos'] < 0.20, lambda f: 0.030,
      '20日区间位置<20%（区间低位）：实测 +3pp'),
 ]
 
@@ -602,7 +623,7 @@ def prob_value(feats, exp, state):
     adj = 0.0
     for name, cond, cap, note in ADJUSTERS:
         if cond(feats):
-            adj = max(adj, cap)          # 取最大值，不叠加
+            adj = max(adj, cap(feats))   # 取最大值，不叠加（cap 现为函数，支持连续分档）
     if adj > 0:
         p += adj
         hit = [n for n, c, _, _ in ADJUSTERS if c(feats)]
@@ -648,7 +669,7 @@ def confidence(prob, atrp):
     return 'low', round(sc, 3)
 
 
-def advice_of(prob, feats, conf, state=None):
+def advice_of(prob, feats, conf, state=None, base=0.4955):
     """操盘建议 —— 分层合成，不是「概率高就买」。
 
     三层，按优先级：
@@ -657,7 +678,10 @@ def advice_of(prob, feats, conf, state=None):
          · RSI<25 超卖 → 不砍仓
          · 近 5 日累计跌幅 >15% → 视为急跌未止，只观察不追
       第 2 层 概率→基础动作（4 档）
-         ≥58% 逢低增持 ｜ 52~58% 持有偏多 ｜ 47~52% 持有观望 ｜ <47% 减仓
+         v7.1 修正：档位阈值改为**相对全池基准 baseP 的偏离**（edge=prob−base），
+         不再用绝对概率 —— 状态层会把全池概率压进 60~66% 的窄带，绝对阈值
+         （旧版 ≥58% 一档）会让 36 只里 30 只给出同一个动作，建议层失去意义。
+         偏离基准 +12pp 逢低增持 / +4~12pp 持有偏多 / 0~4pp 持有观望 / <0 减仓
       第 3 层 状态→仓位松紧（大盘决定敢不敢重手）
          超跌反弹区：允许动作放大一级（反弹窗口）
          中性整理区：维持基础动作
@@ -667,11 +691,12 @@ def advice_of(prob, feats, conf, state=None):
     if conf == 'low':
         return ('持有观望', '信号不足，不改仓位'), 0.0
 
-    if prob >= 0.58:
-        act, pos = '逢低增持', '可加至 6-7 成'
-    elif prob >= 0.52:
+    edge = prob - base
+    if edge >= 0.12:
+        act, pos = '逢低增持', ('可加至 6-7 成' if prob >= 0.65 else '可加至 5-6 成')
+    elif edge >= 0.04:
         act, pos = '持有偏多', '维持仓位，回调可小加'
-    elif prob >= 0.47:
+    elif edge >= 0.0:
         act, pos = '持有观望', '中性，维持仓位'
     else:
         act, pos = '减仓', '缩至 4-5 成'
@@ -706,7 +731,7 @@ def analyze_all(klmap, exp, samples, state, horizon=10):
         atrp = ind['atrp'][i] or 3.0
         lo, hi, txt = forecast_range(atrp, p, state, horizon)
         conf, cscore = confidence(p, atrp)
-        (act, pos), ascore = advice_of(p, feats, conf, state)
+        (act, pos), ascore = advice_of(p, feats, conf, state, exp.get('baseP', 0.4955))
         out[q] = {
             'code': q, 'name': node.get('name', q),
             'prob': round(p * 100, 1),
