@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-20 09:30:54",
+ "lastScanAt": "2026-10-20 10:05:38",
  "ok": true,
- "new": 1,
- "skipped": 1,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【盘中宝】需求明显提升，该行业或成为装备建设重要方向，未来全球市场规模预计翻5倍，这家企业已完成多型号产品研发"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
