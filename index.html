@@ -237,6 +237,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 <div>
 <h1>财联社<span class="dot"> · </span>投研看板</h1>
 <p style="opacity:.85;margin-top:5px;font-size:13px">公众号「财联社VIP」付费栏目监控 · 公告全知道 / 财联社早知道 / 狙击龙虎榜 / 风口研报·洞察 / 金牌纪要库（≥280微信豆）· 推断 + 交叉核验 · 入选投研池（21个交易日）· 比对候选池（10个交易日）</p>
+<div id="headDist" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"></div>
 <div class="chips">
 <span class="chip"><span class="live"></span>行情快照 <b id="quoteTime">—</b></span>
 <span class="chip">⭐ 自选 <b id="favCount">0</b> 只</span>
@@ -297,7 +298,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 <p style="font-size:12px;color:var(--muted);margin-top:8px">「入池以来涨幅」按入选投研池价格（入选价）计算；10日预测高/中/低置信度以 红/黄/绿 字色标示。</p></section>
 
 <section><h2>监控图表 <span class="sub">红涨绿跌 · 投研池全池图为独立全宽动态高度 · 柱色按财联社栏目区分</span></h2>
-<div class="chart-card"><h3>自选股 · 入池以来涨幅（自选价基准）</h3><div class="chart" id="cGain"></div></div>
+<div class="chart-card"><h3>自选股 · 入池以来涨幅（自选价基准）<span class="sub" style="font-size:12px;font-weight:400;color:var(--muted)">· 未记录自选价的标的自动回退按入池价计算</span></h3><div class="chart" id="cGain"></div></div>
 <div class="chart-card" style="margin-top:14px"><h3>投研池 · 入池以来涨幅（全部在池标的 · 柱色 = 财联社栏目）</h3><div class="chart" id="cGainAll"></div></div></section>
 
 <section><h2>今日（<b id="rvDate" style="color:#f0b43c">—</b>）收盘数据复盘 <span class="sub">个股技术面要点 · 下一步操作提示与警示</span></h2><div id="rvBox"></div></section>
@@ -330,13 +331,13 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 </div>
 <div id="histBox"></div></section>
 
-<footer>财联社 · 投研看板 ｜ 数据驱动单文件 · 离线可用 ｜ 监控范围：财联社公众号作者「财联社VIP」发布的「公告全知道 / 财联社早知道 / 狙击龙虎榜 / 风口研报·洞察 / 金牌纪要库」收费文章（全栏目统一 ≥280 微信豆；《掘金行业龙头》180 豆整栏不抓取） ｜ 云端自动采集：文章发现每 30 分钟 · 收盘行情每日 15:45 · 盘中价格每 60 秒实时同步<br>© 2026 财联社·投研看板 · 版权所有 ｜ 开发者：郭轲儇 ｜ 微信：GuoLiHai-TP<br>数据来源：财联社公众号「财联社VIP」付费栏目内容 × 腾讯证券行情接口（qt.gtimg.cn） ｜ 当前版本 <b id="footVer">—</b> · 最后更新 <b id="footUpd">—</b><br>在池时长均按交易日计算：2026 年国务院官方放假安排已内置（含调休上班交易日），2027 年按法定假日预估、官方发布后校准 · 比对未成功标的暂存【比对候选池】，第 11 个交易日自动清除<br>免责声明：本看板全部数据、预测与复盘内容仅供个人研究参考，不构成任何投资建议；股市有风险，投资需谨慎。</footer>
+<footer>财联社 · 投研看板 ｜ 数据驱动单文件 · 离线可用 ｜ 监控范围：财联社公众号作者「财联社VIP」发布的「公告全知道 / 财联社早知道 / 狙击龙虎榜 / 风口研报·洞察 / 金牌纪要库」收费文章（全栏目统一 ≥280 微信豆；《掘金行业龙头》180 豆整栏不抓取） ｜ 云端自动采集：文章发现每 30 分钟 · 收盘行情每日 15:45 · 盘中价格每 60 秒实时同步<br>© 2026 财联社·投研看板 · 版权所有 ｜ 开发者：郭轲儇 ｜ 微信：GuoLiHai-TP<br>数据来源：财联社公众号「财联社VIP」付费栏目内容 × 腾讯证券行情接口（qt.gtimg.cn） ｜ 当前版本 <b id="footVer">—</b> · 最后更新 <b id="footUpd">—</b><br>在池时长均按交易日计算：交易日历以证监会《节假日放假和休市安排的通知》为准（2026 年已内置：周末与法定节假日休市，调休上班日不交易），2027 年待官方发布后校准 · 比对未成功标的暂存【比对候选池】，第 11 个交易日自动清除<br>免责声明：本看板全部数据、预测与复盘内容仅供个人研究参考，不构成任何投资建议；股市有风险，投资需谨慎。</footer>
 </div>
 
 <script id="MONITOR_DATA" type="application/json">{
- "version": "6.1",
- "lastUpdated": "2026-10-19 22:45（v5.4核验入池·12只新标的）",
- "collectTime": "2026-10-19 22:45（v5.4核验入池·12只新标的）",
+ "version": "6.2",
+ "lastUpdated": "2026-10-20 08:20（v6.2 六项升级：栏目自主分类·顶部栏目分布·图表自适应·自选图修复·存量数据统一·交易日历证监会口径）",
+ "collectTime": "2026-10-20 08:20（v6.2 六项升级：栏目自主分类·顶部栏目分布·图表自适应·自选图修复·存量数据统一·交易日历证监会口径）",
  "quoteTime": "2026-10-19 16:14 收盘",
  "period": "2026-10-19 收盘",
  "watchlist": [
@@ -354,7 +355,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "outlook": "AI算力基建景气延续，高多层板供不应求，四季度订单能见度好。",
    "dateIn": "2026-10-11",
    "pub": "2026-10-11 23:24",
-   "beans": "待核实",
+   "beans": 280,
    "tier": "night",
    "priceIn": 96.98,
    "priceNow": 86.9,
@@ -384,7 +385,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "outlook": "AI服务器液冷渗透率快速提升，公司处于放量初期，弹性大但体量小。",
    "dateIn": "2026-10-11",
    "pub": "2026-10-11 23:24",
-   "beans": "待核实",
+   "beans": 280,
    "tier": "night",
    "priceIn": 140.2,
    "priceNow": 121.81,
@@ -414,7 +415,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "outlook": "光芯片并表打开第二增长曲线，仓储物流资产重估逻辑同步演绎；收购次日一字涨停确认资金关注度，回踩后仍看资产重估空间。",
    "dateIn": "2026-10-11",
    "pub": "2026-10-11 23:24",
-   "beans": "待核实",
+   "beans": 280,
    "tier": "night",
    "priceIn": 10.16,
    "priceNow": 8.88,
@@ -66723,7 +66724,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "id": "b20261011",
    "period": "2026-10-11",
    "pub": "2026-10-11 23:24",
-   "beans": "待核实",
+   "beans": 280,
    "tier": "night",
    "title": "《公告全知道》20261011期",
    "companies": 3,
@@ -66904,6 +66905,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    },
    "items": [],
    "id": "b20261014_sp",
+   "note": "历史期次留档（v6.0 铁律·v6.2 审计复核）：《掘金行业龙头》整栏实价 180 微信豆，低于 280 统一门槛，整栏不抓取、不比对、不入池；本期次仅备查留档、无入池标的。",
    "title": "【掘金行业龙头】核聚变+铜连接，细分可控核聚变产品全球唯一生产者，224G高速传输产品构建坚实壁垒，这家公司客户包括安费诺、泰科等",
    "pub": "2026-10-14",
    "beans": 180,
@@ -67931,7 +67933,12 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "version": "6.1",
    "time": "2026-10-20 02:45",
    "note": "v6.1：第二层云端安全自动入池引擎正式上线（用户 2026-10-20 确认）。引擎 autopool.py 随 autopool.yml 工作流每小时 :15/:45 在云端运行，对 pending/ 工单做确定性预核验：公开点名字面匹配（字典=新浪 hs_a 全量 A 股名单 5472 只 + 在池 overlay，名单抓取失败回退本地缓存）、板块分布校验（字面点名不得超过工单 related_stock 声称的各市场数量）、短名/通用词防护（≤3 字仅摘要出现或命中通用词黑名单——如\"机器人\"既是 002090 公司名又是高频行业词）、统计提及防护（排行/榜单/关注度类证据句判为纯统计提及、无个股投资信号；狙击龙虎榜栏目的龙虎榜/资金数据除外）。产出 autopool/results（自动入池，含 evidence 点名原句+行情+期次档案）与 autopool/routed（转唤醒，附 routeReason/routeDetail）供唤醒层消费，processed.jsonl 按 aid 幂等，绝不直接修改母版。本地 11 组合成用例 + 4 篇真实工单全路径验证通过；RUNBOOK 同步升级至 v1.1（新增步骤 3 消费协议与三条防护判据实录）。"
-  }
+  },
+   {
+    "version": "6.2",
+    "time": "2026-10-20 08:20",
+    "note": "v6.2：六项升级（用户 2026-10-20 指令）。①栏目分类自主修正：看板分类严格以公众号「财联社VIP」付费文章标题【】前缀的真实分类为准，采集层自动识别、自主增减分类；未达 280 门槛的文章仅登记分类与豆数留档，不做任何抓取（经 cls.cn 全量普查 27 个真实分类并实测价格地图）；②总览【在池栏目分布】数据上移至页面顶部标题区，以彩色色块徽章（栏目配色+图标+在池数量）直观显示，分类同步按新规则执行；③【上涨概率】图改为动态高度（每标的 26px、下限 320px），随标的数量自适应伸缩，消除 38 只柱体挤压；④修复【自选股·入池以来涨幅】图不显示：根因为旧版收藏键带 sh/sz 前缀、favList 静默过滤失效键——已加键自愈规一化（自动剥前缀并回写 localStorage）；同时实现真「自选价基准」：优先按（现价/自选价-1）计算，未记录自选价自动回退入池价并在悬浮提示标注；⑤存量数据按 v6.0 规则统一（方案B·用户授权执行）：38 只在池标的逐只审计——栏目全部与源文章标题【】前缀一致、金牌纪要库 6 只 beans=380（>280）达标保留、10-11 期 3 只标的及期次的 beans「待核实」按公告全知道实价实测统一为 280；《掘金行业龙头》期次补留档标注（180 豆整栏不抓取），无标的需删除；⑥交易日历权威依据修正：废除国务院放假安排（含调休上班交易日）的错误设定，改为证监会《节假日放假和休市安排的通知》——周六周日常规休市、法定节假日休市、调休上班日（01-04、02-14、02-28、05-09、09-20、10-10）均为周末休市不补开市，CAL_MAKEUP 概念废除，isTradingDay/tdIndex/10日统计/21日移出/候选池清退全部按新口径（经核现有在池标的 dateIn 均在 2026-10-10 之后，tdIndex 数值无回溯变化）。"
+   }
  ],
  "review": {
   "date": "10-19",
@@ -68853,9 +68860,9 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
  "candidates": [],
  "tradingCalendar": {
   "updated": "2026-10-20",
-  "source": "2026年：国务院办公厅《关于2026年部分节假日安排的通知》（2025-11-04发布，含调休上班日）；2027年：法定假日预估，待官方发布后校准",
+  "source": "2026年：证监会《关于2026年部分节假日放假和休市安排的通知》（2025-12-22发布）；2027年：法定假日预估，待官方发布后校准",
   "holidays2026": "01-01~01-03 元旦 / 02-15~02-23 春节 / 04-04~04-06 清明 / 05-01~05-05 劳动节 / 06-19~06-21 端午 / 09-25~09-27 中秋 / 10-01~10-07 国庆",
-  "makeup2026": "01-04(日) 02-14(六) 02-28(六) 05-09(六) 09-20(日) 10-10(六) 调休上班·正常交易"
+  "rule2026": "周六周日常规休市；法定节假日休市日：01-01、01-02、02-16~02-20、02-23、04-06、05-01、05-04、05-05、06-19、09-25、10-01、10-02、10-05~10-07；调休上班日（01-04、02-14、02-28、05-09、09-20、10-10）均为周末休市、不补开市"
  },
  "ruleCats": [
   {
@@ -68863,7 +68870,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "name": "一、监控范围与栏目",
    "items": [
     "本看板唯一信息源为财联社公众号作者「财联社VIP」发布（财联社官网 cls.cn 同源发布，视同原文载体）的收费栏目文章。",
-    "纳入监控的栏目：公告全知道、财联社早知道、狙击龙虎榜、风口研报·洞察、金牌纪要库。",
+    "栏目分类以文章标题【】前缀的真实分类为准，采集层按标题前缀自动识别、自主增减分类（v6.2 起执行）；未达门槛的文章仅登记分类与豆数留档，不做任何抓取。当前在池真实分类：公告全知道、财联社早知道、狙击龙虎榜、风口研报·洞察、金牌纪要库。",
     "《掘金行业龙头》整栏实价 180 微信豆（fee÷10 实测一致），低于统一门槛，整栏不抓取、不比对、不入池；历史期次仅在期次备查留档并标注。",
     "数据窗口：只处理 2026-10-11 及以后发布（以公众号发布时间为准）的文章，更早文章不入池。"
    ]
@@ -68910,7 +68917,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "name": "六、在池管理与移出",
    "items": [
     "在池时长、10 日统计、21 日移出、候选池 10 日清退，一律按交易日计算。",
-    "交易日历以国务院办公厅发布的年度放假安排为准（含调休上班交易日）：2026 年官方安排已内置页面；2027 年暂按法定假日预估并标注，官方安排发布后必须及时校准。",
+    "交易日历唯一权威依据为证监会发布的《节假日放假和休市安排的通知》（v6.2 修正，替代原国务院放假安排口径）：周六、周日为常规休市日，法定节假日按通知休市；调休上班日（如 2026 年 01-04、02-14、02-28、05-09、09-20、10-10）均为周末休市、不补开市、不计为交易日。2026 年安排已内置页面；2027 年暂按法定假日预估并标注，官方通知发布后必须及时校准。",
     "入选第 21 个交易日后自动移出投研池，并同步移出我的自选股；已移出股票的全部统计数据即时剔除。",
     "期次备查、复盘与说明区只展示与入池/候选流程相关的内容，与全页面「只展示入池流程股票数据」规则一致；已删除股票名仅在更新记录留档审计。"
    ]
@@ -68984,21 +68991,22 @@ function fcClass(fc){var m=fc.match(/([+-]?\d+(?:\.\d+)?)\s*%?\s*[~～-]\s*([+-]
 function fcHtml(fc){return '<b class="fcp '+fcClass(fc)+'">'+esc(fc)+'</b>';}
 function confHtml(c){var M={high:'高',mid:'中',low:'低'};var T={high:'置信度·高：公告硬数据且已核验，判断锚点可靠',mid:'置信度·中：已核验但题材/波动因素较多',low:'置信度·低：付费正文未确认，标的归属为推断'};if(!M[c])c='mid';return '<span class="confb '+c+'" title="'+T[c]+'">'+M[c]+'</span>';}
 function verifyHtml(w){return w.verifyTag==='摘要确认'?'<span class="vbadge ok">✔ 摘要确认</span>':'<span class="vbadge warn">◐ 推断·待正文确认</span>';}
-// ===== 交易日历（v6.0：在池时长统一按交易日计算）=====
-// 2026年：国务院办公厅《关于2026年部分节假日安排的通知》（2025-11-04发布，含调休上班日）
+// ===== 交易日历（v6.2：以证监会《节假日放假和休市安排的通知》为唯一权威依据）=====
+// 依据：证监会办公厅《关于2026年部分节假日放假和休市安排的通知》（上证公告〔2025〕45号同源，2025-12-22发布）
+// 规则：周六、周日为股市常规休市日；法定节假日休市日见 CAL_HOLIDAYS；调休上班日（1/4、2/14、2/28、5/9、9/20、10/10）
+//       均为周末休市、不补开市——CAL_MAKEUP 调休补交易日概念自 v6.2 起废除。
 // 2027年：法定假日预估（官方安排发布后必须校准，见【规则和铁律】第六条）
-var CAL_HOLIDAYS={'2026-01-01':1,'2026-01-02':1,'2026-01-03':1,
-'2026-02-15':1,'2026-02-16':1,'2026-02-17':1,'2026-02-18':1,'2026-02-19':1,'2026-02-20':1,'2026-02-21':1,'2026-02-22':1,'2026-02-23':1,
-'2026-04-04':1,'2026-04-05':1,'2026-04-06':1,
-'2026-05-01':1,'2026-05-02':1,'2026-05-03':1,'2026-05-04':1,'2026-05-05':1,
-'2026-06-19':1,'2026-06-20':1,'2026-06-21':1,
-'2026-09-25':1,'2026-09-26':1,'2026-09-27':1,
-'2026-10-01':1,'2026-10-02':1,'2026-10-03':1,'2026-10-04':1,'2026-10-05':1,'2026-10-06':1,'2026-10-07':1,
+var CAL_HOLIDAYS={'2026-01-01':1,'2026-01-02':1,
+'2026-02-16':1,'2026-02-17':1,'2026-02-18':1,'2026-02-19':1,'2026-02-20':1,'2026-02-23':1,
+'2026-04-06':1,
+'2026-05-01':1,'2026-05-04':1,'2026-05-05':1,
+'2026-06-19':1,
+'2026-09-25':1,
+'2026-10-01':1,'2026-10-02':1,'2026-10-05':1,'2026-10-06':1,'2026-10-07':1,
 '2027-01-01':1,'2027-02-08':1,'2027-04-05':1,'2027-05-01':1,'2027-05-02':1,'2027-06-09':1,'2027-09-15':1,'2027-10-01':1,'2027-10-02':1,'2027-10-03':1};
-var CAL_MAKEUP={'2026-01-04':1,'2026-02-14':1,'2026-02-28':1,'2026-05-09':1,'2026-09-20':1,'2026-10-10':1};
 function fmtDay(d){function p(x){return (x<10?'0':'')+x;}return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());}
 function todayStr(){return fmtDay(new Date());}
-function isTradingDay(ds){ds=String(ds).slice(0,10);if(CAL_MAKEUP[ds])return true;var t=new Date(ds+'T00:00:00');var w=t.getDay();if(w===0||w===6)return false;if(CAL_HOLIDAYS[ds])return false;return true;}
+function isTradingDay(ds){ds=String(ds).slice(0,10);var t=new Date(ds+'T00:00:00');var w=t.getDay();if(w===0||w===6)return false;if(CAL_HOLIDAYS[ds])return false;return true;}
 function tradingDaysBetween(a,b){if(!a||!b)return 0;var n=0;var d=new Date(a+'T00:00:00');d.setDate(d.getDate()+1);var end=new Date(b+'T00:00:00');while(d<=end){if(isTradingDay(fmtDay(d)))n++;d.setDate(d.getDate()+1);}return n;}
 function tdIndex(w){return w&&w.dateIn?tradingDaysBetween(w.dateIn,todayStr()):0;}
 function in10d(w){return tdIndex(w)<=10;}
@@ -69046,6 +69054,7 @@ var sZhang=allItems.filter(function(x){return (x.tags||[]).indexOf('上涨')>=0;
 var sYi=allItems.filter(function(x){return (x.tags||[]).indexOf('异动')>=0;}).length;
 var poolCol={};W.forEach(function(w){var c=colOf(w);poolCol[c]=(poolCol[c]||0)+1;});var candN=(D.candidates||[]).filter(function(c){return tdIndex(c)<11;}).length;
 var delN=Object.keys(DELS).length-removed21.length;
+var hde=document.getElementById('headDist');if(hde){hde.innerHTML=COL_ORDER.filter(function(c){return poolCol[c];}).map(function(c){var m=COLUMNS[c];return '<span style="display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:999px;font-size:12.5px;font-weight:800;border:1px solid '+m.bd+';background:'+m.bg+';color:'+m.color+'">'+m.icon+' '+esc(c)+'<span style="font-size:14px">'+poolCol[c]+'</span></span>';}).join('')||'<span style="font-size:12px;opacity:.7">暂无在池标的</span>';}
 document.getElementById('ovBox').innerHTML=
 '<div class="cell"><div class="k">投研池标的数（10日内/总数）</div><div class="v"><span class="c-gold">'+pool10.length+'</span><small> / </small><span class="c-blue">'+W.length+'</span></div></div>'+
 '<div class="cell"><div class="k">最新入选数</div><div class="v"><span class="c-gold">'+latestN+'</span><small> 只 · '+latestDate+'</small></div></div>'+
@@ -69064,7 +69073,7 @@ document.getElementById('ovBox').innerHTML=
 (delN>0?'<div class="cell"><div class="k">手动删除标的</div><div class="v"><span class="c-red">'+delN+' 只</span></div></div>':'');
 }
 
-function favList(){return Object.keys(FAVS).map(function(c){return byCode[c];}).filter(Boolean);}
+function favList(){var out=[];Object.keys(FAVS).forEach(function(k){var c=String(k).replace(/^(sh|sz|bj)/,'');if(byCode[c]){if(c!==k){FAVS[c]=FAVS[k];delete FAVS[k];try{saveLS(FAV_KEY,FAVS);}catch(e){}}out.push(byCode[c]);}});return out;}
 
 // ===== 股票卡片 =====
 function cardHtml(w,isFav){
@@ -69080,7 +69089,7 @@ return '<div class="stock-card'+(colOf(w)==='金牌纪要库'?' gold-src':'')+'"
 '<div class="blk"><b class="lbl">前景展望</b>'+esc(w.outlook)+'</div>'+
 '<div class="blk t2"><b class="lbl">技术分析</b>'+esc(w.tech)+'</div>'+
 '<div class="since">10日预测 '+fcHtml(w.forecast)+' · 上涨概率 <b>'+w.prob+'%</b><div class="pbar"><i style="width:'+w.prob+'%"></i></div>置信度'+confHtml(w.conf)+' '+verifyHtml(w)+'</div>'+
-'<div class="since">'+(isFav?'加入自选：<b>'+f.addTime+'</b> · 自选价 '+f.priceFav.toFixed(2)+'<br>':'')+'入池以来 <b class="'+cls(w.gainSince)+'">'+fmtPct(w.gainSince)+'</b>'+(isFav&&f.priceFav?' · 自选至今 <b class="'+cls((w.priceNow/f.priceFav-1)*100)+'">'+fmtPct((w.priceNow/f.priceFav-1)*100)+'</b>':'')+'</div>'+
+'<div class="since">'+(isFav?'加入自选：<b>'+(f.addTime||'—')+'</b> · 自选价 '+(Number(f.priceFav)>0?Number(f.priceFav).toFixed(2):'—')+'<br>':'')+'入池以来 <b class="'+cls(w.gainSince)+'">'+fmtPct(w.gainSince)+'</b>'+(isFav&&Number(f.priceFav)>0?' · 自选至今 <b class="'+cls((w.priceNow/f.priceFav-1)*100)+'">'+fmtPct((w.priceNow/f.priceFav-1)*100)+'</b>':'')+'</div>'+
 (isFav?'<span class="fav-remove" onclick="removeFav(\''+w.code+'\')">移出自选 ✕</span>':
 '<label class="fav-cb"><input type="checkbox"'+(FAVS[w.code]?' checked':'')+' onclick="toggleFav(\''+w.code+'\',this.checked)">⭐ 加入自选</label>')+
 ' <span class="del-btn" onclick="delStock(\''+w.code+'\',\''+String(w.name).replace(/'/g,'')+'\')">🗑 删除</span>'+
@@ -69219,19 +69228,22 @@ return '<tr data-col="'+esc(colOf(w))+'"'+(colOf(w)==='金牌纪要库'?' class=
 // ===== 区块图表（负=绿 正=红）=====
 function renderCharts(){
 var AX='#8b98ad',GRID='#223050';
-// 上涨概率：高→低（修正排序）
+// 上涨概率：高→低（修正排序）· v6.2 动态高度随标的数量自适应
 var byProb=W.filter(in10d).slice().sort(function(a,b){return b.prob-a.prob;});
+var pel=document.getElementById('cProb');if(pel){pel.style.height=Math.max(320,byProb.length*26+100)+'px';}
 chart('cProb',{tooltip:{formatter:function(p){var w=byProb[p.dataIndex];return esc(w.name)+' · '+esc(colOf(w))+'<br>入选 '+w.dateIn+'（第'+(tdIndex(w)+1)+'个交易日）<br>上涨概率 '+w.prob+'% · 10日预测 '+esc(w.forecast);}},grid:{left:8,right:44,top:6,bottom:6,containLabel:true},xAxis:{type:'value',max:100,axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:byProb.map(function(w){return w.name;})},series:[{type:'bar',barWidth:14,itemStyle:{borderRadius:[0,7,7,0],borderColor:'#141f30',borderWidth:1,color:function(p){return colBarColor(byProb[p.dataIndex].column);}},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,formatter:function(p){return byProb[p.dataIndex].prob+'%';}},data:byProb.map(function(w){return w.prob;})}]});
 // 自选股涨幅图：动态高度 + 空态提示
-var fs=favList().slice().sort(function(a,b){return b.gainSince-a.gainSince;});
+function favG(w){var pf=Number(w.priceFav)||0;var pn=(D.stocks[w.q]||{}).price||w.priceNow||w.price||0;if(pf>0&&pn>0)return (pn/pf-1)*100;return w.gainSince;}
+var fs=favList().slice().sort(function(a,b){return favG(b)-favG(a);});
 var gel=document.getElementById('cGain');
 if(gel){
  if(!fs.length){
   if(CHARTS['cGain']){try{CHARTS['cGain'].dispose();}catch(e){}delete CHARTS['cGain'];}
   gel.innerHTML='<div class="fav-empty" style="padding-top:36px">暂无自选股。在入选投研池卡片中勾选「⭐ 加入自选」后，此处展示自选标的的入池以来涨幅。</div>';
  }else{
+  if(CHARTS['cGain']){try{CHARTS['cGain'].dispose();}catch(e){}delete CHARTS['cGain'];}
   gel.innerHTML='';gel.style.height=Math.max(240,fs.length*30+70)+'px';
-  chart('cGain',{tooltip:{formatter:function(p){var w=fs[p.dataIndex];return esc(w.name)+'<br>入选 '+w.dateIn+' @ '+w.priceIn.toFixed(2)+'<br>累计 '+fmtPct(w.gainSince);}},grid:{left:8,right:56,top:6,bottom:6,containLabel:true},xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:fs.map(function(w){return w.name;})},series:[{type:'bar',barWidth:14,itemStyle:{color:function(p){var v=fs[p.dataIndex].gainSince;return v>0?RED:v<0?GREEN:FLAT;},borderRadius:[0,7,7,0]},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,formatter:function(p){return fmtPct(fs[p.dataIndex].gainSince);}},data:fs.map(function(w){return w.gainSince;})}]});
+  chart('cGain',{tooltip:{formatter:function(p){var w=fs[p.dataIndex];return esc(w.name)+'<br>入选 '+w.dateIn+' @ '+w.priceIn.toFixed(2)+(Number(w.priceFav)>0?' · 自选价 '+Number(w.priceFav).toFixed(2):'')+'<br>'+(Number(w.priceFav)>0?'自选价基准 ':'自选价缺失·按入池价 ')+fmtPct(favG(w));}},grid:{left:8,right:56,top:6,bottom:6,containLabel:true},xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:GRID}}},yAxis:{type:'category',inverse:true,data:fs.map(function(w){return w.name;})},series:[{type:'bar',barWidth:14,itemStyle:{color:function(p){var v=favG(fs[p.dataIndex]);return v>0?RED:v<0?GREEN:FLAT;},borderRadius:[0,7,7,0]},label:{show:true,position:'right',color:'#e6ebf4',textBorderWidth:0,textShadowBlur:0,fontWeight:800,formatter:function(p){return fmtPct(favG(fs[p.dataIndex]));}},data:fs.map(function(w){return favG(w);})}]});
  }
 }
 // 投研池全池涨幅图（v6.0：独立全宽 + 动态高度 + 栏目配色柱 + 超40只启用缩放）
