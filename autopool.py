@@ -62,6 +62,18 @@ COLUMN_MAP = {
 WINDOW_START = '2026-10-11'
 BEANS_MIN = 280
 
+# ---- v6.2：真实分类注册表（ref/columns.json 由采集层动态登记，看板分类自主增减）----
+COLUMNS_REG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ref', 'columns.json')
+
+def _load_real_columns():
+    try:
+        return set(json.load(open(COLUMNS_REG_PATH, encoding='utf-8')).keys())
+    except Exception:
+        return set()
+
+REAL_COLUMNS = _load_real_columns() | {
+    '公告全知道', '财联社早知道', '狙击龙虎榜', '风口研报·洞察', '金牌纪要库'}
+
 # ---- 板块归类（按证券代码前缀）----
 def board_of(code):
     if code.startswith('60'):
@@ -276,7 +288,8 @@ def main():
             continue
 
         col_raw = (d.get('column') or d.get('keyword') or '').strip()
-        column = COLUMN_MAP.get(col_raw)
+        # v6.2：真实分类（标题【】前缀）优先直通；旧父栏目名走映射回退
+        column = col_raw if col_raw in REAL_COLUMNS else COLUMN_MAP.get(col_raw)
         snippet = d.get('snippet') or ''
         pub = (d.get('create_time') or d.get('savedAt') or '')[:16]
         period = to_date_str(d.get('create_time'))

@@ -427,9 +427,10 @@ CLS_COLUMNS = {
     20013: ('九点特供', 280),
     20022: ('公告全知道', 280),
     20014: ('狙击龙虎榜', 280),
-    20087: ('金牌纪要库', 380),      # 铁律：金牌纪要库门槛 380 豆
+    20087: ('金牌纪要库', 280),      # v6.2：全栏目统一 280 豆门槛（金牌 380 旧双轨制废除）
     20072: ('风口专家会议', 280),
 }
+COL_OBSERVED = []      # 本轮观测到的真实分类（含未达门槛文章，仅登记留档）
 CLS_PAGES = 3          # 每栏目最多翻页数（3×20=60 篇，覆盖约 10 天，足以跨过任何断更窗口）
 CLS_CAND_CAP = 400     # 单轮处理候选上限（超出部分不标记已见，下轮继续，绝静默丢弃）
 DATA_WINDOW_START = '2026-10-11'   # 铁律：母版数据只从 2026-10-11 起；更早的文章标记已见但不入待核验队列
@@ -497,6 +498,39 @@ def _cls_articles_of(r):
     return []
 
 
+def real_column(title, parent):
+    """v6.2：看板分类严格以文章标题【】前缀的真实分类为准。
+    父栏目 feed 混装子栏目（实测：风口研报 feed 同时含【风口研报·公司】【风口研报·洞察】
+    【机构调研】等），父栏目名仅作无前缀时的回退。分类随文章自主增减，不设白名单。"""
+    m = re.match(r'^\s*【([^】]{2,24})】', (title or '').strip())
+    return m.group(1).strip() if m else parent
+
+
+COLUMNS_REG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ref', 'columns.json')
+
+
+def bump_columns_registry(cols):
+    """v6.2：ref/columns.json 动态分类注册表——每轮采集把观测到的真实分类计数留档
+    （含未达门槛仅登记分类的文章），看板据此自主增减分类。"""
+    try:
+        reg = {}
+        if os.path.exists(COLUMNS_REG_PATH):
+            try:
+                reg = json.load(open(COLUMNS_REG_PATH, encoding='utf-8'))
+            except ValueError:
+                reg = {}
+        now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+        for c in cols:
+            e = reg.setdefault(c, {'count': 0, 'first_seen': now})
+            e['count'] = int(e.get('count', 0)) + 1
+            e['last_seen'] = now
+        os.makedirs(os.path.dirname(COLUMNS_REG_PATH), exist_ok=True)
+        with open(COLUMNS_REG_PATH, 'w', encoding='utf-8') as f:
+            json.dump(reg, f, ensure_ascii=False, indent=1)
+    except Exception as e:
+        log('  分类注册表写入失败（不影响主流程）: %s' % e)
+
+
 def fetch_cls_columns(pages=CLS_PAGES):
     """cls.cn 签名 API 全自动发现文章（主来源）：遍历 11 个 VIP 栏目翻页拉取最近文章。
     子栏目（大佬持仓跟踪/掘金行业龙头/机构调研/风口研报·公司·行业·洞察/季报高增长等）
@@ -515,11 +549,14 @@ def fetch_cls_columns(pages=CLS_PAGES):
                     break
                 ok_any = True
                 for a in arts:
+                    a_title = (a.get('title') or '').strip()
+                    a_column = real_column(a_title, name)
+                    COL_OBSERVED.append(a_column)
                     out.append({
                         'aid': a.get('id'),
-                        'title': (a.get('title') or '').strip(),
+                        'title': a_title,
                         'ctime': a.get('ctime') or a.get('sort_score') or 0,
-                        'column': name,
+                        'column': a_column,
                         'beans_min': beans_min,
                         'brief': (a.get('brief') or '').strip(),
                         'related_stock': a.get('related_stock') or [],
@@ -827,8 +864,10 @@ def check_articles():
                 if beans < a['beans_min']:
                     seen[title] = now_str
                     seen_norms.append(_norm_title(title))
-                    skipped.append({'title': title, 'beans': beans, 'column': a['column']})
-                    log('  价格门槛跳过（%s 实付%d豆 < %d）: %s'
+                    COL_OBSERVED.append(a['column'])
+                    skipped.append({'title': title, 'beans': beans, 'column': a['column'],
+                                    'note': 'v6.2：未达280门槛，仅登记分类留档，不做任何抓取'})
+                    log('  价格门槛跳过（%s 实付%d豆 < %d，仅登记分类）: %s'
                         % (a['column'], beans, a['beans_min'], title[:40]))
                     continue
                 seen[title] = now_str
@@ -885,6 +924,8 @@ def check_articles():
                 time.sleep(1)
         with open(SEEN_PATH, 'w', encoding='utf-8') as f:
             json.dump(seen, f, ensure_ascii=False, indent=1)
+        if COL_OBSERVED:
+            bump_columns_registry(COL_OBSERVED)
         return {'ok': True, 'new': len(saved), 'skipped': len(skipped), 'failed': len(failed),
                 'skippedList': skipped, 'failedList': failed, 'titles': saved,
                 'source': 'cls.cn' if cls_ok else 'album'}
