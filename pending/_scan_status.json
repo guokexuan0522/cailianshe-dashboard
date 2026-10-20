@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-20 11:01:11",
+ "lastScanAt": "2026-10-20 12:02:25",
  "ok": true,
- "new": 1,
- "skipped": 0,
+ "new": 0,
+ "skipped": 2,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【盘中宝】具身智能产业关键的基础设施，这一领域掀起建设热潮，这家公司可为机器人厂商提供相关服务"
- ],
+ "newTitles": [],
  "failedList": []
 }
