@@ -34,7 +34,12 @@ print('基准上涨率（10日）= %.2f%%   样本 n=%d   覆盖 %d 只股票'
       % (exp['baseP'] * 100, exp['n'], exp['stocks']))
 print('\n修正项（仅保留样本外验证成立的信号）：')
 for name, cond, cap, note in Q.ADJUSTERS:
-    print('  %-8s +%.1fpp   %s' % (name, cap * 100, note))
+    if name == 'deep':
+        print('  %-8s +%.1f~+%.1fpp（按偏离深度连续）   %s'
+              % (name, cap({'devE12': -0.03, 'rsi': 0.0, 'pos': 0.0}) * 100,
+                 cap({'devE12': -0.10, 'rsi': 0.0, 'pos': 0.0}) * 100, note))
+    else:
+        print('  %-8s +%.1fpp   %s' % (name, cap({'devE12': 0.0, 'rsi': 0.0, 'pos': 0.0}) * 100, note))
 print('  状态项    ×%.2f     指数深度超跌时按历史幅度加权（样本外验证成立）' % Q.STATE_TRUST)
 print('  限幅      [%.0f%%, %.0f%%]' % (Q.BASE_FLOOR * 100, Q.BASE_CEIL * 100))
 
