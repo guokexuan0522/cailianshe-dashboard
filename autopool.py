@@ -173,6 +173,33 @@ def ev_is_statistical(ev, column):
     return any(mk in ev for mk in STAT_MARKERS)
 
 
+def ev_is_tag_chain(ev, name):
+    """铁律②加固：判定命中片段是否为「概念标签串」而非真实报道标的。
+
+    财联社摘要常用「概念A+概念B+公司名+概念C」的加号堆叠格式罗列题材标签，
+    其中的公司名只是标签之一（多为客户/供货/合作关系的举例），并非该条
+    公告的被报道主体。典型：「人形机器人+锂电池+储能+宁德时代+华为」——
+    本条公告实为某公司投建机器人电关节项目，宁德时代仅是概念标签。
+
+    判据（同时满足才算标签串）：
+      1) 空格切分后的命中片段按 +／/／· 切分出 ≥3 段（典型标签堆叠形态）；
+      2) 命中处紧邻切分符（前或后 1~2 字符内出现分隔符）。
+    """
+    for seg in re.split(r'[\s，。；！!?？、]+', ev or ''):
+        if name not in seg:
+            continue
+        parts = [p for p in re.split(r'[+/·｜|]', seg) if p.strip()]
+        if len(parts) < 3:
+            continue
+        # 命中位置前后紧邻分隔符（允许一个空格）
+        for mk in re.finditer(re.escape(name), seg):
+            pre = seg[max(0, mk.start() - 2):mk.start()].strip()
+            suf = seg[mk.end():mk.end() + 2].strip()
+            if (pre and pre[-1] in '+/·｜|') or (suf and suf[0] in '+/·｜|'):
+                return True
+    return False
+
+
 def fetch_all_names():
     """抓取新浪 A 股全量名单（hs_a，每页 100，上限 80 页 ≈ 8000 只）。
     返回 {name: {code, q, exch, sector}}；抓取失败回退 ref/all_names.json 缓存。"""
@@ -372,6 +399,15 @@ def main():
             if ev_is_statistical(ev, column):
                 skipped.append({'name': name, 'code': info['code'], 'ev': ev[:60],
                                 'kind': 'statistical-mention'})
+                continue
+            # 铁律②加固：标签串假阳性防护
+            # 财联社「公告全知道/题材」摘要常把公司名并排堆成概念标签串
+            # （如「人形机器人+锂电池+储能+宁德时代+华为」），此时公司名只是标签
+            # 之一，并非被报道标的。判据：命中片段按「+」「/」切分后 ≥3 段，
+            # 且命中处紧邻分隔符 → 判为标签串，转全网比对取证，不得直接入池。
+            if ev_is_tag_chain(ev, name):
+                skipped.append({'name': name, 'code': info['code'], 'ev': ev[:60],
+                                'kind': 'label-chain-risk'})
                 continue
             # v7.5 铁律⑥：负面消息绝对排除，绝不逆向选择
             if ev_is_negative(ev):

@@ -219,9 +219,14 @@ def main():
                     })
                     wc_keys.add(key)
 
-        # ---- results 中被跳过的 generic-name-risk 也进全网比对队列 ----
+        # ---- results 中被跳过的 generic-name-risk / label-chain-risk 进全网比对队列 ----
+        # 注意：skip 分两类处置——
+        #   进队列（需公开信源取证补名）：generic-name-risk（短名/通用词）、
+        #     label-chain-risk（概念标签串，公司名只是标签之一）
+        #   不进队列（证据已充分否定，直接留痕即可）：negative-signal（铁律⑥）、
+        #     statistical-mention（统计口径提及）、trend-unconfirmed（无正向催化剂）
         for s in j.get("skipped", []):
-            if s.get("kind") == "generic-name-risk" and s.get("name"):
+            if s.get("kind") in ("generic-name-risk", "label-chain-risk") and s.get("name"):
                 key = (aid, s.get("ev", s.get("name", ""))[:20])
                 if key in wc_keys:
                     continue
