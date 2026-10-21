@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-21 11:02:18",
+ "lastScanAt": "2026-10-21 12:02:36",
  "ok": true,
- "new": 1,
- "skipped": 2,
+ "new": 0,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【盘中宝】产品上新数量增速超10倍，大模型发展推动制作成本下降，AI浪潮有望加速该行业爆发，这家企业积极推动产业链出海建设"
- ],
+ "newTitles": [],
  "failedList": []
 }
