@@ -62,6 +62,36 @@ COLUMN_MAP = {
 WINDOW_START = '2026-10-11'
 BEANS_MIN = 280
 
+# ---- v7.5 用户铁律（2026-10-21 亲定，优先于此前一切条款）----
+# ① 价格是第一道硬关：仅 ≥280 微信豆的高价值文章，180 豆信息类/普通研报直接不要。
+# ② 摘要条数 = 股票数量硬上限：摘要 ①②③ 几条就是几只股票，多出的必是错误信息，绝不外延。
+# ③ 全网比对确认：摘要未字面点名的，需拿公告特征与全网公开信息比对；匹配上才入池，
+#    匹配度高的进候选池，匹配不上的宁缺毋滥直接放弃（不马马虎虎）。
+# ④ 笼统行业文/无一一对应特征的，彻底放弃。
+# ⑤ 点名声但做趋势分析的文章：需前瞻看好 + 公开信息对应 + 上涨概率研判高才入池。
+# ⑥ 负面消息（行业衰落/盈利下降/减持/处罚等）绝对排除，绝不逆向选择。
+ANNOUNCE_COLS = {'公告全知道', '公告', '盘中宝', '电报', '公告解读',
+                 '公告早知道', '公告掘金'}
+NEGATIVE_KW = ['衰落', '盈利能力下降', '业绩下滑', '出现亏损', '亏损', '减持', '违规',
+               '处罚', '退市', '爆雷', '暴跌', '萎缩', '走下坡', '景气度下行',
+               '需求萎缩', '价格下跌', '产能过剩', '评级下调', '目标价下调']
+POSITIVE_KW = ['看好', '增长', '提升', '订单', '扩产', '突破', '龙头', '景气', '预增',
+               '涨停', '中标', '签约', '获批', '投产', '交付', '创新高', '紧缺',
+               '涨价', '复苏', '改善', '放量', '超预期', '翻倍', '倍增']
+
+
+def teaser_count(snippet):
+    """摘要条数（①②③…分段数）——股票数量的硬上限。"""
+    return len([s for s in re.split(r'(?=[\u2460-\u2465])', snippet or '') if s.strip()])
+
+
+def ev_is_negative(ev):
+    return any(k in (ev or '') for k in NEGATIVE_KW)
+
+
+def ev_is_positive_catalyst(ev):
+    return any(k in (ev or '') for k in POSITIVE_KW)
+
 # ---- v6.2：真实分类注册表（ref/columns.json 由采集层动态登记，看板分类自主增减）----
 COLUMNS_REG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ref', 'columns.json')
 
@@ -343,6 +373,17 @@ def main():
                 skipped.append({'name': name, 'code': info['code'], 'ev': ev[:60],
                                 'kind': 'statistical-mention'})
                 continue
+            # v7.5 铁律⑥：负面消息绝对排除，绝不逆向选择
+            if ev_is_negative(ev):
+                skipped.append({'name': name, 'code': info['code'], 'ev': ev[:60],
+                                'kind': 'negative-signal'})
+                continue
+            # v7.5 铁律⑤：非公告类栏目点名声的股票，需有明确正向催化剂
+            # （前瞻看好 + 公开信息对应的粗判；精细趋势研判由落地层/全网比对完成）
+            if column not in ANNOUNCE_COLS and not ev_is_positive_catalyst(ev):
+                skipped.append({'name': name, 'code': info['code'], 'ev': ev[:60],
+                                'kind': 'trend-unconfirmed'})
+                continue
             matched.append((name, info, ev))
         matched.sort(key=lambda m: text.find(m[0]))
 
@@ -374,6 +415,13 @@ def main():
                     total_m, total_c, '/'.join('%s%d' % kv for kv in claimed.items()))
         else:
             board_note = '工单无 related_stock 分布信息，仅按字面点名入池'
+        # v7.5 铁律②（最终优先级）：摘要条数 = 股票数量硬上限。字面点名超过摘要条数的，
+        # 多出的必是错误信息（会误导入池），整篇转唤醒层逐条核实，绝不外延。
+        t_n = teaser_count(snippet)
+        if t_n and len(matched) > t_n:
+            board_ok = False
+            board_note = '字面点名 %d 只超过摘要条数 %d（铁律②：多出的为错误信息，不外延，转唤醒层逐条核实）' % (
+                len(matched), t_n)
 
         if not matched:
             if skipped:
@@ -457,7 +505,7 @@ def main():
                 time.sleep(0.3)
 
         # 期次档案（唤醒层落地时与主池 batches 合并，按 id 去重）
-        teasers = [s for s in re.split(r'(?=①②③④⑤⑥)', snippet) if s.strip()]
+        teasers = [s for s in re.split(r'(?=[\u2460-\u2465])', snippet) if s.strip()]
         batch = {
             'id': 'b%s_%s' % (period.replace('-', ''), _col_suffix(column)),
             'period': period, 'title': title, 'pub': pub, 'beans': beans,
