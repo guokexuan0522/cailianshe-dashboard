@@ -3,3 +3,13 @@ __pycache__/
 *.pyo
 *.tmp
 .DS_Store
+
+# 运行时产物（不入库）
+daemon.log
+status.json
+refresh.lock
+refresh.lock.status
+seen_articles.json
+quant_v1_backup.py
+ref/index320.json
+ref/kline320.json
