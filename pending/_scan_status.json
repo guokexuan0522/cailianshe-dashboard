@@ -1,14 +1,11 @@
 {
- "lastScanAt": "2026-10-22 00:52:49",
+ "lastScanAt": "2026-10-22 01:59:15",
  "ok": true,
- "new": 2,
- "skipped": 1,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【公告全知道】光芯片+CPO+光纤+数据中心！公司1.6T AWG芯片已实现小批量出货",
-  "【金牌纪要库】互动短剧留存优势初现，国家数据集团成立能否助推数据价值转化为收入？"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
