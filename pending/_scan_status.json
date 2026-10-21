@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-21 13:02:09",
+ "lastScanAt": "2026-10-21 13:59:59",
  "ok": true,
- "new": 1,
- "skipped": 2,
+ "new": 0,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【研选•行业数据】特斯拉第三代人形机器人Optimus已为大规模量产做好准备，有望拉动我国执行器、减速器、传感器等零部件需求释放"
- ],
+ "newTitles": [],
  "failedList": []
 }
