@@ -1,0 +1,47 @@
+name: cls-land
+
+# 财联社投研看板 · 第三层云端自动落地工作流（v7.4 治本）
+# 三层链路：articles.yml（发现 pending/）→ autopool.yml（预核验 results/routed）
+#   → 本流程 land.py（落地入池）：把预核验结果按严格铁律写进 index.html
+#     - 公告类栏目且非研报统计提及的 entry → 投研池（UNIQ/ADS）
+#     - 研报统计提及（STAT）/ 匿名指代（NONE）→ 比对候选池
+# 幂等：autopool/landed.log 防重复；无新结果时不产生提交。
+# 频率：autopool 完成后即刻 + 工作日白天每 20 分钟兜底（UTC 0-6,8 点档，
+#   避开 collect.yml 15:35 收盘采集（7:35 UTC）与 0:30 夜间复核（16:30 UTC）窗口）。
+# 安全边界：
+#   - 只 commit index.html 与 autopool/landed.log
+#   - 推送前先 pull --rebase，与 collect.yml/人工推送并行不冲突
+on:
+  workflow_run:
+    workflows: ["cls-autopool"]
+    types: [completed]
+  schedule:
+    - cron: "*/20 0-6,8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  land:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      - uses: actions/checkout@v4
+      - name: 第三层自动落地（严格铁律分类：公告信号入池/其余进候选池）
+        run: python3 land.py
+      - name: 提交并推送
+        run: |
+          git config user.name "cailianshe-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git pull --rebase origin main || true
+          git add index.html autopool/landed.log
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "land $(date +%F) $(date +%T) (auto)"
+            git push origin HEAD:main || echo "push failed, next run retries"
+          fi
