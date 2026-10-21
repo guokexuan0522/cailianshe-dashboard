@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-21 09:14:29",
+ "lastScanAt": "2026-10-21 10:03:58",
  "ok": true,
- "new": 0,
- "skipped": 3,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】Rubin架构升级将推动该环节单柜价值量提升至12.2万美元，2027年市场空间将“翻8倍”，机构预计四季度至2027年一季度是行业业绩分水岭，这家公司相关项目即将进入批量交付阶段"
+ ],
  "failedList": []
 }
