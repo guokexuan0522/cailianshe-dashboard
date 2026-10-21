@@ -433,7 +433,7 @@ CLS_COLUMNS = {
 COL_OBSERVED = []      # 本轮观测到的真实分类（含未达门槛文章，仅登记留档）
 CLS_PAGES = 3          # 每栏目最多翻页数（3×20=60 篇，覆盖约 10 天，足以跨过任何断更窗口）
 CLS_CAND_CAP = 400     # 单轮处理候选上限（超出部分不标记已见，下轮继续，绝静默丢弃）
-DATA_WINDOW_START = '2026-10-11'   # 铁律：母版数据只从 2026-10-11 起；更早的文章标记已见但不入待核验队列
+DATA_WINDOW_START = '2026-10-18'   # 铁律：母版数据只从 2026-10-18 起；更早的文章标记已见但不入待核验队列
 CLS_UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
           '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36')
 

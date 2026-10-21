@@ -12,8 +12,8 @@
     （cls.cn 签名 API 11 栏目扫描 + 价格门槛 + 时间窗 + 失败不标记已见自动重试）。
   - 只重绑路径：pending/ 与 seen/ 持久化到仓库内（提交后不丢失，跨运行共享记忆），
     其余副作用（锁/日志/状态/feed）落 /tmp。
-  - seen 种子：仓库 seen/seen_articles.json 已预置本地 692 条历史已见标题，
-    云端不会重复发现 2026-10-11 之前的积压文章。
+  - seen 种子：仓库 seen/seen_articles.json 已预置本地历史已见标题，
+    云端不会重复发现 2026-10-18 之前的积压文章（v8.0 起数据窗口自 10-18 始）。
 
 用法: python3 scan_articles.py
 输出: 一行 JSON（ok/new/skipped/failed），供 workflow 日志查看。
