@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-22 10:04:14",
+ "lastScanAt": "2026-10-22 11:02:23",
  "ok": true,
- "new": 1,
- "skipped": 0,
+ "new": 0,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【盘中宝】AI大模型底座能力，全球头部厂商加码该行业，相关订单单月环比翻倍，未来市场规模或超300亿元，这家企业发布了全栈服务体系"
- ],
+ "newTitles": [],
  "failedList": []
 }
