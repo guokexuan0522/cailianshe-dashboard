@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-22 13:04:57",
+ "lastScanAt": "2026-10-22 14:01:05",
  "ok": true,
- "new": 0,
- "skipped": 2,
+ "new": 1,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【金牌纪要库·风口会议】物理AI训练走向规模化：第一视角数据推动采集方式变化，机器人有望率先在工业场景放量"
+ ],
  "failedList": []
 }
