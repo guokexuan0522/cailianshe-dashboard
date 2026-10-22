@@ -1,14 +1,11 @@
 {
- "lastScanAt": "2026-10-22 23:04:43",
+ "lastScanAt": "2026-10-23 00:03:28",
  "ok": true,
- "new": 2,
+ "new": 0,
  "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【公告全知道】具身智能+人形机器人+数据要素！公司参股灵心巧手",
-  "【金牌纪要库】OpenAI发力端侧AI，计划2026年年内发布首款设备，产业链估值折价存在修复空间"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
