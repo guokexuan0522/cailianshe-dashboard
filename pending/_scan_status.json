@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-23 11:03:51",
+ "lastScanAt": "2026-10-23 12:04:02",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】下游多赛道共振打开成长空间，人形机器人或带来行业最大增量，这家公司已经成功开发出人形机器人用相关产品"
+ ],
  "failedList": []
 }
