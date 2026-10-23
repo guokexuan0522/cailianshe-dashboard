@@ -1,0 +1,40 @@
+{
+ "time": "2026-10-23 15:08:47 CST",
+ "probes": {
+  "codeload": {
+   "http": 200,
+   "ms": 476,
+   "note": "\u001f�\b\u0000\u0000\u0000\u0000\u0000\u0000\u0003�\\{S[ǒ���\u0014��n�\u0017\b�t��VH�M��\u0006{\u0003���[)�\u0010\u0007P,$��\u0013W�*�\u0001I !\b�"
+  },
+  "api_github": {
+   "http": 200,
+   "ms": 514,
+   "note": "[{\"name\":\"WAKE_RUNBOOK.md\",\"path\":\"tools/WAKE_RUNBOOK.md\",\"sha\":\"fc024984953f5bc"
+  },
+  "qt_gtimg": {
+   "http": 200,
+   "ms": 72,
+   "note": "v_sh600000=\"1~�ַ�����~600000~9.53~9.62~9.69~755926~393482~362445~9.53~47~0.00~0~"
+  },
+  "cls_cn": {
+   "http": 200,
+   "ms": 270,
+   "note": "<!DOCTYPE html><html lang=\"zh\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><m"
+  },
+  "github_com": {
+   "http": 200,
+   "ms": 209,
+   "note": "\n\n\n\n\n\n\n\n<!DOCTYPE html>\n<html\n  lang=\"en\"\n  data-color-mode=\"dark\" data-dark-the"
+  }
+ },
+ "env": {
+  "uname": "Linux cubebox- 6.6.69-cube.bm.guest.005.x-g039db8913c80 #1 SMP PREEMPT_DYNAMIC Mon Jul  6 18:05:24 CST 2026 x86_64 x86_64 x86_64 GNU/Linux",
+  "python": "Python 3.11.1",
+  "workspace": "total 16\ndrwxr-xr-x 1 root root 4096 Oct 23 15:08 .\ndrwxr-xr-x 1 root root 4096 Oct 23 15:07 ..\ndrwxr-xr-x 3 root root 4096 Oct 23 15:08 cls-repo\ndrwxr-xr-x 2 root root 4096 Oct 23 15:07 .codebuddy",
+  "has_monitor_mcp": false,
+  "has_codebuddy": true,
+  "pwd_after_bootstrap": "cailianshe-dashboard-main\nrepo.tgz",
+  "token_present": true
+ },
+ "verdict": "PASS"
+}
