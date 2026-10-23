@@ -1,10 +1,11 @@
 # 财联社看板·第三层唤醒核验入池流水线 RUNBOOK
 
-> 版本：v1.3（2026-10-23）｜适用：每天 00:30 / 12:45 / 16:00 / 23:45 四个唤醒时点
+> 版本：v1.4（2026-10-23）｜适用：每天 00:30 / 12:45 / 16:00 / 23:45 四个唤醒时点
 > 定位：唤醒会话的自包含执行手册。每次唤醒按本手册跑完整闭环，**幂等可重入**——已核验过的文章按 aid 自动跳过，重复唤醒不会重复入池。
 > v1.1 变更：第二层云端自动入池引擎已上线（2026-10-20），§0 架构图、铁律第 9 条、§2 步骤 3（消费自动入池结果）、§5（二期上线说明）同步更新。
 > v1.2 变更：新增「附：仓库自包含应急路径」完整方案（wake_bootstrap.py tarball 自举 + 路径映射 + api_push.py 令牌回退 + 双沙箱边界），根治唤醒任务跑在未配置裸沙箱连续 5 次阻断的问题；执行环境无 `/root/.codebuddy/monitor-mcp/` 时**直接按附录 A-D 执行**，§1 表格视作主沙箱参考。
 > v1.3 变更：§2 步骤 2 代码改为 `$REPO_DIR` 路径并对 aid 做 int 归一化；步骤 4 台账格式明确「aid 必须写整数」。修复历史补登记录 aid 为字符串导致幂等差集漏判的问题（已归一化线上 4 条）。
+> v1.4 变更：**根治版本字段冲突**——10-23 午间唤醒测试暴露：唤醒沙箱从资料库读到的母版规则明载「严禁修改 version 字段，定时任务无权升版」，与步骤 6 遗留的「升 minor 版」指令直接冲突（且云端 land.py 的生产惯例本就是只落数据不动版本）。现删除步骤 6 升版指令，铁律第 6 条补上明线：**唤醒层只写数据记录，version/lastUpdated/collectTime 与 HTML/CSS/JS 一律不碰，版本只在人工会话升**。
 
 ---
 
@@ -28,7 +29,7 @@
 3. 公开内容提到了几只就验证几只、入池几只；已删除的标的不回流。
 4. **所有栏目统一 ≥280 微信豆**才入队核验（含金牌纪要库，取代原普通 280/金牌 380 双轨制）；低于 280 的文章一律不抓取、不比对、不入池（云端扫描层已过滤）。
 5. 数据窗口：只处理 2026-10-11 及以后的文章。
-6. 单文件看板不新建文件（脚本除外）；人工会话实质性修订必须升版。
+6. 单文件看板不新建文件（脚本除外）；**人工会话实质性修订必须升版**。**版本字段纪律（v1.4 明线，与资料库母版规则及云端 land.py 惯例一致）**：唤醒层/自动层只写数据记录（watchlist/stocks/batches/candidates/review），**严禁修改 `version`/`lastUpdated`/`collectTime` 字段，严禁改动任何 HTML/CSS/JS**；定时任务无权升版，版本号只在人工会话由用户驱动更新。
 7. **比对候选池（v6.0 新增）**：比对未成功的股票暂不入投研池，写入 MONITOR_DATA `candidates` 数组（字段同 watchlist 精简版：name/code/q/column/batchId/dateIn/pub/beans/reason/tags），标识「推断·待正文确认」；比对成功确认后移入 watchlist 并从 candidates 删除该条；入候选池第 10 个交易日仍未确认的，第 11 个交易日从看板彻底删除（candidates/图表/统计全部剔除）。
 8. **交易日历（v6.0 新增）**：在池时长/10 日统计/21 日移出/候选池清退一律按交易日计算；2026 年国务院官方放假安排（含调休上班日）已内置页面 CAL_HOLIDAYS/CAL_MAKEUP，2027 年按法定假日预估，官方安排发布后必须校准。
 9. **第二层自动入池结果消费（v6.1 新增）**：autopool/results/<aid>.json 为云端确定性预核验产物（带 evidence 点名原句 + 板块校验明细 + 行情/K线/分时/期次档案），唤醒层复核 evidence 与 skipped 后落地母版；routed/<aid>.json 必须走完整公开信源取证。第二层只预核验、不落地，母版唯一权威不变。
@@ -133,12 +134,12 @@ minute = refresh.fetch_minute(q) # 267点分时
 ```
 注意：`fetch_kline` 已兼容 `qfqday`/`day` 两种返回字段；个别股票仍失败时记 `kline: []` 并在汇报中说明，不要阻塞其他股票。
 
-### 步骤 6｜写入母版四表 + 升版
+### 步骤 6｜写入母版四表（数据层，禁升版）
 参考 `/tmp/build_v54.py`（v5.4 试跑构建脚本，可复制改造）。必改四项：
 1. `watchlist` 追加（字段：name/code/q/exch/margin/sector/reason/fundamental/outlook/tech/priceIn/priceNow/pct/gainSince/prob/forecast/conf/verifyTag/tier/beans/gold/pub/dateIn/price/verify）；
 2. `stocks[q]` 写入 name/price/prev/change/pct/high/low/time/minute/kline；
 3. `batches` 按期次追加（id 规范：`b{日期}_{栏目}`，栏目简写 ggzd=公告全知道/无后缀=早知道/lhb=狙击龙虎榜/dc=风口研报洞察/gold=金牌纪要库/sp=掘金行业龙头）；
-4. `review.stocks` 追加 + `history` 追加 + `notes` 追加 + `version` 升 minor 版（v5.4→v5.5）+ `lastUpdated/collectTime` 更新。
+4. `review.stocks` 追加 + `history` 追加 + `notes` 追加。**`version`/`lastUpdated`/`collectTime` 一律不动**（母版规则：定时任务无权升版；版本只在人工会话升）——如需记录本次变更，写进 `review.notes` 即可。
 
 tech 字段由 calc_signals.py 的 advice['tags'] 拼装（含 MA/MACD/RSI/KDJ/BOLL/BIAS/量比/20日区间；涨跌停日追加"R4涨跌停日指令降半级"）。
 priceIn 口径 = 文章发布日收盘价（当日收盘后发布的文章，入池价即当日收盘）。
