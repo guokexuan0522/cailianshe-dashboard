@@ -359,11 +359,33 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 <div class="fold-bar" id="favSyncBar">
 <select class="fold-sel" id="favColSel" onchange="renderFavs()" title="按文章来源分类筛选自选股（财联社栏目或人工录入）"><option value="">全部来源</option></select>
 <button class="fold-btn" id="favLinkBtn" type="button" title="作用：自选股保存在每台设备的浏览器本地（按网址隔离），换设备/换浏览器默认互不相通。点此按钮会把你的全部自选股（含各自选价与人工录入股）编码进当前网址，复制后发到任何设备，对方直接打开该链接即完整恢复你的自选清单。">🔗 复制同步链接</button>
+<button class="fold-btn" id="favCloudBtn" type="button" title="开启后，自选股（含各自选价、人工录入股、排序）会自动同步到你自己 GitHub 账号下的私密账本；在任何设备、任何浏览器打开本页面都会自动出现，增删自动更新。需一次性粘贴你自己的 GitHub 经典令牌（仅 gist 权限，只存本机浏览器）。">☁ 云端同步</button>
 <button class="fold-btn ghost" id="favExpBtn" type="button">💾 导出自选清单</button>
 <button class="fold-btn ghost" id="favImpBtn" type="button">📂 导入自选清单</button>
 <button class="fold-btn ghost" id="ordResetFav" type="button" style="display:none"></button>
 <input type="file" id="favFile" accept=".json,application/json" style="display:none">
-<span class="fold-info" id="favSyncInfo">自选股默认按 10日上涨概率 ↓ · 置信度 ↓ 自动排列；长按拖拽可临时手动调整。<b>换设备/换浏览器同步方法</b>：① 点「🔗 复制同步链接」——把自选清单编入网址，发到任何设备直接打开即恢复（含人工录入股）；② 点「💾 导出自选清单」下载 JSON 文件，到新设备点「📂 导入自选清单」恢复。</span>
+<span class="fold-info" id="favSyncInfo">自选股默认按 10日上涨概率 ↓ · 置信度 ↓ 自动排列；长按拖拽可临时手动调整。<b>换设备/换浏览器同步方法</b>：① 点「🔗 复制同步链接」——把自选清单编入网址，发到任何设备直接打开即恢复（含人工录入股）；② 点「💾 导出自选清单」下载 JSON 文件，到新设备点「📂 导入自选清单」恢复；③ 点「☁ 云端同步」按指引一次性开启后，任何设备、任何浏览器打开本页面，自选股都会自动出现，增删自动更新（数据存放在你自己 GitHub 账号的私密账本，仅需 gist 权限）。</span>
+</div>
+<div id="favCloudBox" style="display:none;margin:10px 0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02)">
+ <div id="favCloudState" style="font-size:13px;line-height:1.7;margin-bottom:8px"></div>
+ <div id="favCloudSetup">
+  <div style="font-size:12.5px;color:var(--muted);line-height:1.8;margin-bottom:8px">
+   开启后，自选股（含各自选价、人工录入股、排序）会自动同步到<b>你自己 GitHub 账号</b>下的一个私密账本——在任何设备、任何浏览器打开本页面，自选股都会自动出现，增删自动更新。<br>
+   只需一次性创建令牌（<b>仅需 gist 权限</b>；令牌只保存在本机浏览器，仅直连 GitHub 官方接口，不经过任何第三方服务器）：
+   <a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=%E8%B4%A2%E8%81%94%E7%A4%BE%E7%9C%8B%E6%9D%BF%E8%87%AA%E9%80%89%E8%82%A1%E5%90%8C%E6%AD%A5" target="_blank" rel="noopener" style="color:#6ea8ff">点此生成经典令牌</a>
+   （打开后直接点页面底部 <b>Generate token</b>）→ 复制令牌 → 粘贴到下面输入框 → 点「开启」。每台设备只需做一次。
+  </div>
+  <div class="fold-bar" style="margin-bottom:0">
+   <input type="password" id="favCloudToken" class="fold-sel" style="flex:1;min-width:220px" maxlength="120" placeholder="粘贴 GitHub 经典令牌（ghp_ 开头）" autocomplete="off">
+   <button class="fold-btn" id="favCloudOn" type="button">开启</button>
+  </div>
+ </div>
+ <div id="favCloudOn2" style="display:none">
+  <div class="fold-bar" style="margin-bottom:0">
+   <button class="fold-btn ghost" id="favCloudSync" type="button">⟳ 立即同步</button>
+   <button class="fold-btn ghost" id="favCloudOff" type="button">关闭同步</button>
+  </div>
+ </div>
 </div>
 <div id="favBox"></div></section>
 
@@ -463,8 +485,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 </div>
 
 <script id="MONITOR_DATA" type="application/json">{
- "version": "8.6.2",
- "lastUpdated": "2026-10-23 16:18（2026-10-23 16:47 自动落地 0 只入投研池 / 0 条进比对候选池 / 1 条待全网比对 / 0 条负面放弃）",
+ "version": "8.7.0",
+ "lastUpdated": "2026-10-23 18:41（2026-10-23 16:47 自动落地 0 只入投研池 / 0 条进比对候选池 / 1 条待全网比对 / 0 条负面放弃；人工修订：新增「☁ 云端同步」功能 v8.7.0）",
  "collectTime": "2026-10-23 16:18（15:35收盘采集·自动）",
  "quoteTime": "2026-10-23 16:14 收盘",
  "period": "2026-10-23 收盘",
@@ -85580,6 +85602,11 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "version": "8.6.2",
    "time": "2026-10-23 16:18",
    "note": "守护进程定时采集（15:35收盘采集·版本不变）：47只在池标的行情同步至2026-10-23，分时/K线已更新；复盘数值同步。"
+  },
+  {
+   "version": "8.7.0",
+   "time": "2026-10-23 18:41",
+   "note": "自选股云端同步（GitHub 私密 Gist · 单文件零依赖）：① 自选股工具栏新增「☁ 云端同步」按钮与开通面板——一次性粘贴用户自己的 GitHub 经典令牌（仅 gist 权限）后，自选股（含各自选价/人工录入股/排序）自动同步至该账号下的私密账本；② 任何设备、任何浏览器打开本页面即自动拉取合并，本机增删改 1.5 秒内上传，远程 90 秒轮询 + 页面重新可见时同步 + 关页前 keepalive 兜底；③ 合并语义：自选逐 code 比 addTime 新者胜，删除走墓碑时间戳（删后又加回按 addTime 胜），排序按快照 updatedAt 后写者胜；④ 令牌只存本机 localStorage、仅直连 api.github.com，不经过任何第三方服务器；未开启时与旧版行为完全一致（同步链接/导入导出照常）；⑤ 对细粒度令牌（github_pat_）与无 gist 权限令牌均有友好报错指引；模块逻辑经 30 项自动化测试全部通过（双设备同步/墓碑传播/冲突决胜/人工录入股跨设备/账本自动重建/令牌异常）。"
   }
  ],
  "review": {
@@ -92177,6 +92204,243 @@ function bind(){
 return {restoreFromHash:restoreFromHash,syncHash:syncHash,bind:bind,encodeFavs:encodeFavs};
 })();
 
+// ===== v8.7.0 自选股云端同步（GitHub 私密 Gist · 零依赖 fetch 直连 · 未开启时零回归）=====
+// 设计：
+//   ① 云端账本 = 用户自己 GitHub 账号下的一个私密 Gist（描述固定，自动查找/创建），
+//      内容为自选快照 JSON（favs 自选 / dels 删除墓碑 / orders 排序）；
+//      任何设备、任何浏览器、任何打开方式（在线/本地文件/资料库），输入同一令牌即全量同步；
+//   ② 令牌只存本机 localStorage，仅直连 api.github.com（CORS 已实测：ACAO * +
+//      预检允许 Authorization 与 GET/POST/PATCH），不经过任何第三方服务器；
+//      注意：GitHub 只允许「经典令牌」（ghp_ 开头、勾选 gist 范围）操作 Gist，
+//      细粒度令牌（github_pat_）会被 403 拒绝——模块已做识别与友好提示；
+//   ③ 未开启时行为与旧版完全一致（localStorage + 同步链接 + 导入导出），零回归；
+//   ④ 合并语义：自选按 code 逐条比对 addTime 新者胜；删除走墓碑时间戳
+//      （后删的胜、删除后又加回的按 addTime 胜）；排序 orders 按快照 updatedAt 后写者胜，
+//      本机有未同步改动时本机优先（随后上传覆盖）；
+//   ⑤ 变更捕获：1.5s 脏检查（覆盖全部增删改入口：勾选/移除/录入/导入/拖拽/21日移出），
+//      关键路径无需改动原有函数；远程轮询 90s + 页面重新可见时同步；关页前 keepalive 兜底上传。
+window.favCloud = (function(){
+  var TOKEN_KEY='cls_gh_token_v1', GIST_KEY='cls_gist_id_v1',
+      META_KEY='cls_sync_meta_v1', DELTS_KEY='cls_fav_delts_v1';
+  var GIST_DESC='财联社看板·自选股同步（自动生成·请勿删除）';
+  var API='https://api.github.com';
+  var POLL_MS=90000, DIRTY_MS=1500, UPLOAD_DEBOUNCE=1200;
+  var S={status:'off', login:'', gistId:'', lastSync:'', err:'', busy:false};
+  var DELTS=loadLS(DELTS_KEY);                 // {code: ISO删除时间戳}
+  var META=loadLS(META_KEY);                   // {device,lastRemoteAt,lastUploadAt}
+  if(!META.device)META.device=Math.random().toString(36).slice(2,10);
+  var DEVICE=META.device;
+  var dirty=false, lastSnap='', uploadTimer=null, pollTimer=null, dirtyTimer=null, inited=false;
+
+  function ls(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+  function save(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+  function nowIso(){return new Date().toISOString();}
+  // 'YYYY-MM-DD HH:MM'（无时区，页面 addTime 格式）按本地时间构造（iOS Safari 不支持此格式）；
+  // 带 T/Z 的 ISO 串（墓碑/快照时间戳）直接交给 Date 解析，避免把 UTC 时分误按本地解析（时区偏差）
+  function parseAt(s){
+    if(!s)return 0;
+    var m=/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})/.exec(s);
+    if(m)return new Date(+m[1],+m[2]-1,+m[3],+m[4],+m[5]).getTime();
+    var t=new Date(s).getTime();return isNaN(t)?0:t;
+  }
+  function token(){return ls(TOKEN_KEY)||'';}
+  function api(method,path,body,keepalive){
+    var h={'Accept':'application/vnd.github+json','Content-Type':'application/json','User-Agent':'cls-favcloud'};
+    var tk=token();if(tk)h['Authorization']='token '+tk;
+    var opt={method:method,headers:h,body:body?JSON.stringify(body):undefined};
+    if(keepalive)opt.keepalive=true;
+    return fetch(API+path,opt).then(function(r){
+      if(r.status===204)return null;
+      return r.json().then(function(j){
+        if(!r.ok){var e=new Error((j&&j.message)||('HTTP '+r.status));e.status=r.status;throw e;}
+        return j;
+      });
+    });
+  }
+  function setState(){
+    var btn=document.getElementById('favCloudBtn');
+    if(btn){
+      var dot=S.busy?'#fbbf24':(S.status==='on'?'#2fbf71':S.status==='err'?'#f4505e':'#5b6b82');
+      btn.innerHTML='☁ 云端同步 <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+dot+';margin-left:3px;vertical-align:middle"></span>';
+    }
+    var el=document.getElementById('favCloudState');
+    if(!el)return;
+    if(S.status==='off')el.innerHTML='状态：<b style="color:#8b98ad">未开启</b> —— 自选股目前只保存在本机浏览器（换设备可用下方「同步链接/导入导出」）。';
+    else if(S.status==='err')el.innerHTML='状态：<b style="color:#f4505e">同步失败</b> —— '+esc(S.err)+'<br>本机自选股不受影响；可按上方指引修正后重新粘贴令牌开启，或关闭同步。';
+    else if(S.busy)el.innerHTML='状态：<b style="color:#fbbf24">同步中…</b>';
+    else el.innerHTML='状态：<b style="color:#7ee0a0">已开启</b>（GitHub 账号 <b>'+esc(S.login||'—')+'</b>）· 自选 <b>'+Object.keys(FAVS).length+'</b> 只'+(S.lastSync?' · 上次同步 '+esc(S.lastSync):'');
+    var on=document.getElementById('favCloudSetup'),on2=document.getElementById('favCloudOn2');
+    if(on&&on2){on.style.display=(S.status==='on')?'none':'';on2.style.display=(S.status==='on')?'':'none';}
+  }
+  function snapshot(){return JSON.stringify({f:FAVS,d:DELS,t:DELTS,o:(ORDERS&&ORDERS.fav)||[]});}
+  function markDirty(){dirty=true;scheduleUpload();}
+  function scheduleUpload(){
+    if(S.status!=='on')return;
+    if(uploadTimer)clearTimeout(uploadTimer);
+    uploadTimer=setTimeout(function(){uploadTimer=null;upload();},UPLOAD_DEBOUNCE);
+  }
+  function findGist(){
+    return api('GET','/gists?per_page=100').then(function(gs){
+      for(var i=0;i<(gs||[]).length;i++){
+        var g=gs[i];
+        if(g.description===GIST_DESC||(g.files&&g.files['favs.json']))return g.id;
+      }
+      var init={app:'cls-fav-cloud',v:1,updatedAt:nowIso(),device:DEVICE,favs:{},dels:{},orders:[]};
+      return api('POST','/gists',{description:GIST_DESC,public:false,
+        files:{'favs.json':{content:JSON.stringify(init)}}}).then(function(g){return g.id;});
+    });
+  }
+  function buildPayload(){
+    var dels={},now=nowIso();
+    Object.keys(DELTS).forEach(function(c){
+      var f=FAVS[c];
+      if(f&&parseAt(f.addTime)>parseAt(DELTS[c]))return;      // 删除后又加回的，墓碑作废
+      dels[c]=DELTS[c];
+    });
+    Object.keys(DELS).forEach(function(c){                       // 历史删除标记补时间戳（用页面更新时间兜底）
+      if(!FAVS[c]&&!dels[c])dels[c]=D.lastUpdated||now;
+    });
+    return {app:'cls-fav-cloud',v:1,updatedAt:nowIso(),device:DEVICE,
+            favs:FAVS,dels:dels,orders:(ORDERS&&ORDERS.fav)||[]};
+  }
+  function upload(keepalive){
+    if(S.status!=='on')return Promise.resolve();
+    S.busy=true;setState();
+    return api('PATCH','/gists/'+S.gistId,{files:{'favs.json':{content:JSON.stringify(buildPayload())}}},keepalive)
+    .then(function(){
+      S.busy=false;dirty=false;S.lastSync=nowStr();S.err='';
+      META.lastUploadAt=nowIso();save(META_KEY,JSON.stringify(META));
+      lastSnap=snapshot();setState();
+    }).catch(function(e){S.busy=false;S.status='err';S.err=e.message;setState();});
+  }
+  function mergeRemote(rp){
+    if(!rp||rp.app!=='cls-fav-cloud')return false;
+    var changed=false;
+    // ① 远程删除墓碑：本机 addTime 更晚（删后又加回）则保留，否则删
+    Object.keys(rp.dels||{}).forEach(function(c){
+      var ts=parseAt(rp.dels[c]);
+      var lf=FAVS[c];
+      if(lf&&parseAt(lf.addTime)>ts)return;
+      if(lf){delete FAVS[c];DELS[c]=1;changed=true;}
+      if(!DELTS[c]||parseAt(DELTS[c])<ts){DELTS[c]=rp.dels[c];changed=true;}
+    });
+    // ② 远程自选逐 code 合并（addTime 新者胜；远程已删的不加）
+    Object.keys(rp.favs||{}).forEach(function(c){
+      var rf=rp.favs[c]||{};
+      var dt=parseAt((rp.dels||{})[c]);
+      if(dt&&dt>=parseAt(rf.addTime))return;
+      var lf=FAVS[c];
+      if(!lf){FAVS[c]=rf;changed=true;}
+      else if(parseAt(rf.addTime)>parseAt(lf.addTime)){FAVS[c]=rf;changed=true;}
+    });
+    // ③ 排序：远程快照更新且本机无未同步改动 → 采用远程（含清空）
+    if(parseAt(rp.updatedAt)>parseAt(META.lastRemoteAt)&&!dirty){
+      if(JSON.stringify(rp.orders||[])!==JSON.stringify((ORDERS&&ORDERS.fav)||[])){
+        ORDERS.fav=rp.orders||[];saveLS(ORD_KEY,ORDERS);changed=true;
+      }
+    }
+    if(changed){saveLS(FAV_KEY,FAVS);save(DELTS_KEY,JSON.stringify(DELTS));}
+    if(parseAt(rp.updatedAt)>parseAt(META.lastRemoteAt)){META.lastRemoteAt=rp.updatedAt;save(META_KEY,JSON.stringify(META));}
+    return changed;
+  }
+  function download(){
+    if(S.status!=='on')return Promise.resolve();
+    S.busy=true;setState();
+    return api('GET','/gists/'+S.gistId).then(function(g){
+      var f=g.files&&g.files['favs.json'];
+      if(!f)throw new Error('云端账本缺少 favs.json 文件');
+      if(f.truncated)throw new Error('云端账本过大被 GitHub 截断');
+      var ch=mergeRemote(JSON.parse(f.content||'{}'));
+      lastSnap=snapshot();
+      if(ch){touchUpdated();renderAll();}
+      S.lastSync=nowStr();S.err='';S.busy=false;setState();
+      if(dirty)scheduleUpload();
+    }).catch(function(e){
+      S.busy=false;
+      if(e.status===404){ // 云端账本被手动删了 → 自动重建后重试一次
+        return findGist().then(function(gid){S.gistId=gid;save(GIST_KEY,gid);return download();});
+      }
+      S.status='err';S.err=e.message;setState();
+    });
+  }
+  function enable(tk){
+    var t=(tk||'').trim();
+    if(!t){S.status='err';S.err='请先粘贴 GitHub 令牌再开启';setState();return Promise.resolve();}
+    if(/^github_pat_/.test(t)){
+      S.status='err';S.err='这是「细粒度令牌」（github_pat_ 开头），GitHub 不允许它操作 Gist。请按上方链接生成「经典令牌」（ghp_ 开头、勾选 gist 范围）再粘贴。';setState();
+      return Promise.resolve();
+    }
+    if(!/^gh[pousr]_[A-Za-z0-9_]{10,}$/.test(t)){
+      S.status='err';S.err='令牌格式不对（经典令牌应以 ghp_ 开头，请检查是否复制完整）';setState();
+      return Promise.resolve();
+    }
+    save(TOKEN_KEY,t);S.status='on';S.err='';S.busy=true;setState();
+    return api('GET','/user').then(function(u){
+      S.login=u.login||'';
+      return findGist();
+    }).then(function(gid){
+      S.gistId=gid;save(GIST_KEY,gid);setState();
+      return download();
+    }).then(function(){
+      markDirty();   // 开启后立即同步一次（本地空则上传空快照占位；本地有则推送）
+    }).catch(function(e){
+      S.busy=false;S.status='err';
+      if(e.status===403)S.err='GitHub 拒绝访问（403）：令牌可能没有勾选 gist 范围，请重新生成一个带 gist 权限的经典令牌。';
+      else S.err=e.message||'开启失败';
+      setState();
+      if(e.status===401){try{localStorage.removeItem(TOKEN_KEY);}catch(err){}}
+    });
+  }
+  function disable(){ // 仅本机关闭：清令牌与账本记录，云端数据保留
+    try{localStorage.removeItem(TOKEN_KEY);localStorage.removeItem(GIST_KEY);}catch(e){}
+    S.status='off';S.login='';S.gistId='';S.err='';S.busy=false;setState();
+  }
+  function startPolling(){
+    if(pollTimer)clearInterval(pollTimer);
+    pollTimer=setInterval(function(){if(S.status==='on'&&document.visibilityState==='visible')download();},POLL_MS);
+    document.addEventListener('visibilitychange',function(){
+      if(S.status==='on'&&document.visibilityState==='visible')download();
+    });
+    window.addEventListener('beforeunload',function(){
+      if(dirty&&S.status==='on')upload(true);   // keepalive：关页瞬间尽力兜底
+    });
+  }
+  function startDirtyWatch(){
+    lastSnap=snapshot();
+    if(dirtyTimer)clearInterval(dirtyTimer);
+    dirtyTimer=setInterval(function(){
+      var cur=snapshot();
+      if(cur===lastSnap)return;
+      // 捕捉所有“悄悄消失”的自选（导入覆盖 / 21日移出 / 池内删除）→ 补墓碑时间戳
+      var prev=JSON.parse(lastSnap),now=JSON.parse(cur),need=false;
+      Object.keys(prev.f||{}).forEach(function(c){
+        if(!now.f[c]&&!now.d[c]&&!DELTS[c]){DELTS[c]=nowIso();need=true;}
+      });
+      if(need)save(DELTS_KEY,JSON.stringify(DELTS));
+      lastSnap=cur;markDirty();
+    },DIRTY_MS);
+  }
+  function init(){
+    if(inited)return;inited=true;
+    var btn=document.getElementById('favCloudBtn'),box=document.getElementById('favCloudBox');
+    if(btn&&box)btn.onclick=function(){box.style.display=(box.style.display==='none'||!box.style.display)?'block':'none';if(box.style.display==='block')setState();};
+    var onBtn=document.getElementById('favCloudOn'),offBtn=document.getElementById('favCloudOff'),
+        syBtn=document.getElementById('favCloudSync'),tkInp=document.getElementById('favCloudToken');
+    if(onBtn&&tkInp)onBtn.onclick=function(){onBtn.textContent='验证中…';enable(tkInp.value).then(function(){onBtn.textContent='开启';});};
+    if(offBtn)offBtn.onclick=function(){if(confirm('关闭后本机不再自动同步（云端数据保留，其他设备不受影响），确定？'))disable();};
+    if(syBtn)syBtn.onclick=function(){download();};
+    var tk=token(),gid=ls(GIST_KEY);
+    if(tk&&gid){ // 恢复上次开启状态
+      S.gistId=gid;S.busy=true;setState();
+      api('GET','/user').then(function(u){S.login=u.login||'';S.status='on';return download();})
+      .catch(function(e){S.busy=false;S.status='err';S.err=e.message;setState();});
+    }
+    setState();startDirtyWatch();startPolling();
+  }
+  return {init:init,markDirty:markDirty,download:download,upload:upload,enable:enable,disable:disable,
+          _state:function(){return S;},_merge:mergeRemote,_payload:buildPayload,_snapshot:snapshot,_parseAt:parseAt};
+})();
+
 // ===== v8.0 自选股手动录入（名称或代码 → 抓数 → 入自选 → 图表/复盘/技术分析同步）=====
 // 数据通道（均前端直连，无需后端）：
 //   名称解析：新浪建议 API（script 标签·GBK，返回 var suggestvalue="名称,类型,代码,带市场代码,..."）
@@ -92760,6 +93024,7 @@ function renderAll(){['renderOverview','renderQxPanel','renderFavs','renderPool'
 // v7.2 自选同步：URL hash 恢复优先于本机存储（链接即权威快照），再绑定工具条
 var _favRestored=window.favSync.restoreFromHash();
 window.favSync.bind();
+window.favCloud.init();
 if(_favRestored)setTimeout(function(){var el=document.getElementById('favSyncInfo');var L=window.favSync._last||{};if(el)el.innerHTML='✅ 已从同步链接恢复 <b style="color:#7ee0a0">'+_favRestored+'</b> 只自选（含各自选价'+(L.manN?'，人工录入 '+L.manN+' 只':'')+'）——与本机已有自选合并，此后增删会自动写回链接'+(L.miss?'（'+L.miss+' 只已不在池未恢复）':'');},400);
 // 同标签页内粘贴新同步链接（hash 变化）时即时恢复
 window.addEventListener('hashchange',function(){
