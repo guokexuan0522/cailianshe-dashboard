@@ -1,8 +1,9 @@
 # 财联社看板·第三层唤醒核验入池流水线 RUNBOOK
 
-> 版本：v1.1（2026-10-20）｜适用：每天 00:30 / 12:45 / 16:00 / 23:45 四个唤醒时点
+> 版本：v1.2（2026-10-23）｜适用：每天 00:30 / 12:45 / 16:00 / 23:45 四个唤醒时点
 > 定位：唤醒会话的自包含执行手册。每次唤醒按本手册跑完整闭环，**幂等可重入**——已核验过的文章按 aid 自动跳过，重复唤醒不会重复入池。
 > v1.1 变更：第二层云端自动入池引擎已上线（2026-10-20），§0 架构图、铁律第 9 条、§2 步骤 3（消费自动入池结果）、§5（二期上线说明）同步更新。
+> v1.2 变更：新增「附：仓库自包含应急路径」完整方案（wake_bootstrap.py tarball 自举 + 路径映射 + api_push.py 令牌回退 + 双沙箱边界），根治唤醒任务跑在未配置裸沙箱连续 5 次阻断的问题；执行环境无 `/root/.codebuddy/monitor-mcp/` 时**直接按附录 A-D 执行**，§1 表格视作主沙箱参考。
 
 ---
 
@@ -196,16 +197,50 @@ python3 /root/.codebuddy/monitor-mcp/api_push.py
 
 ## 附：仓库自包含应急路径（v8.6.2 新增，根治"环境未配置"阻断）
 
-若执行环境不存在 `/root/.codebuddy/monitor-mcp/`（新沙箱常见），直接使用仓库内副本：
+**适用场景**：定时唤醒任务跑在未配置的裸沙箱（无 `/root/.codebuddy/monitor-mcp/`、无 `/workspace/cailianshe-dashboard/`、无 git 凭证）。这是唤醒任务自 2026-10-19 起连续 5 次阻断的根因形态，本节为根治方案。
 
-| 依赖 | 仓库内路径 |
+**网络事实（沙箱内实测）**：`github.com` / `raw.githubusercontent.com` 不可达（git clone 不可用）；`codeload.github.com`（tarball 匿名下载）可达；`api.github.com`（Git Data API，需令牌写）可达；`www.cls.cn` / `qt.gtimg.cn` 等数据源可达。
+
+### A. 第一步：自举下载仓库（替代 git clone）
+
+```bash
+python3 tools/wake_bootstrap.py            # 下载并解压到 /workspace/cls-repo/cailianshe-dashboard-main/
+eval "$(python3 tools/wake_bootstrap.py | tail -1)"   # 或直接取 REPO_DIR
+```
+
+`wake_bootstrap.py` 从 `codeload.github.com` 匿名拉取 `main` 分支最新 tarball，解压即得**云端最新全量仓库**（含 index.html、tools/、pending/、autopool/、refresh.py），并自检关键依赖齐全。此后本手册所有路径均相对于 `$REPO_DIR`。
+
+### B. 路径映射表（裸沙箱执行时一律以此为准）
+
+| 依赖 | 裸沙箱路径（`$REPO_DIR` = 解压目录） |
 |---|---|
-| 本手册 | `tools/WAKE_RUNBOOK.md` |
-| 推送脚本 | `tools/api_push.py` |
-| 量化引擎 | `tools/calc_signals.py` |
-| 核验台账 | `tools/verify_ledger.jsonl` |
-| 采集核心 | `refresh.py`（仓库根，已有） |
-| 第二层引擎 | `autopool.py`（仓库根，已有） |
-| 母版/部署产物 | `index.html`（仓库根，唯一权威） |
+| 本手册 | `$REPO_DIR/tools/WAKE_RUNBOOK.md` |
+| 母版（唯一权威） | `$REPO_DIR/index.html`（= 云端部署产物，tarball 即云端最新态） |
+| 核验台账 | `$REPO_DIR/tools/verify_ledger.jsonl` |
+| 推送脚本 | `$REPO_DIR/tools/api_push.py` |
+| 量化引擎 | `$REPO_DIR/tools/calc_signals.py` |
+| 采集核心 | `$REPO_DIR/refresh.py` |
+| 第二层引擎/产物 | `$REPO_DIR/autopool.py`、`$REPO_DIR/autopool/results/`、`$REPO_DIR/autopool/routed/` |
+| pending 工单队列 | `$REPO_DIR/pending/*.json`（tarball 内即最新，等价于同步） |
+| seen 状态 | `$REPO_DIR/seen/`、`$REPO_DIR/pending/_scan_status.json` |
 
-令牌：脚本从 `GH_TOKEN` 环境变量或 `.gh_push_token` 文件读取；若两者皆无，按 §1 提示用户补齐后再执行，**不得**以"无待核验工单"结报（未知 ≠ 空集）。
+### C. 令牌与推送
+
+`api_push.py` 按优先级读取令牌：环境变量 `GH_TOKEN` → 脚本同目录 `.gh_push_token` → `/root/.codebuddy/monitor-mcp/.gh_push_token`。
+
+推送命令（母版 + 台账一并回写，保证幂等账不丢）：
+
+```bash
+cd "$REPO_DIR"
+GH_TOKEN=<令牌> python3 tools/api_push.py \
+  --base "$REPO_DIR" \
+  --files index.html,tools/verify_ledger.jsonl \
+  --msg "wake: <版本号> 核验入池 <简述>"
+```
+
+**纪律**：无令牌时不得伪造"已推送"；应在汇报中明确"核验已完成、推送受阻（缺令牌）"，并把待推送内容完整留在 `$REPO_DIR` 供下次或人工会话落地——未知 ≠ 空集，不可把"推不出去"说成"无待核验"。
+
+### D. 与主沙箱的边界
+
+- 主沙箱（人工会话）的母版是 `/workspace/财联社·投研看板.html`，唤醒沙箱改的是 `$REPO_DIR/index.html`；两者内容应保持一致（主沙箱每次落地后推送云端）。**唤醒入池后，主沙箱下次会话应 `git pull` 同步回本地母版**，避免双写分歧。
+- 唤醒沙箱每次运行都重新下载 tarball，天然获得云端最新态，无需持久化任何本地状态。

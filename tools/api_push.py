@@ -1,36 +1,51 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""通过 GitHub Git Data API 推送（沙箱 git 协议不通时的通道）。
+"""通过 GitHub Git Data API 推送（沙箱 git 协议不通时的唯一可靠通道）。
+
 流程：取远端 ref → 建 blobs → 基于远端 tree 建新 tree → 建 commit → 快进更新 ref。
-仅标准库。Token 从 /root/.codebuddy/monitor-mcp/.gh_push_token 读取（600 权限，不明文入脚本）。"""
+仅标准库。域名 api.github.com 在沙箱内可达（github.com / raw.githubusercontent 不可达，git clone 不可用）。
+
+Token 读取优先级（均为不明文入脚本）：
+  1. 环境变量 GH_TOKEN
+  2. 脚本同目录 .gh_push_token
+  3. /root/.codebuddy/monitor-mcp/.gh_push_token（主沙箱历史位置）
+
+用法：
+  GH_TOKEN=xxx python3 api_push.py --base /workspace/cls-repo/cailianshe-dashboard-main \
+      --files index.html,tools/verify_ledger.jsonl --msg "wake: v8.7 入池..."
+
+  # 不指定 --files 时默认推送 index.html 与 tools/verify_ledger.jsonl（若存在）。
+  # --base 默认为当前工作目录。
+"""
+import argparse
 import base64
 import json
 import os
 import sys
 import urllib.request
 
-TOKEN_FILE = '/root/.codebuddy/monitor-mcp/.gh_push_token'
-TOKEN = open(TOKEN_FILE).read().strip()
 OWNER, REPO, BRANCH = 'guokexuan0522', 'cailianshe-dashboard', 'main'
 API = 'https://api.github.com/repos/%s/%s' % (OWNER, REPO)
-LOCAL = '/workspace/cailianshe-dashboard'
-
-# 相对路径 → 本地文件（本次要推送的全部变更）
-FILES = [
-    'index.html',
-    'refresh.py',
-    'pending/【公告全知道】PCB+光模块+卫星通信+华为！公司1.6T交换机产品进入小批量量产.json',
-    'pending/【狙击龙虎榜】指数分化暗藏变盘信号_题材轮动聚焦超跌机会.json',
-    'pending/【财联社早知道】TrendForce预估2026年全球光纤供需缺口达1.8亿芯公里，现货价格年增2.8至5倍，机构称国内.json',
-    'pending/【风口研报·洞察】红利资产近期超额收益显著，这个细分行业具备现金流改善叠加高股息属性，防御与弹性兼备；科技筹码出清到哪一.json',
-    'pending/_scan_status.json',
+DEFAULT_FILES = ['index.html', 'tools/verify_ledger.jsonl']
+TOKEN_CANDIDATES = [
+    os.environ.get('GH_TOKEN'),
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), '.gh_push_token'),
+    '/root/.codebuddy/monitor-mcp/.gh_push_token',
 ]
-MSG = ('feat: v5.4 核验入池试跑——12只新标的写入母版（在池26→38）+ refresh K线接口兼容修复\n\n'
-       '- 第三层定时唤醒核验流水线首次全链路试跑：10-19四篇工单逐篇公开信源取证\n'
-       '- 入池：生益电子/协创数据/三峡新材（公告全知道）、长进光子/天娱数科/众生药业（早知道）、\n'
-       '  东安动力/能科科技/慈文传媒（狙击龙虎榜）、宏川智慧/顺丰控股/振华股份（风口研报洞察）\n'
-       '- refresh.py：fetch_kline 兼容 qfqday/day 两种返回字段（部分标的如 sh688635 返回 day）\n'
-       '- 行情/分时/K线同步至2026-10-19收盘，量化引擎重算12只技术评分')
+
+
+def load_token():
+    for p in TOKEN_CANDIDATES:
+        if p and os.path.isfile(p):
+            t = open(p, encoding='utf-8').read().strip()
+            if t:
+                return t
+    sys.stderr.write('错误：未找到 GitHub 令牌。请设置环境变量 GH_TOKEN，'
+                     '或将令牌写入脚本同目录 .gh_push_token（或 /root/.codebuddy/monitor-mcp/.gh_push_token）。\n')
+    sys.exit(2)
+
+
+TOKEN = load_token()
 
 
 def api(method, path, body=None, timeout=300):
@@ -47,6 +62,27 @@ def api(method, path, body=None, timeout=300):
 
 
 def main():
+    ap = argparse.ArgumentParser(description='GitHub Git Data API 推送')
+    ap.add_argument('--base', default='.', help='本地工作目录（仓库根），默认当前目录')
+    ap.add_argument('--files', default='', help='逗号分隔的相对路径；缺省推送 index.html 与 tools/verify_ledger.jsonl')
+    ap.add_argument('--msg', required=True, help='commit message')
+    args = ap.parse_args()
+
+    files = [f.strip() for f in args.files.split(',') if f.strip()] if args.files else list(DEFAULT_FILES)
+    # 缺省文件不存在则跳过；显式指定的文件必须存在
+    explicit = bool(args.files)
+    existing = []
+    for rel in files:
+        p = os.path.join(args.base, rel)
+        if os.path.isfile(p):
+            existing.append(rel)
+        elif explicit:
+            sys.stderr.write('错误：文件不存在 %s\n' % p)
+            return 1
+    if not existing:
+        print('无文件可推送（目标均不存在），退出')
+        return 0
+
     # 1. 远端当前 ref 与 commit/tree
     ref = api('GET', '/git/ref/heads/%s' % BRANCH)
     head = ref['object']['sha']
@@ -56,8 +92,8 @@ def main():
 
     # 2. 逐文件建 blob
     tree = []
-    for rel in FILES:
-        p = os.path.join(LOCAL, rel)
+    for rel in existing:
+        p = os.path.join(args.base, rel)
         raw = open(p, 'rb').read()
         blob = api('POST', '/git/blobs', {
             'content': base64.b64encode(raw).decode('ascii'),
@@ -72,7 +108,7 @@ def main():
 
     # 4. 建 commit（父=远端头，保证快进）
     new_commit = api('POST', '/git/commits', {
-        'message': MSG, 'tree': new_tree['sha'], 'parents': [head],
+        'message': args.msg, 'tree': new_tree['sha'], 'parents': [head],
     })
     print('新 commit =', new_commit['sha'][:8])
 
