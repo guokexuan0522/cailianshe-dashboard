@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-23 07:57:02",
+ "lastScanAt": "2026-10-23 08:34:03",
  "ok": true,
- "new": 0,
- "skipped": 1,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【九点特供】DeepSeek拟在最新一轮融资中筹得约1000亿元人民币，分析师看好大模型将加速具身“大脑”能力突破及通用具身智能落地；PHP存在严重安全漏洞，多国机构网站临时下线"
+ ],
  "failedList": []
 }
