@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-23 14:39:32",
+ "lastScanAt": "2026-10-23 15:38:36",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 0,
  "failed": 0,
- "source": "",
- "note": "cls.cn 各栏目无新文章（已全部收录）",
- "newTitles": [],
+ "source": "cls.cn",
+ "note": "",
+ "newTitles": [
+  "【盘中宝】金额超300亿，该行业招标超预期，随着后续工程建设持续推进，有望推动产业投资逐步向设备订单转化，这家企业三季度净利润同比增长30%"
+ ],
  "failedList": []
 }
