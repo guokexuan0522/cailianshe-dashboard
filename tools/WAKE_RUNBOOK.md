@@ -1,9 +1,10 @@
 # 财联社看板·第三层唤醒核验入池流水线 RUNBOOK
 
-> 版本：v1.2（2026-10-23）｜适用：每天 00:30 / 12:45 / 16:00 / 23:45 四个唤醒时点
+> 版本：v1.3（2026-10-23）｜适用：每天 00:30 / 12:45 / 16:00 / 23:45 四个唤醒时点
 > 定位：唤醒会话的自包含执行手册。每次唤醒按本手册跑完整闭环，**幂等可重入**——已核验过的文章按 aid 自动跳过，重复唤醒不会重复入池。
 > v1.1 变更：第二层云端自动入池引擎已上线（2026-10-20），§0 架构图、铁律第 9 条、§2 步骤 3（消费自动入池结果）、§5（二期上线说明）同步更新。
 > v1.2 变更：新增「附：仓库自包含应急路径」完整方案（wake_bootstrap.py tarball 自举 + 路径映射 + api_push.py 令牌回退 + 双沙箱边界），根治唤醒任务跑在未配置裸沙箱连续 5 次阻断的问题；执行环境无 `/root/.codebuddy/monitor-mcp/` 时**直接按附录 A-D 执行**，§1 表格视作主沙箱参考。
+> v1.3 变更：§2 步骤 2 代码改为 `$REPO_DIR` 路径并对 aid 做 int 归一化；步骤 4 台账格式明确「aid 必须写整数」。修复历史补登记录 aid 为字符串导致幂等差集漏判的问题（已归一化线上 4 条）。
 
 ---
 
@@ -75,17 +76,21 @@ curl -s -H "Authorization: token $TOKEN" \
 ```bash
 python3 - <<'EOF'
 import json, os, glob
-aids = {json.loads(l)['aid'] for l in open('/root/.codebuddy/monitor-mcp/verify_ledger.jsonl') if l.strip()}
+REPO = os.environ.get('REPO_DIR', '/workspace/cailianshe-dashboard')
+def norm(v):
+    try: return int(str(v).strip())
+    except Exception: return v
+aids = {norm(json.loads(l)['aid']) for l in open(REPO + '/tools/verify_ledger.jsonl', encoding='utf-8') if l.strip()}
 todo = []
-for f in glob.glob('/workspace/cailianshe-dashboard/pending/*.json'):
+for f in glob.glob(REPO + '/pending/*.json'):
     if f.endswith('_scan_status.json'): continue
-    d = json.load(open(f))
-    if d.get('aid') not in aids and d.get('create_time','') >= '2026-10-11':
+    d = json.load(open(f, encoding='utf-8'))
+    if norm(d.get('aid')) not in aids and d.get('create_time','') >= '2026-10-11':
         todo.append(d)
 print('待核验', len(todo), '篇')
 EOF
 ```
-**台账标题与 pending 标题格式不一致，必须用 aid 匹配，勿用标题匹配。**
+**台账标题与 pending 标题格式不一致，必须用 aid 匹配，勿用标题匹配。台账 aid 一律为整数（与 pending 工单一致）——历史上有 4 条补登记录误写为字符串，求差集时类型不匹配会被漏判成「未核验」，已在 v1.3 归一化；新写台账务必 `{"aid": 2508954, ...}` 整数形式。**
 
 ### 步骤 3｜消费第二层自动入池结果（v6.1 新增）
 ```bash
@@ -116,6 +121,7 @@ ls /workspace/cailianshe-dashboard/autopool/routed/    # 云端判定需唤醒�
  "items": [{"clue": "摘要线索", "stock": "公司名", "code": "600000", "anchor": "逐字证据原文+出处", "new": true}],
  "note": "板块分布吻合情况、排除的同名干扰项及理由"}
 ```
+**`aid` 必须是整数（不要加引号）**，否则幂等求差集会漏判；`items` 为空数组表示本篇放弃入池（仍需写台账占位）。
 
 ### 步骤 5｜采集行情
 ```python
