@@ -358,6 +358,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 <div class="fold-info" id="favAddInfo" style="margin-bottom:10px">录入后自动抓取实时行情、日K线与分时数据；自选股卡片、自选涨幅图、收盘复盘与技术分析同步展示。</div>
 <div class="fold-bar" id="favSyncBar">
 <select class="fold-sel" id="favColSel" onchange="renderFavs()" title="按文章来源分类筛选自选股（财联社栏目或人工录入）"><option value="">全部来源</option></select>
+<select class="fold-sel" id="favDateSel" onchange="renderFavs()" title="按加入自选的日期筛选：选择某一天，只查看当天加入的自选股"><option value="">全部日期</option></select>
 <button class="fold-btn" id="favLinkBtn" type="button" title="作用：自选股保存在每台设备的浏览器本地（按网址隔离），换设备/换浏览器默认互不相通。点此按钮会把你的全部自选股（含各自选价与人工录入股）编码进当前网址，复制后发到任何设备，对方直接打开该链接即完整恢复你的自选清单。">🔗 复制同步链接</button>
 <button class="fold-btn" id="favCloudBtn" type="button" title="开启后，自选股（含各自选价、人工录入股、排序）会自动同步到你自己 GitHub 账号下的私密账本；在任何设备、任何浏览器打开本页面都会自动出现，增删自动更新。需一次性粘贴你自己的 GitHub 经典令牌（仅 gist 权限，只存本机浏览器）。">☁ 云端同步</button>
 <button class="fold-btn ghost" id="favExpBtn" type="button">💾 导出自选清单</button>
@@ -386,6 +387,15 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    <button class="fold-btn ghost" id="favCloudOff" type="button">关闭同步</button>
   </div>
  </div>
+</div>
+<div id="favDateBox" style="display:none;position:fixed;z-index:999;left:50%;top:50%;transform:translate(-50%,-50%);background:#131a26;border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:0 8px 32px rgba(0,0,0,.55);min-width:300px;max-width:88vw">
+<div style="font-size:14.5px;font-weight:600;margin-bottom:6px" id="favDateTitle">修改加入自选日期</div>
+<div style="font-size:12px;color:var(--muted);margin-bottom:10px" id="favDateName"></div>
+<input type="date" id="favDateInput" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:#0d1420;color:var(--txt);font-size:14px;margin-bottom:12px">
+<div style="display:flex;gap:8px;justify-content:flex-end">
+<button class="fold-btn ghost" id="favDateCancel" type="button">取消</button>
+<button class="fold-btn" id="favDateOk" type="button">确定</button>
+</div>
 </div>
 <div id="favBox"></div></section>
 
@@ -485,8 +495,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 </div>
 
 <script id="MONITOR_DATA" type="application/json">{
- "version": "8.7.0",
- "lastUpdated": "2026-10-23 18:41（2026-10-23 16:47 自动落地 0 只入投研池 / 0 条进比对候选池 / 1 条待全网比对 / 0 条负面放弃；人工修订：新增「☁ 云端同步」功能 v8.7.0）",
+ "version": "8.8.0",
+ "lastUpdated": "2026-10-23 19:56（人工修订：自选股入池日期可修改 + 按加入日期筛选 v8.8.0）",
  "collectTime": "2026-10-23 16:18（15:35收盘采集·自动）",
  "quoteTime": "2026-10-23 16:14 收盘",
  "period": "2026-10-23 收盘",
@@ -85607,6 +85617,11 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "version": "8.7.0",
    "time": "2026-10-23 18:41",
    "note": "自选股云端同步（GitHub 私密 Gist · 单文件零依赖）：① 自选股工具栏新增「☁ 云端同步」按钮与开通面板——一次性粘贴用户自己的 GitHub 经典令牌（仅 gist 权限）后，自选股（含各自选价/人工录入股/排序）自动同步至该账号下的私密账本；② 任何设备、任何浏览器打开本页面即自动拉取合并，本机增删改 1.5 秒内上传，远程 90 秒轮询 + 页面重新可见时同步 + 关页前 keepalive 兜底；③ 合并语义：自选逐 code 比 addTime 新者胜，删除走墓碑时间戳（删后又加回按 addTime 胜），排序按快照 updatedAt 后写者胜；④ 令牌只存本机 localStorage、仅直连 api.github.com，不经过任何第三方服务器；未开启时与旧版行为完全一致（同步链接/导入导出照常）；⑤ 对细粒度令牌（github_pat_）与无 gist 权限令牌均有友好报错指引；模块逻辑经 30 项自动化测试全部通过（双设备同步/墓碑传播/冲突决胜/人工录入股跨设备/账本自动重建/令牌异常）。"
+  },
+  {
+   "version": "8.8.0",
+   "time": "2026-10-23 19:56",
+   "note": "自选股入池日期可改 + 按日期筛选：① 每张自选股卡片新增「📅 改入池日期」按钮，弹层选择日期即可修改加入自选股票池的时间（改后自动写本机存档、同步链接，并触发云端同步；K线图金色标记线同步挪位；删除后重新加入亦可改）；② 自选股工具栏新增「加入日期」下拉框，按加入自选的日期筛选，查看每一天分别加入了哪些自选股，选项随自选清单自动更新；③ 勾选加入/人工录入的日期记录逻辑不变。"
   }
  ],
  "review": {
@@ -92001,13 +92016,13 @@ return '<div class="stock-card'+(colOf(w)==='金牌纪要库'?' gold-src':'')+'"
 '<div class="head"><span class="nm">'+esc(w.name)+'</span><span class="cd">'+exBadges(w)+w.code+' · '+esc(w.sector)+'</span></div>'+
 '<div>'+colBadgeHtml(w.column)+' <span class="beans">'+esc(w.pub)+' · '+(w.beans==='待核实'?'<b style="color:var(--yellow)">豆数待核实</b>':esc(w.beans||'≥280')+'微信豆')+'</span></div>'+
 '<div class="sp">'+w.priceNow.toFixed(2)+'<span class="spct '+cls(pct)+'">'+fmtPct(pct)+'</span></div>'+
-'<div class="blk t1"><b class="lbl">入选 '+wkHtml(w.dateIn)+' @ '+w.priceIn.toFixed(2)+'</b>'+esc(w.reason)+'</div>'+
+'<div class="blk t1"><b class="lbl">'+(isFav?'加入自选 ':'入选 ')+wkHtml(isFav?((f&&f.dateIn)||w.dateIn):w.dateIn)+' @ '+w.priceIn.toFixed(2)+'</b>'+esc(w.reason)+'</div>'+
 '<div class="blk"><b class="lbl">基本面</b>'+esc(w.fundamental)+'</div>'+
 '<div class="blk"><b class="lbl">前景展望</b>'+esc(w.outlook)+'</div>'+
 '<div class="blk t2"><b class="lbl">技术分析</b>'+esc(w.tech)+'</div>'+
 '<div class="since">10日预测 '+fcHtml(w.forecast)+' · 上涨概率 <b>'+w.prob+'%</b><div class="pbar"><i style="width:'+w.prob+'%"></i></div>置信度'+confHtml(w.conf)+' '+verifyHtml(w)+'</div>'+
 '<div class="since">'+(isFav?'加入自选：<b>'+(f.addTime||'—')+'</b> · 自选价 '+(Number(f.priceFav)>0?Number(f.priceFav).toFixed(2):'—')+'<br>':'')+'入池以来 <b class="'+cls(w.gainSince)+'">'+fmtPct(w.gainSince)+'</b>'+(isFav&&Number(f.priceFav)>0?' · 自选至今 <b class="'+cls((w.priceNow/f.priceFav-1)*100)+'">'+fmtPct((w.priceNow/f.priceFav-1)*100)+'</b>':'')+'</div>'+
-(isFav?'<span class="fav-remove" onclick="removeFav(\''+w.code+'\')">移出自选 ✕</span>'+(w.manual?' <span class="fav-remove" style="background:#1a2638;border-color:#2c4a6e;color:#7fb0f7" onclick="refetchManual(\''+w.code+'\')">🔄 补取数据</span>':''):
+(isFav?'<span class="fav-remove" onclick="removeFav(\''+w.code+'\')">移出自选 ✕</span>'+(w.manual?' <span class="fav-remove" style="background:#1a2638;border-color:#2c4a6e;color:#7fb0f7" onclick="refetchManual(\''+w.code+'\')">🔄 补取数据</span>':'')+' <span class="fav-remove" style="background:#1a2638;border-color:#2c4a6e;color:#7fb0f7" onclick="editFavDateIn(\''+w.code+'\')">📅 改入池日期</span>':
 '<label class="fav-cb"><input type="checkbox"'+(FAVS[w.code]?' checked':'')+' onclick="toggleFav(\''+w.code+'\',this.checked)">⭐ 加入自选</label>')+
 ' <span class="del-btn" onclick="delStock(\''+w.code+'\',\''+String(w.name).replace(/'/g,'')+'\')">🗑 删除</span>'+
 '<div class="btn" onclick="toggleStock(this)">分时图 + K线图 + 模拟走势 ▾</div>'+
@@ -92034,13 +92049,26 @@ function renderPool(){
  setCnt('poolCntT',W.length);
  refreshOrdReset();
 }
+function fillDateSel(){
+var sel=document.getElementById('favDateSel');if(!sel)return;
+var ds={};Object.keys(FAVS).forEach(function(c){var d=FAVS[c].dateIn;if(d)ds[d]=1;});
+var keys=Object.keys(ds).sort().reverse();
+var cur=sel.value;
+sel.innerHTML='<option value="">全部日期（'+keys.length+'）</option>'+keys.map(function(d){return '<option value="'+esc(d)+'">'+esc(d)+'</option>';}).join('');
+if(keys.indexOf(cur)>=0)sel.value=cur;
+}
 function renderFavs(){
+fillDateSel();
 var arr=favList();
 setCnt('favCntT',arr.length);
 var cv=(document.getElementById('favColSel')||{}).value||'';
 if(cv==='__manual__')arr=arr.filter(function(w){return !!w.manual;});
 else if(cv)arr=arr.filter(function(w){return !w.manual&&colOf(w)===cv;});
-arr=applyOrder(autoSort(arr),'fav');document.getElementById('favBox').innerHTML=arr.length?('<div class="stocks-grid">'+arr.map(function(w){return cardHtml(w,true);}).join('')+'</div>'):'<div class="fav-empty">'+(cv?('当前来源筛选下暂无自选股。'):'暂无自选股。在入选投研池卡片中勾选「⭐ 加入自选」即可收藏（本机记忆，刷新不丢失）。')+'</div>';
+var dv=(document.getElementById('favDateSel')||{}).value||'';
+if(dv)arr=arr.filter(function(w){var f=FAVS[w.code];return !!(f&&(f.dateIn||w.dateIn)===dv);});
+arr=applyOrder(autoSort(arr),'fav');
+var empty=cv?('当前来源筛选下暂无自选股。'):(dv?('当前日期筛选下暂无自选股——可切换回「全部日期」查看。'):'暂无自选股。在入选投研池卡片中勾选「⭐ 加入自选」即可收藏（本机记忆，刷新不丢失）。');
+document.getElementById('favBox').innerHTML=arr.length?('<div class="stocks-grid">'+arr.map(function(w){return cardHtml(w,true);}).join('')+'</div>'):'<div class="fav-empty">'+empty+'</div>';
 refreshOrdReset();
 }
 window.toggleFav=function(code,on){
@@ -92627,6 +92655,7 @@ var nm=card.querySelector('.nm').textContent;
 var w=W.filter(function(x){return (cd&&x.code===cd)||x.name===nm;})[0];
 if(!w){var fl=favList();w=fl.filter(function(x){return (cd&&x.code===cd)||x.name===nm;})[0];}
 if(!w)return;
+var _fd=FAVS[cd]; if(_fd&&_fd.dateIn)w=Object.assign({},w,{dateIn:_fd.dateIn});
 var s=D.stocks[w.q]||{};
 card.querySelectorAll('.cbox').forEach(function(box){
 var typ=box.getAttribute('data-ctype');
@@ -92644,7 +92673,7 @@ var ma=function(n){return dates.map(function(_,i){if(i<n-1)return null;var t=0;f
 var mark=[];
 var inIdx=-1;
 s.kline.forEach(function(k,i){if(k[0]<=w.dateIn)inIdx=i;});
-if(inIdx>=0){mark.push({xAxis:inIdx,lineStyle:{color:GOLD,width:2},label:{formatter:'入选 '+w.dateIn.slice(5),fontSize:10,color:GOLD}});mark.push({yAxis:w.priceIn,lineStyle:{color:GOLD,type:'dashed'},label:{formatter:'入选价 '+w.priceIn.toFixed(2),fontSize:10,color:GOLD}});}
+if(inIdx>=0){mark.push({xAxis:inIdx,lineStyle:{color:GOLD,width:2},label:{formatter:(FAVS[w.code]?'加入自选 ':'入选 ')+w.dateIn.slice(5),fontSize:10,color:GOLD}});mark.push({yAxis:w.priceIn,lineStyle:{color:GOLD,type:'dashed'},label:{formatter:'入选价 '+w.priceIn.toFixed(2),fontSize:10,color:GOLD}});}
 var f=FAVS[w.code];
 if(f){mark.push({xAxis:dates.length-1,lineStyle:{color:BLUE,width:2},label:{formatter:'自选 '+(f.addTime||'').slice(5,10),fontSize:10,color:BLUE}});mark.push({yAxis:f.priceFav,lineStyle:{color:BLUE,type:'dashed'},label:{formatter:'自选价 '+f.priceFav.toFixed(2),fontSize:10,color:BLUE}});}
 c.setOption(darkOpt({animation:false,tooltip:{trigger:'axis',axisPointer:{type:'cross'}},grid:{left:8,right:14,top:24,bottom:4,containLabel:true},legend:{data:['MA5','MA20'],top:0,textStyle:{fontSize:11,color:'#8b98ad'}},xAxis:{type:'category',data:dates,axisLabel:{fontSize:10}},yAxis:{scale:true,splitLine:{lineStyle:{color:'#223050'}}},series:[{type:'candlestick',data:vals,itemStyle:{color:RED,color0:GREEN,borderColor:RED,borderColor0:GREEN},markLine:{silent:true,symbol:'none',data:mark}},{name:'MA5',type:'line',showSymbol:false,data:ma(5),lineStyle:{width:1,color:GOLD}},{name:'MA20',type:'line',showSymbol:false,data:ma(20),lineStyle:{width:1,color:PURPLE}}]}));
@@ -93025,6 +93054,32 @@ function renderAll(){['renderOverview','renderQxPanel','renderFavs','renderPool'
 var _favRestored=window.favSync.restoreFromHash();
 window.favSync.bind();
 window.favCloud.init();
+// ===== v8.8.0 自选股入池日期：弹层修改 + 保存（自动写本机/同步链接/云端）=====
+window._favDateEdit=null;
+window.editFavDateIn=function(code){
+var f=FAVS[code];if(!f)return;
+var w=byCode[code]||{};
+window._favDateEdit=code;
+var t=document.getElementById('favDateTitle'),n=document.getElementById('favDateName'),i=document.getElementById('favDateInput'),b=document.getElementById('favDateBox');
+if(t)t.textContent='修改加入自选日期';
+if(n)n.textContent=(f.name||w.name||code)+'（'+code+'）· 当前：'+(f.dateIn||'—');
+if(i){i.value=f.dateIn||w.dateIn||'';i.max=new Date().toISOString().slice(0,10);}
+if(b)b.style.display='block';
+};
+window.saveFavDateIn=function(){
+var code=window._favDateEdit;if(!code||!FAVS[code])return;
+var i=document.getElementById('favDateInput');var v=(i&&i.value)||'';
+if(!/^\d{4}-\d{2}-\d{2}$/.test(v)){alert('日期格式不正确，请重新选择');return;}
+FAVS[code].dateIn=v;window._favDateEdit=null;
+saveLS(FAV_KEY,FAVS);window.favSync.syncHash();touchUpdated();
+if(window.favCloud&&window.favCloud.markDirty)window.favCloud.markDirty();
+var b=document.getElementById('favDateBox');if(b)b.style.display='none';
+renderAll();
+};
+(function(){var ok=document.getElementById('favDateOk'),cc=document.getElementById('favDateCancel'),b=document.getElementById('favDateBox');
+if(ok)ok.onclick=function(){window.saveFavDateIn();};
+if(cc)cc.onclick=function(){window._favDateEdit=null;if(b)b.style.display='none';};
+})();
 if(_favRestored)setTimeout(function(){var el=document.getElementById('favSyncInfo');var L=window.favSync._last||{};if(el)el.innerHTML='✅ 已从同步链接恢复 <b style="color:#7ee0a0">'+_favRestored+'</b> 只自选（含各自选价'+(L.manN?'，人工录入 '+L.manN+' 只':'')+'）——与本机已有自选合并，此后增删会自动写回链接'+(L.miss?'（'+L.miss+' 只已不在池未恢复）':'');},400);
 // 同标签页内粘贴新同步链接（hash 变化）时即时恢复
 window.addEventListener('hashchange',function(){
