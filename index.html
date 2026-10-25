@@ -403,6 +403,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 <div class="legend" id="poolLegend"></div>
 <div class="fold-bar" style="margin-bottom:10px">
 <select class="fold-sel" id="poolColSel" onchange="renderPool()" title="按财联社文章来源栏目筛选投研池股票"><option value="">全部栏目</option></select>
+<select class="fold-sel" id="poolDateSel" onchange="renderPool()" title="按入选投研池的日期筛选：选择某一天，只查看当天入选入池的股票"><option value="">全部日期</option></select>
 <span class="fold-info">在池时长按交易日计算（21个交易日移出）· 筛选只影响本区卡片展示，不影响统计与图表</span>
 </div>
 <div class="stocks-grid" id="poolBox"></div></section>
@@ -495,8 +496,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 </div>
 
 <script id="MONITOR_DATA" type="application/json">{
- "version": "8.8.0",
- "lastUpdated": "2026-10-23 19:56（2026-10-25 22:34 自动落地 0 只入投研池 / 0 条进比对候选池 / 3 条待全网比对 / 0 条负面放弃）",
+ "version": "8.9.0",
+ "lastUpdated": "2026-10-26 03:54（2026-10-25 22:34 自动落地 0 只入投研池 / 0 条进比对候选池 / 3 条待全网比对 / 0 条负面放弃；人工修订：投研池新增入选日期叠加筛选 v8.9.0）",
  "collectTime": "2026-10-23 16:18（15:35收盘采集·自动）",
  "quoteTime": "2026-10-23 16:14 收盘",
  "period": "2026-10-23 收盘",
@@ -96300,6 +96301,11 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "version": "8.8.0",
    "time": "2026-10-23 19:56",
    "note": "自选股入池日期可改 + 按日期筛选：① 每张自选股卡片新增「📅 改入池日期」按钮，弹层选择日期即可修改加入自选股票池的时间（改后自动写本机存档、同步链接，并触发云端同步；K线图金色标记线同步挪位；删除后重新加入亦可改）；② 自选股工具栏新增「加入日期」下拉框，按加入自选的日期筛选，查看每一天分别加入了哪些自选股，选项随自选清单自动更新；③ 勾选加入/人工录入的日期记录逻辑不变。"
+  },
+  {
+   "version": "8.9.0",
+   "time": "2026-10-26 03:54",
+   "note": "入选投研池工具栏在「全部来源」旁新增「入选日期」下拉框，与来源筛选叠加使用——选定某一天即只显示当天入选入池的股票（也可叠加栏目来源组合筛选）；选项随投研池数据自动更新；筛选只影响本区卡片展示，不影响统计与图表。"
   }
  ],
  "review": {
@@ -103034,10 +103040,21 @@ function fillColSels(){
  var fs=document.getElementById('favColSel');
  if(fs){var fv=fs.value;fs.innerHTML='<option value="">全部来源</option>'+opts+'<option value="__manual__">🧑 人工录入</option>';if(fv)fs.value=fv;}
 }
+function fillPoolDateSel(){
+var sel=document.getElementById('poolDateSel');if(!sel)return;
+var ds={};W.forEach(function(w){if(w.dateIn)ds[w.dateIn]=1;});
+var keys=Object.keys(ds).sort().reverse();
+var cur=sel.value;
+sel.innerHTML='<option value="">全部日期（'+keys.length+'）</option>'+keys.map(function(d){return '<option value="'+esc(d)+'">'+esc(d)+'</option>';}).join('');
+if(keys.indexOf(cur)>=0)sel.value=cur;
+}
 function renderPool(){
+fillPoolDateSel();
  var cv=(document.getElementById('poolColSel')||{}).value||'';
  var list=cv?W.filter(function(w){return colOf(w)===cv;}):W;
- document.getElementById('poolBox').innerHTML=list.length?applyOrder(autoSort(list),'pool').map(function(w){return cardHtml(w,false);}).join(''):'<div class="fav-empty">'+(cv?('当前栏目筛选（'+esc(cv)+'）下暂无在池标的。'):'投研池暂无标的，等待采集注入（每日 15:35 / 0:30）。')+'</div>';
+ var dv=(document.getElementById('poolDateSel')||{}).value||'';
+ if(dv)list=list.filter(function(w){return w.dateIn===dv;});
+ document.getElementById('poolBox').innerHTML=list.length?applyOrder(autoSort(list),'pool').map(function(w){return cardHtml(w,false);}).join(''):'<div class="fav-empty">'+(cv?('当前栏目筛选（'+esc(cv)+'）下暂无在池标的。'):(dv?('当前日期筛选下暂无在池标的——可切换回「全部日期」查看。'):'投研池暂无标的，等待采集注入（每日 15:35 / 0:30）。'))+'</div>';
  setCnt('poolCntT',W.length);
  refreshOrdReset();
 }
