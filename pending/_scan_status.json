@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-25 19:21:55",
+ "lastScanAt": "2026-10-25 19:55:13",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 0,
  "failed": 0,
- "source": "",
- "note": "cls.cn 各栏目无新文章（已全部收录）",
- "newTitles": [],
+ "source": "cls.cn",
+ "note": "",
+ "newTitles": [
+  "【金牌纪要库】AI服务器存储价格与产品竞争力出现分化，高速光互连交付推动测试及封装设备需求升级"
+ ],
  "failedList": []
 }
