@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-25 16:58:32",
+ "lastScanAt": "2026-10-25 17:27:12",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【财联社早知道】Kimi最强3万亿级模型来了！着重强化了3D建模与金融能力，编程智能体测评超过GPT-6；亚马逊CEO称算力订单已排至2028年"
+ ],
  "failedList": []
 }
