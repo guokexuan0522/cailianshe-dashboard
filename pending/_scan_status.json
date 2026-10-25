@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-25 22:23:04",
+ "lastScanAt": "2026-10-25 22:56:36",
  "ok": true,
- "new": 1,
- "skipped": 0,
+ "new": 0,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【公告全知道】人形机器人+光模块+模拟芯片+AI眼镜！公司低电压、超低功耗产品已应用到国内头部机器人"
- ],
+ "newTitles": [],
  "failedList": []
 }
