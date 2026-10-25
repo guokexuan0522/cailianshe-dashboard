@@ -104,21 +104,25 @@ h2 .cnt.n0{background:#3a4a60;color:#9fb0c8}
 .stock-card .since{font-size:12px;margin-top:6px;padding:6px 8px;background:#1a2638;border-radius:7px}
 .stock-card .trend-blk{border-left:3px solid var(--yellow);background:#1d2a40}
 .stock-card .trend-blk b.lbl{color:var(--yellow)}
-.stock-card .tr-head{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:1px 0 5px}
-.stock-card .tr-badge{display:inline-block;padding:1px 9px;border-radius:20px;font-size:11.5px;font-weight:800;line-height:1.55;white-space:nowrap;cursor:help}
-.stock-card .tr-badge.lg{font-size:13px;padding:2px 13px}
-.stock-card .tr-badge.tb-su{background:var(--red);color:#fff}
-.stock-card .tr-badge.tb-u{background:rgba(244,80,94,.16);color:var(--red);border:1px solid rgba(244,80,94,.55)}
-.stock-card .tr-badge.tb-f{background:rgba(139,152,173,.13);color:var(--muted);border:1px solid rgba(139,152,173,.4)}
-.stock-card .tr-badge.tb-d{background:rgba(47,191,113,.16);color:var(--green);border:1px solid rgba(47,191,113,.55)}
-.stock-card .tr-badge.tb-sd{background:var(--green);color:#fff}
-.stock-card .tr-meta{font-size:11.5px;color:var(--muted)}
-.stock-card .tr-meta b{font-weight:800}
-.stock-card .tr-segs{display:flex;gap:6px;flex-wrap:wrap}
-.stock-card .tr-seg{display:inline-flex;align-items:center;gap:5px;background:#16202f;border:1px solid #26334a;border-radius:6px;padding:2px 8px}
-.stock-card .tr-seg i{font-style:normal;color:var(--muted);font-weight:700;font-size:11px}
-.stock-card .tr-seg em{font-style:normal;font-weight:800;font-size:11.5px}
-.stock-card .tr-basis{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.6}
+.stock-card .td-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:2px 0 6px}
+.stock-card .td-dir{display:inline-block;font-size:14px;font-weight:800;padding:2px 12px;border-radius:4px;letter-spacing:1px;white-space:nowrap}
+.stock-card .td-dir.up{background:#3a1620;color:#f4505e;border:1px solid #6b2230}
+.stock-card .td-dir.down{background:#12291f;color:#2fbf71;border:1px solid #1d5c3c}
+.stock-card .td-cross{font-size:12px;color:var(--muted);line-height:1.5}
+.stock-card .td-cross b{color:var(--txt);font-weight:800}
+.stock-card .td-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center;font-size:12px;margin-bottom:5px}
+.stock-card .td-phase{display:inline-block;padding:1px 9px;border-radius:3px;font-weight:800;font-size:11.5px;cursor:help}
+.stock-card .td-phase.qd{background:#2a2410;color:#f0b43c;border:1px solid #5c4a1a}
+.stock-card .td-phase.zd{background:#10222e;color:#4fc3f7;border:1px solid #1d4a66}
+.stock-card .td-phase.hd{background:#2e1a1a;color:#f4737f;border:1px solid #5e2b2b}
+.stock-card .td-band{color:var(--muted)}
+.stock-card .td-note{color:#7d8aa0;font-size:11px}
+.stock-card .td-warn{margin-top:4px;padding:5px 10px;border-radius:4px;font-size:12px;line-height:1.6}
+.stock-card .td-warn.hot{background:#3a1a10;border:1px solid #a0522d;color:#ffb37a;font-weight:700}
+.stock-card .td-warn.cool{background:#1a2436;border:1px solid #2c3a52;color:#9fb2cc}
+.stock-card .td-warn b{font-weight:800}
+.stock-card .td-basis{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.7}
+.stock-card .td-basis b{font-weight:800}
 .stock-card .btn{margin-top:8px;font-size:12.5px;color:#7fb0f7;cursor:pointer;border:1px solid #2c3f5f;background:#1a2a44;border-radius:7px;padding:4px 10px;width:100%;text-align:center}
 .stock-card .charts-box{display:none;margin-top:10px}
 .stock-card.open .charts-box{display:block}
@@ -513,8 +517,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
 </div>
 
 <script id="MONITOR_DATA" type="application/json">{
- "version": "9.0.0",
- "lastUpdated": "2026-10-26 04:52（2026-10-25 22:34 自动落地 0 只入投研池 / 0 条进比对候选池 / 3 条待全网比对 / 0 条负面放弃；人工修订：技术分析块新增涨跌趋势判断 v9.0.0）",
+ "version": "9.1.0",
+ "lastUpdated": "2026-10-26 06:03（2026-10-25 22:34 自动落地 0 只入投研池 / 0 条进比对候选池 / 3 条待全网比对 / 0 条负面放弃；人工修订：涨跌趋势重构为日线MACD波段跟踪+手工录入股技术分析同口径实时计算 v9.1.0）",
  "collectTime": "2026-10-23 16:18（15:35收盘采集·自动）",
  "quoteTime": "2026-10-23 16:14 收盘",
  "period": "2026-10-23 收盘",
@@ -95869,7 +95873,8 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
   "微信专辑列表自2026-10-18 19:19起结构性停更（漏收录10-16下午以来文章），已切换财联社官网 cls.cn 直抓通道（签名API+SSR详情页，与公众号同源）；10-18晚间四篇过门槛文章（公告全知道/金牌纪要库/狙击龙虎榜/风口研报洞察）已补抓，按铁律入池7只（威尔高同时命中两篇合并记录），6篇180豆以下文章标记seen。"
  ],
  "history": [
-  {
+  {"v":"v9.1.0","t":"2026-10-26 06:03","by":"人工修订","txt":"①「涨跌趋势」块重构为日线MACD波段跟踪（超短视角）：当前趋势方向（金叉=上涨/死叉=下跌）、交叉形成日期、持续交易日数、交叉以来波段幅度、前/中/后段阶段判定、下次有效交叉预测（DIF/DEA近5日均速线性外推）与提前1-3日⚠️预警；|MACD柱|≥收盘价0.1%方记有效交叉（过滤躺平擦边穿越），无有效交叉时按价格与MA20关系兜底判读；合成单测12/12通过，53只入选股全量核对分布合理（涨28/跌25，前段11/中段14/后段28，预警10只）。②手工录入股技术分析改为前端实时计算：calc_signals.py v4.28 七维评分移植为页面 calcSignals()，与Python原版对53只入选股全字段（action/pos/score/tags/hard/sup/res/stop/nearStop）完全一致，tech拼接规则同存量（tags+仅R4）；新增 MONITOR_DATA.manualInfo 数据区（按代码键存放fundamental/outlook，待补录）。③修复manualW支撑/压力位取值错误（原sup误取最高价、res误取收盘价，改为最低价/最高价）。"},
+    {
    "time": "2026-10-21 15:40",
    "ver": "v8.1",
    "note": "清库重建后收口：① 新增全网比对落地 2 只（中恒电气 002364、科华数据 002335，源自盘中宝 2510883「数据中心最优供电方案 + 2026 出海元年 + 龙头订单逾 200 亿 + 供货国际巨头」）；② 2510857（固态电池）逐字比对后宁缺毋滥放弃——特征虽高度吻合但板块分布（主板1/科创1/创业1）与唯一可确定标的冲突；③ 宁德时代标签串假阳性彻底根治：autopool 新增 label-chain-risk 判据（加号堆叠 ≥3 段且命中处紧邻分隔符）、results 档案清洗、land.py 补收 label-chain-risk 入队、landed.log 恢复幂等标记；④ 34 只全量行情/分时同步至 10-21 收盘（267 点/只）"
@@ -96325,7 +96330,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
    "note": "入选投研池工具栏在「全部来源」旁新增「入选日期」下拉框，与来源筛选叠加使用——选定某一天即只显示当天入选入池的股票（也可叠加栏目来源组合筛选）；选项随投研池数据自动更新；筛选只影响本区卡片展示，不影响统计与图表。"
   },
   {
-   "version": "9.0.0",
+   "version": "9.1.0",
    "time": "2026-10-26 04:52",
    "note": "每张股票卡片「技术分析」块最下方新增「涨跌趋势」判断指标：取最近60个交易日K线均分前/中/后三段，每段按六维技术指标（线性回归涨幅×R²纯度、MA5/MA10/MA20均线排列、MACD(12,26,9)、RSI(14)、ADX(14)方向确认、高低点结构）独立评分；「涨/跌」标签需 评分、段内回归涨幅、R²≥0.3 三重确认且方向一致，指标与价格背离或形态非线性（如V/A反转中段）判「震荡」；综合分=前段×0.2+中段×0.3+后段×0.5，幅度与纯度按60日全窗口回归；段徽章悬停可见六维依据全文。合成走势单测8/8通过、53只在池股票分布人工核对无误；无K线数据的卡片自动隐藏该块，不影响其他功能。"
   }
@@ -97851,6 +97856,7 @@ var Fr={},Gr={};var Wr,Hr=function(){function t(t,e,n){var i=this;this._sleepAft
   "holidays2026": "01-01~01-03 元旦 / 02-15~02-23 春节 / 04-04~04-06 清明 / 05-01~05-05 劳动节 / 06-19~06-21 端午 / 09-25~09-27 中秋 / 10-01~10-07 国庆",
   "rule2026": "周六周日常规休市；法定节假日休市日：01-01、01-02、02-16~02-20、02-23、04-06、05-01、05-04、05-05、06-19、09-25、10-01、10-02、10-05~10-07；调休上班日（01-04、02-14、02-28、05-09、09-20、10-10）均为周末休市、不补开市"
  },
+ "manualInfo": {},
  "ruleCats": [
   {
    "icon": "📡",
@@ -102833,150 +102839,335 @@ var QX = (function () {
 </script>
 
 <script>
-// ===== v9.0 涨跌趋势判断核心（卡片渲染用；与 trend_core.js 同源，合成单测 8/8 通过）=====
+// ===== v9.1 涨跌趋势判断核心（卡片渲染用；与 trend_core2.js 同源，合成单测 12/12 通过）=====
 (function(){
-// ===== 涨跌趋势判断核心（供页面嵌入与单测共用）=====
-// 输入：K线序列 [[date,open,close,high,low,volume],...]（取最近60根，均分三段）
-// 方法：每段独立计算 5 组成熟技术指标并加权评分——
-//   ① 线性回归（段内涨跌幅% × R²纯度）
-//   ② 均线排列（段末 MA5/MA10/MA20，多头/空头加成）
-//   ③ MACD(12,26,9)（段末 DIF/DEA 方向 × 段内红柱占比）
-//   ④ RSI(14)（段内均值）
-//   ⑤ ADX(14)（段末，>25 趋势确认加权，<20 震荡衰减）
-//   ⑥ 高低点结构（段内后1/3 vs 前1/3 的 swing high/low）
-function trendCore(kl){
-  var ks=(kl||[]).slice(-60);
+// ===== 涨跌趋势核心 v2（超短视角·日线MACD波段跟踪）=====
+// 与 tools/calc_signals.py 同口径：EMA 首值启动、MACD(12,26,9)、MACD柱=(DIF-DEA)*2
+// 输入：日K序列 [[date,open,close,high,low,volume],...]（全序列，至少30根）
+// 输出：
+//   dir:'up'|'down'|null —— 当前趋势方向（最近一次MACD交叉：金叉=up / 死叉=down）
+//   crossType:'金叉'|'死叉'、crossDate:'YYYY-MM-DD' —— 最近一次交叉的类型与形成日期
+//   days:N —— 交叉后又经过的交易日数（0=当日刚形成）
+//   bandPct —— 波段累计涨跌幅%（交叉日收盘→最新收盘）
+//   phase:'前段'|'中段'|'后段' + phaseWhy —— 当前所处趋势阶段及依据
+//   next:{type:'死叉'|'金叉',inDays:N,warn:bool}|null —— 预测下次交叉
+//        （DIF/DEA 各取近5日平均变化速度线性外推；warn=预计1-3个交易日内形成，提前预警）
+function trendCore2(kl){
+  var ks=kl||[];
   var n=ks.length;
-  if(n<15)return null;
-  var seg=Math.floor(n/3);
-  var segs=[ks.slice(0,seg),ks.slice(seg,2*seg),ks.slice(2*seg)];
+  if(n<30)return null;
   var closes=ks.map(function(k){return k[2];});
-  var highs=ks.map(function(k){return k[3];});
-  var lows=ks.map(function(k){return k[4];});
-  // ---- 全序列指标 ----
+  var dates=ks.map(function(k){return String(k[0]).slice(0,10);});
   function ema(arr,p){var out=[],k=2/(p+1),prev=arr[0];for(var i=0;i<arr.length;i++){prev=i===0?arr[0]:arr[i]*k+prev*(1-k);out.push(prev);}return out;}
   var e12=ema(closes,12),e26=ema(closes,26);
-  var macd=closes.map(function(_,i){return e12[i]-e26[i];});
-  var dea=ema(macd,9);
-  var macdSeries=macd.map(function(d,i){return {dif:d,dea:dea[i],hist:(d-dea[i])*2};});
-  // RSI(14) Wilder
-  var rsi=new Array(n).fill(50);
-  var g=0,l=0;
-  for(var i=1;i<=14&&i<n;i++){var ch=closes[i]-closes[i-1];if(ch>0)g+=ch;else l-=ch;}
-  g/=14;l/=14;
-  rsi[Math.min(14,n-1)]=l===0?100:100-100/(1+g/l);
-  for(var i2=15;i2<n;i2++){var c2=closes[i2]-closes[i2-1];g=(g*13+Math.max(c2,0))/14;l=(l*13+Math.max(-c2,0))/14;rsi[i2]=l===0?100:100-100/(1+g/l);}
-  // ADX(14) Wilder
-  var tr=new Array(n).fill(0),pdm=new Array(n).fill(0),mdm=new Array(n).fill(0);
-  for(var i3=1;i3<n;i3++){
-    tr[i3]=Math.max(highs[i3]-lows[i3],Math.abs(highs[i3]-closes[i3-1]),Math.abs(lows[i3]-closes[i3-1]));
-    var up=highs[i3]-highs[i3-1],dn=lows[i3-1]-lows[i3];
-    pdm[i3]=(up>dn&&up>0)?up:0; mdm[i3]=(dn>up&&dn>0)?dn:0;
+  var dif=e12.map(function(v,i){return v-e26[i];});
+  var dea=ema(dif,9);
+  var gap=dif.map(function(v,i){return v-dea[i];});
+  // ---- 扫描全序列交叉点（i>=27：等 EMA26 热身；|gap|≥价格0.1% 才算有效交叉，
+  //      滤除缓慢匀速趋势尾部 DIF/DEA 躺平时的擦边穿越）----
+  var lastCross=-1,lastType=null;
+  for(var i=27;i<n;i++){
+    var epsI=closes[i]*0.001;
+    if(gap[i-1]<epsI&&gap[i]>=epsI){lastCross=i;lastType='金叉';}
+    else if(gap[i-1]>-epsI&&gap[i]<=-epsI){lastCross=i;lastType='死叉';}
   }
-  var str14=0,spdm=0,smdm=0;
-  for(var i4=1;i4<=14&&i4<n;i4++){str14+=tr[i4];spdm+=pdm[i4];smdm+=mdm[i4];}
-  var adxOut=new Array(n).fill(null);
-  if(n>14){
-    var dxs=[];
-    for(var i5=15;i5<n;i5++){
-      str14=str14-str14/14+tr[i5];spdm=spdm-spdm/14+pdm[i5];smdm=smdm-smdm/14+mdm[i5];
-      var pdi=str14?100*spdm/str14:0,mdi=str14?100*smdm/str14:0;
-      var dx=(pdi+mdi)?100*Math.abs(pdi-mdi)/(pdi+mdi):0;
-      dxs.push({pdi:pdi,mdi:mdi,dx:dx});
+  var i=n-1;
+  // ---- 均线（方向兜底与依据展示共用）----
+  function ma(k){var s=0;for(var q2=Math.max(0,n-k);q2<n;q2++)s+=closes[q2];return s/Math.min(k,n);}
+  var m5=ma(5),m10=ma(10),m20=ma(20);
+  var maState=m5>m10&&m10>m20?'多头排列':(m5<m10&&m10<m20?'空头排列':'均线纠缠');
+  var dir,crossType=null,crossDate=null,days,bandPct=null,dirNote='';
+  if(lastCross>=0){
+    dir=lastType==='金叉'?'up':'down';
+    crossType=lastType;crossDate=dates[lastCross];
+    days=n-1-lastCross;
+    bandPct=+((closes[n-1]/closes[lastCross]-1)*100).toFixed(2);
+  }else{
+    // 无有效交叉（DIF/DEA 长期贴合：横盘震荡，或匀速趋势尾部躺平）：
+    // 注意匀速趋势尾部 DIF/DEA 双双衰减趋0，gap 会出现假穿越，方向不可凭 gap 符号；
+    // 以价格与MA20关系判读，恰在MA20上时看 DIF 零轴位置
+    var aboveMa=closes[n-1]>m20;
+    dir=aboveMa?'up':(closes[n-1]<m20?'down':(dif[i]>=0?'up':'down'));
+    crossType=(gap[i]>=0)?'金叉态':'死叉态';
+    days=n-1-27;
+    dirNote='窗口内无有效金叉/死叉（DIF/DEA 近乎贴合）·按价格与均线位置判读';
+  }
+  // ---- 动能：趋势段内 |MACD柱| 近3日 vs 前3日 ----
+  var bars=[];
+  var kFrom=lastCross>=0?lastCross+1:27;
+  for(var j=kFrom;j<n;j++)bars.push(Math.abs(gap[j])*2);
+  var decay=false,accel=false;
+  if(bars.length>=6){
+    var l3=(bars[bars.length-1]+bars[bars.length-2]+bars[bars.length-3])/3;
+    var p3=(bars[bars.length-4]+bars[bars.length-5]+bars[bars.length-6])/3;
+    if(p3>0){
+      if(l3<p3*0.7)decay=true;
+      else if(l3>p3*1.3)accel=true;
     }
-    var adx=dxs.length?dxs[0].dx:0;
-    // 重新顺序生成 ADX 序列（Wilder 平滑）
-    var adxS=new Array(dxs.length);
-    adxS[0]=dxs[0].dx;
-    for(var i8=1;i8<dxs.length;i8++)adxS[i8]=(adxS[i8-1]*13+dxs[i8].dx)/14;
-    for(var i9=0;i9<dxs.length;i9++)adxOut[i9+15]={adx:adxS[i9],pdi:dxs[i9].pdi,mdi:dxs[i9].mdi};
   }
-  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
-  function avg(a){var s=0;for(var i=0;i<a.length;i++)s+=a[i];return a.length?s/a.length:0;}
-  // 线性回归统计：斜率隐含总涨幅% + 拟合纯度 R²
-  function regStats(c){
-    var m=c.length,sx=0,sy=0,sxx=0,sxy=0;
-    for(var i=0;i<m;i++){sx+=i;sy+=c[i];sxx+=i*i;sxy+=i*c[i];}
-    var den=m*sxx-sx*sx;
-    var slope=den?(m*sxy-sx*sy)/den:0;
-    var icept=den?(sy-slope*sx)/m:sy/m;
-    var mean=sy/m||1;
-    var segPct=slope*(m-1)/mean*100;
-    var ssTot=0,ssRes=0;
-    for(var j=0;j<m;j++){var pr=icept+slope*j;ssRes+=(c[j]-pr)*(c[j]-pr);ssTot+=(c[j]-mean)*(c[j]-mean);}
-    var r2=ssTot>0?1-ssRes/ssTot:0;
-    return {pct:segPct,r2:r2};
+  // ---- 阶段判定（前段=趋势初立 / 中段=主升主跌 / 后段=尾段衰竭）----
+  var phase,why;
+  if(days<=2){
+    phase='前段';
+    why=(days===0?'当日形成'+crossType:crossType+'后'+days+'个交易日')+'·趋势初立';
+  }else if(days>=3&&decay){
+    phase='后段';
+    why=crossType+'后'+days+'个交易日·MACD柱收敛·动能衰减（衰竭信号）';
+  }else if(days>=6){
+    phase='后段';
+    why=crossType+'后'+days+'个交易日·柱体'+(accel?'仍放大但':'维持')+'·持续较久进入尾段，警惕反转';
+  }else{
+    phase='中段';
+    why=crossType+'后'+days+'个交易日·MACD柱'+(accel?'加速放大':'维持放大')+'·主'+(dir==='up'?'升':'跌')+'段';
   }
-  function segEval(segK,idx0){
-    var m=segK.length;
-    var c=segK.map(function(k){return k[2];});
-    var hi=segK.map(function(k){return k[3];}),lo=segK.map(function(k){return k[4];});
-    // ① 回归
-    var reg=regStats(c);
-    var segPct=reg.pct,r2=reg.r2;
-    var sReg=clamp(segPct/5,-2,2)*Math.max(0.35,r2);
-    // ② 均线（段末）
-    var ma5=avg(c.slice(-5)),ma10=avg(c.slice(-10)),ma20=avg(c.slice(-Math.min(20,m)));
-    var sMa=clamp((ma5-ma20)/ma20*100/3,-2,2);
-    if(ma5>ma10&&ma10>ma20)sMa+=0.5;
-    if(ma5<ma10&&ma10<ma20)sMa-=0.5;
-    // ③ MACD
-    var iEnd=idx0+m-1;
-    var md=macdSeries[iEnd]||macdSeries[n-1];
-    var hc=0,ht=0;
-    for(var t=Math.max(0,idx0);t<=iEnd;t++){if(macdSeries[t]){ht++;if(macdSeries[t].hist>0)hc++;}}
-    var pRed=ht?hc/ht:0.5;
-    var sMacd=(md.dif>md.dea?1:-1)*(0.4+Math.abs(pRed-0.5)*1.2);
-    // ④ RSI
-    var rEnd=rsi[iEnd],rAvg=50;
-    var rs=[];for(var t2=Math.max(0,idx0);t2<=iEnd;t2++)rs.push(rsi[t2]);
-    rAvg=avg(rs);
-    var sRsi=clamp((rAvg-50)/12,-1.5,1.5);
-    // ⑤ ADX
-    var a=adxOut[iEnd]||adxOut[n-1]||{adx:0,pdi:0,mdi:0};
-    var sAdx=0;
-    if(a.adx>25)sAdx=(a.pdi>a.mdi?1:-1)*Math.min(1.2,(a.adx-25)/15+1);
-    // ⑥ 高低点结构
-    var th=Math.max(1,Math.floor(m/3));
-    var h1=Math.max.apply(null,hi.slice(0,th)),l1=Math.min.apply(null,lo.slice(0,th));
-    var h2=Math.max.apply(null,hi.slice(-th)),l2=Math.min.apply(null,lo.slice(-th));
-    var sStr=0;
-    if(h2>h1&&l2>l1)sStr=1;else if(h2<h1&&l2<l1)sStr=-1;
-    else if(h2>=h1&&l2>l1)sStr=0.5;else if(h2<=h1&&l2<l1)sStr=-0.5;
-    // 合成：三重确认——评分（六维指标综合）、段内回归涨幅（真实价格幅度）、
-    // 趋势纯度 R²≥0.3（回归需确实描述走势，排除 V/A 反转等非线性形态）；
-    // 方向必须一致，任一不满足或指标与价格背离 → 震荡
-    var score=1.0*sReg+1.0*sMa+1.0*sMacd+0.8*sRsi+0.8*sAdx+1.0*sStr;
-    if(a.adx<20)score*=0.65;
-    var label='震荡',lv=0;
-    if(r2>=0.3&&score>=3.5&&segPct>=5){label='强势上涨';lv=2;}
-    else if(r2>=0.3&&score>=1.2&&segPct>=1){label='上涨';lv=1;}
-    else if(r2>=0.3&&score<=-3.5&&segPct<=-5){label='强势下跌';lv=-2;}
-    else if(r2>=0.3&&score<=-1.2&&segPct<=-1){label='下跌';lv=-1;}
-    return {score:Math.round(score*100)/100,label:label,lv:lv,
-            basis:{segPct:Math.round(segPct*100)/100,r2:Math.round(r2*100)/100,ma5:Math.round(ma5*100)/100,ma20:Math.round(ma20*100)/100,
-                   macdDir:md.dif>md.dea?'多':'空',pRed:Math.round(pRed*100),rsi:Math.round(rAvg),adx:Math.round(a.adx),pdi:Math.round(a.pdi),mdi:Math.round(a.mdi),
-                   struct:sStr>0?'抬高':(sStr<0?'降低':'平')}};
+  // ---- 预测下次有效交叉：与最近一次有效交叉相反方向、|gap|≥eps 的穿越 ----
+  // 与交叉扫描同口径：eps=价格0.1%；vgap=DIF-DEA 的日均变化速度（近5日平均）
+  var next=null,nextNote='';
+  var g=gap[i];
+  var epsP=closes[i]*0.001;
+  var vdif=(dif[i]-dif[i-5])/5, vdea=(dea[i]-dea[i-5])/5;
+  var vgap=vdif-vdea;
+  // 预测目标阈值：金叉(态)后瞄准 -eps（死叉），死叉(态)后瞄准 +eps（金叉）
+  var target=(lastCross>=0?lastType:crossType.replace('态',''))==='金叉'?-epsP:epsP;
+  var nextType=target>0?'金叉':'死叉';
+  if(vgap>1e-9||vgap<-1e-9){
+    var t=(target-g)/vgap;
+    if(t>0&&t<1)next={type:nextType,inDays:0,warn:true};
+    else if(t>=1&&t<=30)next={type:nextType,inDays:Math.round(t),warn:t<=3};
+    else if(t>30)nextNote='缺口收敛缓慢，30个交易日内暂无反向交叉信号';
+    else nextNote='DIF/DEA动能延续（缺口'+(vgap>0?'仍在扩大':'未转向反向阈值')+'），短期暂无反向交叉信号';
+  }else{
+    nextNote='DIF与DEA近乎平行运动，暂无交叉信号';
   }
-  var out=[];
-  var idx=0;
-  for(var s=0;s<3;s++){out.push(segEval(segs[s],idx));idx+=segs[s].length;}
-  // 综合：后段权重 0.5，中段 0.3，前段 0.2；
-  // 幅度/纯度门限取全窗口回归（综合描述整个窗口，段徽章承载细节）
-  var tot=out[0].score*0.2+out[1].score*0.3+out[2].score*0.5;
-  var wReg=regStats(closes);
-  var tlabel='震荡',tlv=0;
-  if(wReg.r2>=0.3&&tot>=3.5&&wReg.pct>=15){tlabel='强势上涨';tlv=2;}
-  else if(wReg.r2>=0.3&&tot>=1.2&&wReg.pct>=5){tlabel='上涨';tlv=1;}
-  else if(wReg.r2>=0.3&&tot<=-3.5&&wReg.pct<=-15){tlabel='强势下跌';tlv=-2;}
-  else if(wReg.r2>=0.3&&tot<=-1.2&&wReg.pct<=-5){tlabel='下跌';tlv=-1;}
-  return {segs:out,total:{score:Math.round(tot*100)/100,label:tlabel,lv:tlv,
-          winPct:Math.round(wReg.pct*100)/100,winR2:Math.round(wReg.r2*100)/100}};
+  // ---- 返回 ----
+  return {dir:dir,crossType:crossType,crossDate:crossDate,dirNote:dirNote,
+    days:days,bandPct:bandPct,phase:phase,phaseWhy:why,next:next,nextNote:nextNote,
+    gap:+g.toFixed(4),hist2:+(g*2).toFixed(4),
+    ma5:+m5.toFixed(2),ma10:+m10.toFixed(2),ma20:+m20.toFixed(2),maState:maState,
+    price:closes[n-1],lastDate:dates[n-1]};
 }
 
-
-window.TREND={core:trendCore};
+window.TREND={core:trendCore2};
 })();
+// ===== calcSignals.js — tools/calc_signals.py 的逐行忠实移植（v4.28 七维评分）=====
+// 用途：手工录入股在前端实时计算 tech 技术分析文本，与入选投研池股票同口径
+// 输入：kline [[date,open,close,high,low,volume],...]（至少60根，取最后80根）
+//      quote {price, prev, pct, vol}、priceIn（入选价，null 则不计算 R3）
+// 输出：{action,pos,score,tags,sup,res,stop,nearStop,hard}
+function calcSignals(kline, quote, priceIn){
+  function ma(closes,n){ if(closes.length<n)return null; var s=0; for(var i=closes.length-n;i<closes.length;i++)s+=closes[i]; return s/n; }
+  function emaSeries(values,n){
+    var k=2/(n+1),out=[values[0]];
+    for(var i=1;i<values.length;i++)out.push(values[i]*k+out[out.length-1]*(1-k));
+    return out;
+  }
+  function macd(closes){
+    var e12=emaSeries(closes,12),e26=emaSeries(closes,26);
+    var dif=e12.map(function(v,i){return v-e26[i];});
+    var dea=emaSeries(dif,9);
+    var hist=dif.map(function(v,i){return (v-dea[i])*2;});
+    return {dif:dif,dea:dea,hist:hist};
+  }
+  function rsiWilder(closes,n){
+    n=n||14;
+    if(closes.length<n+1)return null;
+    var gains=[],losses=[];
+    for(var i=1;i<closes.length;i++){
+      var ch=closes[i]-closes[i-1];
+      gains.push(Math.max(ch,0)); losses.push(Math.max(-ch,0));
+    }
+    var ag=0,al=0;
+    for(var i=0;i<n;i++){ag+=gains[i];al+=losses[i];}
+    ag/=n; al/=n;
+    for(var i=n;i<gains.length;i++){ ag=(ag*(n-1)+gains[i])/n; al=(al*(n-1)+losses[i])/n; }
+    if(al===0)return ag>0?100:50;
+    var rs=ag/al;
+    return 100-100/(1+rs);
+  }
+  function kdj(kl,n,m1,m2){
+    n=n||9;m1=m1||3;m2=m2||3;
+    if(kl.length<n)return null;
+    var ks=[],ds=[],js=[],kp=50,dp=50;
+    for(var i=0;i<kl.length;i++){
+      var lo=Infinity,hi=-Infinity;
+      for(var j=Math.max(0,i-n+1);j<=i;j++){ if(kl[j][4]<lo)lo=kl[j][4]; if(kl[j][3]>hi)hi=kl[j][3]; }
+      var rsv=(hi===lo)?50:(kl[i][2]-lo)/(hi-lo)*100;
+      kp=(m1-1)/m1*kp+rsv/m1;
+      dp=(m2-1)/m2*dp+kp/m2;
+      ks.push(kp);ds.push(dp);js.push(3*kp-2*dp);
+    }
+    return {k:ks,d:ds,j:js};
+  }
+  function boll(closes,n,k){
+    n=n||20;k=k||2;
+    if(closes.length<n)return null;
+    var mids=[],ups=[],lows=[],pbs=[];
+    for(var i=n-1;i<closes.length;i++){
+      var s=0; for(var j=i-n+1;j<=i;j++)s+=closes[j];
+      var mid=s/n, v=0;
+      for(var j2=i-n+1;j2<=i;j2++)v+=(closes[j2]-mid)*(closes[j2]-mid);
+      v/=n; var sd=Math.sqrt(v);
+      var up=mid+k*sd, lo=mid-k*sd;
+      var pb=(up!==lo)?(closes[i]-lo)/(up-lo):0.5;
+      mids.push(mid);ups.push(up);lows.push(lo);pbs.push(pb);
+    }
+    return {mid:mids,up:ups,lo:lows,pb:pbs};
+  }
+  function atr(kl,n){
+    n=n||14;
+    if(kl.length<n+1)return null;
+    var trs=[];
+    for(var i=1;i<kl.length;i++){
+      var h=kl[i][3],l=kl[i][4],pc=kl[i-1][2];
+      trs.push(Math.max(h-l,Math.abs(h-pc),Math.abs(l-pc)));
+    }
+    var a=0; for(var i=0;i<n;i++)a+=trs[i]; a/=n;
+    for(var i=n;i<trs.length;i++)a=(a*(n-1)+trs[i])/n;
+    return a;
+  }
+  function f0(x){ return Number(x).toFixed(0); }   // %.0f
+  function f1(x){ return Number(x).toFixed(1); }   // %.1f
+  function f2(x){ return Number(x).toFixed(2); }   // %.2f
+  // Python round() 语义：round-half-even（银行家舍入），保证与 calc_signals.py 逐位一致
+  function rhewer(x,digits){
+    var f=Math.pow(10,digits), v=x*f, fl=Math.floor(v), d=v-fl;
+    var r;
+    if(Math.abs(d-0.5)<1e-9){ r=(fl%2===0)?fl:fl+1; }
+    else r=Math.round(v);
+    return r/f;
+  }
+
+  kline=kline.slice(-80);
+  var closes=kline.map(function(x){return x[2];});
+  var price=+quote.price, prev=+quote.prev;
+  var pct=(quote.pct!==undefined&&quote.pct!==null)?+quote.pct:((prev?(price-prev)/prev*100:0));
+  var volToday=(quote.vol?+quote.vol:kline[kline.length-1][5]);
+
+  var ma5=ma(closes,5),ma10=ma(closes,10),ma20=ma(closes,20);
+  var md=macd(closes);
+  var rsi=rsiWilder(closes);
+  var kd=kdj(kline);
+  var bl=boll(closes);
+  var at=atr(kline);
+  var hi20=-Infinity,lo20=Infinity;
+  for(var i=kline.length-20;i<kline.length;i++){ if(kline[i][3]>hi20)hi20=kline[i][3]; if(kline[i][4]<lo20)lo20=kline[i][4]; }
+  var vols5=kline.slice(-6,-1).map(function(x){return x[5];});
+  var volRatio=(vols5.length&&vols5.reduce(function(a,b){return a+b;},0)>0)?volToday/(vols5.reduce(function(a,b){return a+b;},0)/vols5.length):1;
+  var bias20=ma20?(price-ma20)/ma20*100:0;
+
+  var dDif=md.dif[md.dif.length-1],dDea=md.dea[md.dea.length-1],dHist=md.hist[md.hist.length-1];
+  var k=kd.k[kd.k.length-1],d=kd.d[kd.d.length-1];
+  var mid=bl.mid[bl.mid.length-1],up=bl.up[bl.up.length-1],lo=bl.lo[bl.lo.length-1],pb=bl.pb[bl.pb.length-1];
+
+  var tags=[],score=0;
+
+  // ---- 维度1 趋势（2.0）
+  if(ma5&&ma10&&ma20){
+    if(price>ma5&&ma5>ma10&&ma10>ma20){ score+=2.0; tags.push('多头排列(价>MA5>MA10>MA20)'); }
+    else if(price<ma5&&ma5<ma10&&ma10<ma20&&price<ma20){ score-=2.0; tags.push('空头排列(MA5<MA10<MA20)且价在MA20下方'); }
+    else if(price>ma20&&ma5>ma10){ score+=1.5; tags.push('价在MA20上方且短期均线多头'); }
+    else if(price<ma20&&ma5<ma10){ score-=1.5; tags.push('价在MA20下方且短期均线空头'); }
+    else if(price>ma20){ score+=1.0; tags.push('价在MA20上方'); }
+    else { score-=1.0; tags.push('价在MA20下方'); }
+  }
+
+  // ---- 维度2 MACD（2.0）
+  if(dDif>0&&dDea>0){
+    if(dHist>0){ score+=2.0; tags.push('零轴上方红柱(DIF/DEA双正)'); }
+    else { score+=1.0; tags.push('零轴上方红柱收敛(DIF/DEA双正)'); }
+  }else if(dDif<0&&dDea<0){
+    if(dHist<0){ score-=2.0; tags.push('零轴下方绿柱放大(DIF/DEA双负)'); }
+    else { score-=1.0; tags.push('零轴下方绿柱收敛(DIF/DEA双负)'); }
+  }else if(dDif>dDea){ score+=0.5; tags.push('DIF上穿DEA金叉'); }
+  else { score-=0.5; tags.push('DIF下穿DEA死叉'); }
+
+  // ---- 维度3 RSI（1.0）
+  if(rsi!==null){
+    if(rsi>80){ score-=1.0; tags.push('RSI'+f0(rsi)+'>80超买'); }
+    else if(rsi<20){ score+=1.0; tags.push('RSI'+f0(rsi)+'<20超卖'); }
+    else if(rsi<50){ score+=0.5; tags.push('RSI'+f0(rsi)+'弱势区'); }
+    else if(rsi>65){ score-=0.5; tags.push('RSI'+f0(rsi)+'强势区上方'); }
+    else { tags.push('RSI'+f0(rsi)+'中性区'); }
+  }
+
+  // ---- 维度4 KDJ（1.0）
+  if(k!==null){
+    if(k>d){
+      if(k<20){ score+=1.0; tags.push('低位金叉(K'+f0(k)+'>D'+f0(d)+')'); }
+      else { score+=0.5; tags.push('KDJ金叉状态(K'+f0(k)+'>D'+f0(d)+')'); }
+    }else{
+      if(k>80){ score-=1.0; tags.push('高位死叉(K'+f0(k)+'<D'+f0(d)+')'); }
+      else { score-=0.5; tags.push('KDJ死叉状态(K'+f0(k)+'<D'+f0(d)+')'); }
+    }
+  }
+
+  // ---- 维度5 BOLL 位置（1.0）
+  if(pb!==null){
+    if(pb<0){ score+=0.5; tags.push('触布林下轨(%B='+f2(pb)+'),均值回归'); }
+    else if(pb>1){ score-=0.5; tags.push('触布林上轨(%B='+f2(pb)+'),均值回归'); }
+    else if(pb<0.2){ score+=0.25; tags.push('贴近布林下轨(%B='+f2(pb)+')'); }
+    else if(pb>0.8){ score-=0.25; tags.push('贴近布林上轨(%B='+f2(pb)+')'); }
+  }
+
+  // ---- 维度6 BIAS20（1.0）
+  if(bias20>10){ score-=1.0; tags.push('BIAS20='+f1(bias20)+'%正乖离过大'); }
+  else if(bias20<-10){ score+=1.0; tags.push('BIAS20='+f1(bias20)+'%负乖离过大'); }
+  else if(bias20>6){ score-=0.5; tags.push('BIAS20='+f1(bias20)+'%偏高'); }
+  else if(bias20<-6){ score+=0.5; tags.push('BIAS20='+f1(bias20)+'%偏低'); }
+
+  // ---- 维度7 量价（1.0）
+  if(pct>0&&volRatio>1.5){ score+=1.0; tags.push('放量上涨(量比'+f2(volRatio)+')'); }
+  else if(pct>0){ score+=0.5; tags.push('上涨(量比'+f2(volRatio)+')'); }
+  else if(pct<0&&volRatio>1.5){ score-=1.0; tags.push('放量下跌(量比'+f2(volRatio)+')'); }
+  else if(pct<0){ score-=0.5; tags.push('下跌(量比'+f2(volRatio)+')'); }
+
+  score=rhewer(Math.max(-10,Math.min(10,score)),1);
+
+  // ---- 指令映射
+  var action,pos;
+  if(score>=3.5){ action='买进'; pos='30%~60%'; }
+  else if(score>=1.5){ action='逢低增持'; pos='20%~30%'; }
+  else if(score>-1.5){ action='持有观望'; pos='维持现有仓位'; }
+  else if(score>-3.5){ action='减仓'; pos='卖50%'; }
+  else { action='卖出'; pos='≥80%或清仓'; }
+
+  var hard=[];
+
+  // ---- R1 破位强制卖出
+  var r1Break=price<lo20&&dHist<0;
+  if(r1Break){ action='卖出'; pos='≥80%或清仓'; score=-10; hard.push('R1破位:跌破20日低点'+f2(lo20)+'且MACD绿柱,强制卖出'); }
+
+  // ---- R2 RSI>80 禁止买进
+  if(rsi!==null&&rsi>80&&(action==='买进'||action==='逢低增持')){ action='持有观望'; pos='维持现有仓位'; hard.push('R2超买:RSI'+f0(rsi)+'>80,禁止买进'); }
+
+  // ---- R3 止损线/预警
+  if(priceIn){
+    var gain=(price-priceIn)/priceIn*100;
+    if(gain<=-8){ action='卖出'; pos='≥80%或清仓'; hard.push('R3止损:入选以来'+f1(gain)+'%,触发-8%止损线'+f2(priceIn*0.92)); }
+    else if(gain<=-5){ hard.push('R3预警:入选以来'+f1(gain)+'%,已逼近-8%止损线'+f2(priceIn*0.92)); }
+  }
+
+  // ---- R4 涨跌停日降半级
+  var limitUp=pct>=19.8, limitDown=pct<=-19.8, bigUp=pct>=9.8, bigDown=pct<=-9.8;
+  if(limitUp||limitDown||bigUp||bigDown){
+    var rank={'买进':4,'逢低增持':3,'持有观望':2,'减仓':1,'卖出':0};
+    var inv={4:'买进',3:'逢低增持',2:'持有观望',1:'减仓',0:'卖出'};
+    var posMap={'买进':'30%~60%','逢低增持':'20%~30%','持有观望':'维持现有仓位','减仓':'卖50%','卖出':'≥80%或清仓'};
+    var r=rank[action];
+    if(action==='买进'||action==='逢低增持')r=Math.max(2,r-1);
+    action=inv[r]; pos=posMap[action];
+    hard.push('R4涨跌停日指令降半级(当日'+f2(pct)+'%)');
+  }
+
+  var stop=(priceIn&&(price-priceIn)/priceIn*100<=-8)?priceIn*0.92:null;
+  var nearStop=(priceIn&&(price-priceIn)/priceIn*100<=-5&&(price-priceIn)/priceIn*100>-8)?priceIn*0.92:null;
+
+  return {action:action,pos:pos,score:score,tags:tags,
+    sup:rhewer(lo20,2),res:rhewer(hi20,2),
+    stop:stop?rhewer(stop,2):null,
+    nearStop:nearStop?rhewer(nearStop,2):null,
+    hard:hard};
+}
 </script>
 
 <script>
@@ -103197,53 +103388,60 @@ trendHtml(w,st)+
 '<div class="charts-box"><div class="clabel">分时图（今日）</div><div class="cbox" data-ctype="minute"></div><div class="clabel">日K线（前复权60日：<span style="color:'+GOLD+'">金线=入选日+入选价</span>，<span style="color:'+BLUE+'">蓝线=自选日+自选价</span>）</div><div class="cbox" data-ctype="kline"></div><div class="clabel" data-simlabel>模拟走势（未来10个交易日）</div><div class="cbox" data-ctype="sim"></div></div>'+
 '</div>';
 }
-// ===== v9.0 涨跌趋势判断（卡片技术分析块内嵌）=====
-// 输入 D.stocks[q].kline=[[date,open,close,high,low,volume],...]，取最近60根均分前/中/后三段。
-// 每段六维指标独立评分（见 window.TREND.core 头部注释）；标签三重门限：评分+回归涨幅+R²纯度。
+// ===== v9.1 涨跌趋势判断（卡片技术分析块内嵌·日线MACD波段跟踪）=====
+// 输入 D.stocks[q].kline=[[date,open,close,high,low,volume],...]（全序列，至少30根）
+// 核心见 window.TREND.core（trendCore2）：金叉/死叉定方向，持续天数+柱动能定阶段，线性外推预测下次交叉
 var TREND_CACHE={};
 function trendOf(w,st){
  var q=w.q||w.code;
  var kl=(st&&st.kline)||(D.stocks[q]||{}).kline||null;
  var c=TREND_CACHE[q];
  if(c&&c.kl===kl)return c.r;
- var r=(kl&&kl.length>=15&&window.TREND)?window.TREND.core(kl):null;
+ var r=(kl&&kl.length>=30&&window.TREND)?window.TREND.core(kl):null;
  TREND_CACHE[q]={kl:kl,r:r};
  return r;
 }
-var TR_BADGE={'强势上涨':'tb-su','上涨':'tb-u','震荡':'tb-f','下跌':'tb-d','强势下跌':'tb-sd'};
-var TR_METHOD='取最近60个交易日K线均分前/中/后三段，每段按六维技术指标独立评分：①线性回归（段内涨幅×R²纯度）②均线排列（段末MA5/MA10/MA20）③MACD(12,26,9)（DIF/DEA方向×红柱占比）④RSI(14)段内均值⑤ADX(14)方向确认（>25加权、<20衰减）⑥高低点结构（段内后1/3 vs 前1/3）。判「涨/跌」需 评分、段内回归涨幅、R²≥0.3 三重确认且方向一致；指标与价格背离或形态非线性（如V/A反转中段）判「震荡」。综合分=前段×0.2+中段×0.3+后段×0.5，幅度与纯度按60日全窗口回归。';
-function trBadge(lb,extra,title){
- return '<b class="tr-badge '+(TR_BADGE[lb]||'tb-f')+(extra?' '+extra:'')+'"'+(title?' title="'+esc(title)+'"':'')+'>'+lb+'</b>';
-}
-// 段判「震荡」时说明受阻的首要原因；判「涨/跌」时列关键证据
-function trSegTxt(sg){
- var b=sg.basis;
- if(sg.label!=='震荡')return 'R²'+b.r2+'·ADX'+b.adx+'·高低点'+b.struct+'·MACD'+b.macdDir;
- if(b.r2<0.3)return 'R²'+b.r2+'·走势不纯（形态非线性）';
- if(Math.abs(b.segPct)<1)return '段内净变动'+(b.segPct>0?'+':'')+b.segPct+'%·幅度不足';
- if(b.adx<20)return 'ADX'+b.adx+'·趋势动能不足';
- if(Math.abs(sg.score)<1.2)return '指标评分'+sg.score+'·多空分歧';
- return '指标评分'+sg.score+'·与价格方向背离';
-}
-// 段徽章悬停：六维依据全文
-function trTip(sg){
- var b=sg.basis;
- return '评分'+sg.score+'｜段内回归涨幅'+(b.segPct>0?'+':'')+b.segPct+'%（纯度R²'+b.r2+'）｜均线MA5'+(b.ma5>b.ma20?'高于':'低于')+'MA20｜MACD'+b.macdDir+'（红柱占比'+b.pRed+'%）｜RSI'+b.rsi+'｜ADX'+b.adx+'（'+(b.pdi>b.mdi?'多':'空')+'头占优）｜高低点'+b.struct;
-}
+var TR_METHOD='日线 MACD(12,26,9) 波段跟踪：DIF 上穿 DEA 记为金叉（上涨趋势起点），下穿记为死叉（下跌趋势起点）；仅当 |MACD柱|≥收盘价 0.1% 方记为有效交叉，过滤两线躺平时的擦边穿越。阶段按交叉持续天数与 MACD 柱动能（近3日 vs 前3日）划分前/中/后段。下次有效交叉按 DIF/DEA 近5日平均变化速度线性外推，预计 1-3 个交易日内形成时触发 ⚠️ 预警。';
 function trendHtml(w,st){
  var r=trendOf(w,st);
  if(!r)return '';
- var t=r.total,names=['前段','中段','后段'];
- var chips=r.segs.map(function(sg,i){
-   return '<span class="tr-seg"><i>'+names[i]+'</i>'+trBadge(sg.label,'',trTip(sg))+'<em>'+(sg.basis.segPct>0?'+':'')+sg.basis.segPct+'%</em></span>';
- }).join('');
- var basis=r.segs.map(function(sg,i){return names[i]+' '+trSegTxt(sg);}).join('｜');
- var wp=t.winPct;
- return '<div class="blk trend-blk"><b class="lbl" title="'+esc(TR_METHOD)+'">涨跌趋势</b>'+
- '<div class="tr-head">'+trBadge(t.label,'lg','综合评分 '+(t.score>0?'+':'')+t.score+' = 前段×0.2 + 中段×0.3 + 后段×0.5；60日窗口回归 '+(wp>0?'+':'')+wp+'%（纯度R²'+t.winR2+'）')+
- '<span class="tr-meta">60日窗口 <b class="'+(wp>=0?'up':'down')+'">'+(wp>0?'+':'')+wp+'%</b> · 趋势纯度 R²'+t.winR2+' · 综合评分 <b>'+(t.score>0?'+':'')+t.score+'</b></span></div>'+
- '<div class="tr-segs">'+chips+'</div>'+
- '<div class="tr-basis">依据：'+esc(basis)+'</div></div>';
+ var isUp=r.dir==='up';
+ var dirTxt=isUp?'▲ 上涨趋势':'▼ 下跌趋势';
+ var crossName=(r.crossType==='金叉'||r.crossType==='金叉态')?'金叉':'死叉';
+ var crossHtml;
+ if(r.crossDate)crossHtml=crossName+'形成于 <b>'+r.crossDate+'</b> · 已持续 <b>'+r.days+'</b> 个交易日';
+ else crossHtml='窗口内无有效'+crossName+'（DIF/DEA 近乎贴合）· 按现价位置判读 · 已持续 <b>'+r.days+'</b> 个交易日';
+ var bandHtml=r.bandPct===null?'—':'<b class="'+(r.bandPct>=0?'up':'down')+'">'+(r.bandPct>0?'+':'')+r.bandPct+'%</b>';
+ var phaseCls=r.phase==='前段'?'qd':(r.phase==='中段'?'zd':'hd');
+ var warnHtml;
+ if(r.next&&r.next.warn){
+   var when=r.next.inDays===0?'下一交易日即可能形成':'预计 <b>'+r.next.inDays+'</b> 个交易日内形成';
+   warnHtml='<div class="td-warn hot">⚠️ 趋势预警：'+when+' <b>'+r.next.type+'</b>，当前'+(isUp?'上涨':'下跌')+'趋势临近转折</div>';
+ }else if(r.next){
+   warnHtml='<div class="td-warn cool">下一次交叉预测：约 <b>'+r.next.inDays+'</b> 个交易日后形成 <b>'+r.next.type+'</b></div>';
+ }else{
+   warnHtml='<div class="td-warn cool">下一次交叉预测：'+esc(r.nextNote)+'</div>';
+ }
+ var histTxt=(r.hist2>0?'+':'')+(Math.round(r.hist2*100)/100);
+var basis=esc(r.phaseWhy)+'｜MACD柱 <b class="'+(r.hist2>=0?'up':'down')+'">'+histTxt+'</b>｜'+r.maState+'｜现价 '+r.price+'（截至 '+r.lastDate+'）';
+ return '<div class="blk trend-blk"><b class="lbl" title="'+esc(TR_METHOD)+'">涨跌趋势 · 日线MACD波段</b>'+
+ '<div class="td-head"><span class="td-dir '+(isUp?'up':'down')+'">'+dirTxt+'</span><span class="td-cross">'+crossHtml+'</span></div>'+
+ '<div class="td-row"><span class="td-phase '+phaseCls+'" title="'+esc(r.phaseWhy)+'">'+r.phase+'</span>'+
+ '<span class="td-band">交叉以来波段 '+bandHtml+'</span>'+
+ (r.dirNote?'<span class="td-note">'+esc(r.dirNote)+'</span>':'')+'</div>'+
+ warnHtml+
+ '<div class="td-basis">'+basis+'</div></div>';
+}
+// 手工录入股技术分析：calcSignals（与 tools/calc_signals.py v4.28 同口径，53只入选股对拍一致）
+function techCalcText(kl,st,priceIn){
+ if(!kl||kl.length<30)return 'K线数据不足（需≥30根日K），暂无法计算技术指标';
+ try{
+  var quote={price:(st.price>0?st.price:kl[kl.length-1][2]),prev:st.prev||0,pct:st.pct||0,vol:(kl[kl.length-1]||[])[5]||0};
+  var a=calcSignals(kl,quote,priceIn||null);
+  var parts=a.tags.slice();
+  for(var i=0;i<a.hard.length;i++)if(a.hard[i].indexOf('R4')===0)parts.push(a.hard[i]);
+  return parts.join(' / ');
+ }catch(e){return '—';}
 }
 function setCnt(id,n){
 var el=document.getElementById(id);if(!el)return;
@@ -103716,12 +103914,15 @@ function manualW(code,f){
 var st=D.stocks[f.q]||{};
 var kl=(st.kline&&st.kline.length)?st.kline:null;
 var price=(st.price>0?st.price:(Number(f.priceFav)>0?Number(f.priceFav):(Number(f.priceIn)>0?Number(f.priceIn):0)));
+var mi=(D.manualInfo&&D.manualInfo[code])||null;
+var priceIn=(Number(f.priceIn)>0?Number(f.priceIn):(Number(f.priceFav)>0?Number(f.priceFav):price));
 var w={code:code,q:f.q,name:f.name||st.name||code,sector:'人工自选',column:'人工自选',
   pub:'人工录入',beans:'—',dateIn:f.dateIn||(st.time?String(st.time).slice(0,4)+'-'+String(st.time).slice(4,6)+'-'+String(st.time).slice(6,8):todayStr()),
-  priceIn:(Number(f.priceIn)>0?Number(f.priceIn):(Number(f.priceFav)>0?Number(f.priceFav):price)),priceNow:price,pct:st.pct||0,
+  priceIn:priceIn,priceNow:price,pct:st.pct||0,
   reason:'人工加入自选股（'+(f.addTime||'—')+'）· 无财联社文章来源',
-  fundamental:'人工录入标的，暂无财联社文章基本面摘要。',
-  outlook:'—',tech:'—',forecast:'—',conf:'mid',prob:null,gainSince:0,manual:true,priceFav:f.priceFav,verifyTag:'人工录入'};
+  fundamental:(mi&&mi.fundamental)||'人工录入标的，暂无财联社文章基本面摘要。',
+  outlook:(mi&&mi.outlook)||'—',
+  tech:techCalcText(kl,st,priceIn),forecast:'—',conf:'mid',prob:null,gainSince:0,manual:true,priceFav:f.priceFav,verifyTag:'人工录入'};
  if(w.priceIn>0&&price>0)w.gainSince=+((price/w.priceIn-1)*100).toFixed(2);
 try{
   var r=kl?QX.analyzeOne(kl,QX_STATE,QX_HORIZON,QX_BASE):null;
@@ -103730,8 +103931,8 @@ try{
     if(r.advice){
       var a=r.advice;
       // 前端补算支撑/压力（近20日最低/最高）与依据标签，结构与服务端复盘 advice 对齐
-      var lo=Math.min.apply(null,kl.slice(-20).map(function(x){return x[3];}));
-      var hi=Math.max.apply(null,kl.slice(-20).map(function(x){return x[2];}));
+      var lo=Math.min.apply(null,kl.slice(-20).map(function(x){return x[4];}));
+      var hi=Math.max.apply(null,kl.slice(-20).map(function(x){return x[3];}));
       a.sup=+lo.toFixed(2);a.res=+hi.toFixed(2);
       a.tags=['量化概率 '+(Math.round(r.prob*10)/10)+'%','市场状态 '+(QX_STATE&&QX_STATE.tag?QX_STATE.tag:'—')];
       w.qxAdvice=a;
