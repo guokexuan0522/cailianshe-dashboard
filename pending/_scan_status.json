@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-26 23:32:21",
+ "lastScanAt": "2026-10-27 00:41:26",
  "ok": true,
- "new": 1,
- "skipped": 1,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【公告全知道】人形机器人+减速器+汽车零部件！公司已实现部分谐波减速器和减速器专用轴承的投产工作"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
