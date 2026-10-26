@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-26 07:50:32",
+ "lastScanAt": "2026-10-26 08:33:00",
  "ok": true,
- "new": 0,
- "skipped": 1,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【九点特供】多家具身团队指出GPT-6Astra还不能把动作做到足够精确，分析师看好数采是破局大脑和数据的关键，稀缺性和不可替代性进一步凸显；Kimi K3.1 Pro发布，多项测试超越GPT-6"
+ ],
  "failedList": []
 }
