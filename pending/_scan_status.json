@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-26 11:08:34",
+ "lastScanAt": "2026-10-26 12:07:30",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】自动化与智能化的关键感知核心，机器人头部厂商方案搭载这类产品，这家公司面向人形机器人领域可提供相关方案"
+ ],
  "failedList": []
 }
