@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-28 07:01:18",
+ "lastScanAt": "2026-10-28 07:58:18",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【金牌纪要库】多省IVD收费价格调整征求意见稿陆续公布，行业量价已经逐步企稳，这个细分环节修复潜在弹性更大"
+ ],
  "failedList": []
 }
