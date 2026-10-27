@@ -1,14 +1,11 @@
 {
- "lastScanAt": "2026-10-27 09:37:19",
+ "lastScanAt": "2026-10-27 10:26:00",
  "ok": true,
- "new": 2,
- "skipped": 2,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【盘中宝】AI大模型能力不断迭代，该行业商业化落地进程有望提速，其已成为头部AI厂商战略布局核心赛道，这家企业已推出多个AI产品",
-  "【研选•行业数据】小鹏Robotaxi获批公开示范运营资质，智能驾驶迈向规模化落地（附表）"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
