@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-10-27 07:57:35",
+ "lastScanAt": "2026-10-27 08:33:59",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【九点特供】Anthropic据悉计划在11月16日当周进行IPO，分析师看好其已有超过6000亿美元的未来基础设施支出承诺，有望为行业打开全新增量市场；第二代RokidAI眼镜将于今日发布"
+ ],
  "failedList": []
 }
