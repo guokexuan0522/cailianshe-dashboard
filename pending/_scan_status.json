@@ -1,14 +1,11 @@
 {
- "lastScanAt": "2026-10-28 11:36:18",
+ "lastScanAt": "2026-10-28 12:36:35",
  "ok": true,
- "new": 2,
- "skipped": 2,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【盘中宝】或为物理AI最稀缺的底层资源，该领域面临巨大的资源缺口，这家公司具身智能业务涵盖多个关键环节",
-  "【研选•行业数据】这类产品近期制作与分发出现新变化，有望成为继AI剧之后的新增长内容"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
