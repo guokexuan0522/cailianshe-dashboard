@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-29 16:45:56",
+ "lastScanAt": "2026-10-29 17:42:40",
  "ok": true,
- "new": 1,
- "skipped": 0,
+ "new": 0,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【风口专家会议】机器人软硬件准备是否已完善？特邀行业专家全面解读机器人产业链供给与研发进展"
- ],
+ "newTitles": [],
  "failedList": []
 }
