@@ -1,11 +1,14 @@
 {
- "lastScanAt": "2026-10-30 11:40:04",
+ "lastScanAt": "2026-10-30 12:39:56",
  "ok": true,
- "new": 0,
+ "new": 2,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【研选•两融数据】机器人+医药+PCB+芯片+AI应用，五大热点一周以来获融资净买入情况（附表）",
+  "【研选•行业数据】食品饮料持仓触底回暖，分析师判断白酒有序出清底部信号明朗"
+ ],
  "failedList": []
 }
