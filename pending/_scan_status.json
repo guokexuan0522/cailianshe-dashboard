@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-10-30 10:40:41",
+ "lastScanAt": "2026-10-30 11:40:04",
  "ok": true,
- "new": 1,
+ "new": 0,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【盘中宝】物理AI底层能力持续迭代，该领域或为最先跑通闭环的代表场景，这家公司已发布相关AI基座产品"
- ],
+ "newTitles": [],
  "failedList": []
 }
