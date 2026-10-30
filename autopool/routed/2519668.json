@@ -1,0 +1,28 @@
+{
+ "aid": 2519668,
+ "outcome": "wake",
+ "routeReason": "generic-name-risk",
+ "routeDetail": "仅命中短名/通用词/统计提及（机器人：generic-name-risk），字面出现不足以证明个股投资信号，需唤醒层公开信源取证；字面点名 0 只 ≤ 声称 4 只（主板1/创业板2/科创板1），其余未字面点名不予补名",
+ "column": "研选•两融数据",
+ "title": "【研选•两融数据】机器人+医药+PCB+芯片+AI应用，五大热点一周以来获融资净买入情况（附表）",
+ "pub": "2026-10-30 12:32",
+ "period": "2026-10-30",
+ "snippet": "机器人+医药+PCB+芯片+AI应用，五大热点一周以来获融资净买入情况（附表）。",
+ "related_stock": [
+  {
+   "market": "主板",
+   "count": 1
+  },
+  {
+   "market": "创业板",
+   "count": 2
+  },
+  {
+   "market": "科创板",
+   "count": 1
+  }
+ ],
+ "beans": 380,
+ "url": "https://www.cls.cn/detail/2519668",
+ "processedAt": "2026-10-30 12:51:45"
+}
