@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-11-01 17:37:14",
+ "lastScanAt": "2026-11-01 18:31:05",
  "ok": true,
- "new": 1,
- "skipped": 1,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【财联社早知道】英伟达披露下一代CPO技术，原型样品已就位，机构预计2028年全球光模块市场规模将达1485亿美元，它重点围绕下一代高速光模块、NPO/CPO新型光互联技术，提供光通信散热整体方案"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
