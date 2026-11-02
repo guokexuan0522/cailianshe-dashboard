@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-11-02 15:06:47",
+ "lastScanAt": "2026-11-02 16:39:01",
  "ok": true,
- "new": 1,
- "skipped": 1,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【盘中宝】随着冬季来临，机构称该行业相关品类销售或有望改善，这家企业与相关院所合作，拥有丰富的产品线"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
