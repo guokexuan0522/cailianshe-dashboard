@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-11-02 23:22:34",
+ "lastScanAt": "2026-11-03 00:29:16",
  "ok": true,
- "new": 1,
- "skipped": 1,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【公告全知道】光模块+光芯片+PCB+光纤+人形机器人！公司光模块产品覆盖10G至1.6T全速率"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
