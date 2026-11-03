@@ -1,0 +1,20 @@
+{
+ "aid": 2524217,
+ "outcome": "wake",
+ "routeReason": "generic-name-risk",
+ "routeDetail": "仅命中短名/通用词/统计提及（机器人：generic-name-risk），字面出现不足以证明个股投资信号，需唤醒层公开信源取证；字面点名 0 只 ≤ 声称 3 只（主板3），其余未字面点名不予补名",
+ "column": "公告全知道",
+ "title": "【公告全知道】NPO+光纤+先进封装+光芯片+液冷+6G！公司全球首发3.2T硅光单模NPO模块",
+ "pub": "2026-11-03 22:08",
+ "period": "2026-11-03",
+ "snippet": "①NPO+光纤+先进封装+光芯片+液冷+6G！这家公司全球首发3.2T硅光单模NPO模块；②存储芯片+MCU芯片+AIPC+汽车电子+人形机器人！这家公司推出全新系列光模块专用MCU芯片；③网络游戏+AI应用+华为！公司签署42亿元GPU产品采购合同。",
+ "related_stock": [
+  {
+   "market": "主板",
+   "count": 3
+  }
+ ],
+ "beans": 280,
+ "url": "https://www.cls.cn/detail/2524217",
+ "processedAt": "2026-11-03 22:59:48"
+}
