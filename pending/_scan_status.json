@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-03 10:43:33",
+ "lastScanAt": "2026-11-03 11:43:57",
  "ok": true,
- "new": 0,
- "skipped": 1,
+ "new": 1,
+ "skipped": 2,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】“算电协同”正在从叙事转向订单兑现，这类产品升级为电力系统新型基础设施，这家公司在多个细分领域形成了自主知识产权创新成果"
+ ],
  "failedList": []
 }
