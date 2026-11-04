@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-11-04 10:41:40",
+ "lastScanAt": "2026-11-04 11:43:53",
  "ok": true,
- "new": 1,
- "skipped": 0,
+ "new": 0,
+ "skipped": 2,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【盘中宝】兼具科技高度与市场广度的赛道，该未来产业正迎来黄金发展期，这家公司已投资布局相关领域"
- ],
+ "newTitles": [],
  "failedList": []
 }
