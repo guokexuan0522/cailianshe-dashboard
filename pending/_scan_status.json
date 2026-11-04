@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-04 13:51:52",
+ "lastScanAt": "2026-11-04 14:58:21",
  "ok": true,
- "new": 0,
- "skipped": 3,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】该行业处于周期底部，随着“反内卷”趋势逐步深化，相关产业链价格已出现企稳回升迹象，这家企业毛利率已连续三个季度实现改善"
+ ],
  "failedList": []
 }
