@@ -1,14 +1,11 @@
 {
- "lastScanAt": "2026-11-04 23:19:13",
+ "lastScanAt": "2026-11-05 00:21:31",
  "ok": true,
- "new": 2,
- "skipped": 1,
+ "new": 0,
+ "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【公告全知道】第三代半导体+先进封装+存储芯片+玻璃基板+AI眼镜！公司半导体领域在手订单超36亿元",
-  "【金牌纪要库】AI短剧题材扩容打开增长空间，制作与发行协同推动收入放量"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
