@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-04 07:32:59",
+ "lastScanAt": "2026-11-04 08:44:27",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【九点特供】9月红果用户数量超越豆包，AI短剧与AI漫剧已成为AI应用中产生显著收入贡献的两大核心场景；超微电脑盘后涨8.3%，公司第一财季营收接近去年同期的4倍，AI服务器需求远超预期"
+ ],
  "failedList": []
 }
