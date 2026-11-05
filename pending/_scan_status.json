@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-05 19:50:35",
+ "lastScanAt": "2026-11-05 20:55:53",
  "ok": true,
- "new": 0,
- "skipped": 3,
+ "new": 1,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【财联社早知道】WorkBuddy紧急十倍扩容！腾讯混元Hy4上线首日调用激增，机构称国内算力租赁行业正从\"主题预期\"走向\"业绩兑现\"，这家公司已完全实现以云交付方式为客户提供AI算力产品"
+ ],
  "failedList": []
 }
