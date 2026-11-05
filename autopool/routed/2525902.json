@@ -1,0 +1,20 @@
+{
+ "aid": 2525902,
+ "outcome": "wake",
+ "routeReason": "no-literal-match",
+ "routeDetail": "公开摘要为线索式描述（未字面点名已知公司），需唤醒层公开信源取证；字面点名 0 只 ≤ 声称 2 只（创业板2），其余未字面点名不予补名",
+ "column": "盘中宝",
+ "title": "【盘中宝】AI Agent正逐步下沉到本地终端，这类产品逐步转变为AI任务执行和生产力入口，这家公司已发布了多款相关AI产品",
+ "pub": "2026-11-05 11:12",
+ "period": "2026-11-05",
+ "snippet": "AI Agent正逐步下沉到本地终端，这类产品或为AI端侧落地的最佳选择，这家公司已发布了多款相关AI产品。",
+ "related_stock": [
+  {
+   "market": "创业板",
+   "count": 2
+  }
+ ],
+ "beans": 280,
+ "url": "https://www.cls.cn/detail/2525902",
+ "processedAt": "2026-11-05 12:01:58"
+}
