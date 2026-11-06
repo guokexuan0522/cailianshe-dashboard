@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-06 07:38:50",
+ "lastScanAt": "2026-11-06 08:49:11",
  "ok": true,
- "new": 0,
- "skipped": 1,
+ "new": 1,
+ "skipped": 2,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【九点特供】超聚变IPO11月12日上会迎考，报告显示2025年超聚变位列国内x86服务器整机厂商第二名；印度拟强制电力零售商配置储能，分析师测算未来十年全球累计储能容量预计将增长10倍"
+ ],
  "failedList": []
 }
