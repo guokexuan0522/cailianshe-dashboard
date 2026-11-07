@@ -1,11 +1,11 @@
 {
- "lastScanAt": "2026-11-08 00:10:21",
+ "lastScanAt": "2026-11-08 01:06:55",
  "ok": true,
  "new": 0,
  "skipped": 0,
  "failed": 0,
  "source": "",
- "note": "未配置文章源或来源无新文章：请检查 cls.cn 接口 / feed.json 的 album、biz/cookie",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
  "newTitles": [],
  "failedList": []
 }
