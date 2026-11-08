@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-08 16:43:37",
+ "lastScanAt": "2026-11-08 17:39:30",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【财联社早知道】全球物理智能开源平台Hitch Open发布，机构称物理AI由技术验证进入连续产业验证窗口，它已构建物理AI数据基座，为具身训练与世界模型训练提供全链路基础设施支撑"
+ ],
  "failedList": []
 }
