@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-11-08 23:08:21",
+ "lastScanAt": "2026-11-09 00:04:38",
  "ok": true,
- "new": 1,
+ "new": 0,
  "skipped": 0,
  "failed": 0,
- "source": "cls.cn",
- "note": "",
- "newTitles": [
-  "【风口研报·洞察】SpaceX星舰即将首次挑战整箭回收，复用节奏有望进一步加快，进而提速星链及太空算力星座部署，分析师看好相关配套及设备需求随之提升；美股AI泡沫目前处于什么阶段"
- ],
+ "source": "",
+ "note": "cls.cn 各栏目无新文章（已全部收录）",
+ "newTitles": [],
  "failedList": []
 }
