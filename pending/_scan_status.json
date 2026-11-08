@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-08 20:10:45",
+ "lastScanAt": "2026-11-08 21:25:08",
  "ok": true,
- "new": 0,
- "skipped": 0,
+ "new": 1,
+ "skipped": 1,
  "failed": 0,
- "source": "",
- "note": "cls.cn 各栏目无新文章（已全部收录）",
- "newTitles": [],
+ "source": "cls.cn",
+ "note": "",
+ "newTitles": [
+  "【狙击龙虎榜】外围大跌A股彰显韧性 周末政策利好与加息预期对冲 下周市场将继续夯实底部"
+ ],
  "failedList": []
 }
