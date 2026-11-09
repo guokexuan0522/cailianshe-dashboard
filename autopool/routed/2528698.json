@@ -1,0 +1,24 @@
+{
+ "aid": 2528698,
+ "outcome": "wake",
+ "routeReason": "no-literal-match",
+ "routeDetail": "公开摘要为线索式描述（未字面点名已知公司），需唤醒层公开信源取证；字面点名 0 只 ≤ 声称 3 只（主板2/创业板1），其余未字面点名不予补名",
+ "column": "研选•行业数据",
+ "title": "【研选•行业数据】模组企业正从售卖单一模组产品向提供完整AI解决方案转型，切入物理AI市场",
+ "pub": "2026-11-09 12:00",
+ "period": "2026-11-09",
+ "snippet": "模组企业正从售卖单一模组产品向提供完整AI解决方案转型，切入物理AI市场。",
+ "related_stock": [
+  {
+   "market": "主板",
+   "count": 2
+  },
+  {
+   "market": "创业板",
+   "count": 1
+  }
+ ],
+ "beans": 380,
+ "url": "https://www.cls.cn/detail/2528698",
+ "processedAt": "2026-11-09 13:09:05"
+}
