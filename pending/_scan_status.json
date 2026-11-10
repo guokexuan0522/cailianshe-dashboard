@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-11-10 16:07:10",
+ "lastScanAt": "2026-11-10 17:19:45",
  "ok": true,
- "new": 1,
- "skipped": 0,
+ "new": 0,
+ "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【盘中宝·记者一线】时隔八个多月首次提价，行业多家公司集中发布涨价函"
- ],
+ "newTitles": [],
  "failedList": []
 }
