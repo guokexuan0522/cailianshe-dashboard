@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-10 10:44:07",
+ "lastScanAt": "2026-11-10 11:43:04",
  "ok": true,
- "new": 0,
- "skipped": 0,
+ "new": 1,
+ "skipped": 1,
  "failed": 0,
- "source": "",
- "note": "cls.cn 各栏目无新文章（已全部收录）",
- "newTitles": [],
+ "source": "cls.cn",
+ "note": "",
+ "newTitles": [
+  "【盘中宝】数据中心进入高速建设期，这类产品供需缺口十分明显，这家公司自主研发了相关产品"
+ ],
  "failedList": []
 }
