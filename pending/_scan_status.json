@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-12 10:44:12",
+ "lastScanAt": "2026-11-12 11:46:45",
  "ok": true,
- "new": 0,
+ "new": 1,
  "skipped": 1,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】算力市场的焦点之一，国内外厂商当前正密集发布这类产品，这家公司在相关领域占据行业先发优势"
+ ],
  "failedList": []
 }
