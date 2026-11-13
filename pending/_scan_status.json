@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-13 10:41:54",
+ "lastScanAt": "2026-11-13 11:46:24",
  "ok": true,
- "new": 0,
- "skipped": 1,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】AI技术的突破改写行业成本逻辑，该领域或成为AI应用商业化的核心赛道，这家公司相关业务已覆盖全球多个国家和地区"
+ ],
  "failedList": []
 }
