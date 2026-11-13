@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-13 13:53:18",
+ "lastScanAt": "2026-11-13 14:59:25",
  "ok": true,
- "new": 0,
- "skipped": 2,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】头部厂商密集迭代，AI进一步推动该产品向Agent入口演进，这家公司布局了相关新兴产品技术研发"
+ ],
  "failedList": []
 }
