@@ -1,13 +1,11 @@
 {
- "lastScanAt": "2026-11-13 12:52:13",
+ "lastScanAt": "2026-11-13 13:53:18",
  "ok": true,
- "new": 1,
+ "new": 0,
  "skipped": 2,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [
-  "【研选•两融数据】文化传媒+AI应用+芯片+机器人+PCB，五大热点一周以来获融资净买入情况（附表）"
- ],
+ "newTitles": [],
  "failedList": []
 }
