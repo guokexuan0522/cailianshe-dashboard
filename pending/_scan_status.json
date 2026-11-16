@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-16 10:49:05",
+ "lastScanAt": "2026-11-16 11:59:42",
  "ok": true,
- "new": 0,
- "skipped": 2,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】供给端产品创新加快，这类资源正爆发出持续的“热效应”，这家公司已布局相关领域"
+ ],
  "failedList": []
 }
