@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-16 07:05:11",
+ "lastScanAt": "2026-11-16 08:11:45",
  "ok": true,
- "new": 0,
- "skipped": 0,
+ "new": 1,
+ "skipped": 2,
  "failed": 0,
- "source": "",
- "note": "cls.cn 各栏目无新文章（已全部收录）",
- "newTitles": [],
+ "source": "cls.cn",
+ "note": "",
+ "newTitles": [
+  "【九点特供】GPT-6 Astra证明通用大模型已可直接用于“物理AI”，机构称人形机器人是物理AI的重要落地场景，产业化处1-10的早期放量阶段；出口暴涨116.6%，这一国产“新顶流”全球爆单"
+ ],
  "failedList": []
 }
