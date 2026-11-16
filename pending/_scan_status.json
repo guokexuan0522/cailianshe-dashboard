@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-16 13:32:08",
+ "lastScanAt": "2026-11-16 16:25:58",
  "ok": true,
- "new": 0,
- "skipped": 4,
+ "new": 1,
+ "skipped": 0,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【盘中宝】产业总投资超500亿，该行业正处于过渡技术规模化向下一代技术量产导入切换的关键窗口，这家企业成立了创新实验室"
+ ],
  "failedList": []
 }
