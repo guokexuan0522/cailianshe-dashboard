@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-18 07:43:42",
+ "lastScanAt": "2026-11-18 08:57:54",
  "ok": true,
- "new": 0,
- "skipped": 1,
+ "new": 1,
+ "skipped": 2,
  "failed": 0,
  "source": "cls.cn",
  "note": "",
- "newTitles": [],
+ "newTitles": [
+  "【九点特供】英伟达动荡将为TPU带来长期买家，专家称谷歌有望趁乱获利，或促使AI算力产业的竞争格局发生变动；工信部同意北京市等8个省（市）开展6G创新发展部省协同试点工作"
+ ],
  "failedList": []
 }
