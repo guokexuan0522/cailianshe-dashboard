@@ -1,11 +1,13 @@
 {
- "lastScanAt": "2026-11-22 10:51:54",
+ "lastScanAt": "2026-11-22 18:48:20",
  "ok": true,
- "new": 0,
- "skipped": 0,
+ "new": 1,
+ "skipped": 2,
  "failed": 0,
- "source": "",
- "note": "cls.cn 各栏目无新文章（已全部收录）",
- "newTitles": [],
+ "source": "cls.cn",
+ "note": "",
+ "newTitles": [
+  "【财联社早知道】新突破！全国产超算跑出世界级成果，机构称国产算力规模化应用有望进一步加速，这家公司专注于AI芯片领域十余年，能提供系列化智能芯片产品和平台化基础系统软件"
+ ],
  "failedList": []
 }
