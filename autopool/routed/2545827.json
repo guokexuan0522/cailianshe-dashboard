@@ -1,0 +1,24 @@
+{
+ "aid": 2545827,
+ "outcome": "wake",
+ "routeReason": "generic-name-risk",
+ "routeDetail": "仅命中短名/通用词/统计提及（机器人：generic-name-risk），字面出现不足以证明个股投资信号，需唤醒层公开信源取证；字面点名 0 只 ≤ 声称 3 只（创业板1/主板2），其余未字面点名不予补名",
+ "column": "公告全知道",
+ "title": "【公告全知道】PCB+光模块+AI服务器+人形机器人！公司AI服务器电源PCB已实现批量供货",
+ "pub": "2026-11-26 22:06",
+ "period": "2026-11-26",
+ "snippet": "①PCB+光模块+AI服务器+人形机器人！这家公司AI服务器电源PCB已实现批量供货；②先进封装+CPO+存储芯片+玻璃基板+第三代半导体！这家公司拟最高3亿元回购股份；③PCB+人形机器人+CPO+汽车电子+华为！公司已有相关产品应用到头部具身机器人企业。",
+ "related_stock": [
+  {
+   "market": "创业板",
+   "count": 1
+  },
+  {
+   "market": "主板",
+   "count": 2
+  }
+ ],
+ "beans": 280,
+ "url": "https://www.cls.cn/detail/2545827",
+ "processedAt": "2026-11-27 10:49:28"
+}
